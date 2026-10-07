@@ -1,0 +1,147 @@
+/* frontend/admin/css/settings.css */
+@import url('../../shared/css/variables.css');
+
+/* ===== SETTINGS TABS ===== */
+.settings-tabs {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 0.5rem;
+}
+
+.settings-tab {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1.2rem;
+    border: none;
+    background: none;
+    color: var(--text-secondary);
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    border-radius: var(--radius-sm);
+    transition: all 0.2s ease;
+}
+
+.settings-tab:hover {
+    background: var(--bg-hover);
+    color: var(--primary-blue);
+}
+
+.settings-tab.active {
+    background: var(--primary-blue);
+    color: #fff;
+}
+
+.settings-content { display: none; }
+.settings-content.active { display: block; }
+
+/* ===== SETTINGS CARDS ===== */
+.settings-card {
+    background: var(--bg-secondary);
+    border-radius: var(--radius-md);
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    border: 1px solid var(--border-color);
+}
+
+.settings-card-header { margin-bottom: 1rem; }
+
+.settings-card-header h3 {
+    margin: 0;
+    color: var(--primary-blue-dark);
+    font-size: 1.2rem;
+}
+
+.settings-card-header p {
+    margin: 0.25rem 0 0;
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+}
+
+.settings-card-danger { border-color: rgba(220, 53, 69, 0.3); }
+
+/* ===== SEMESTER / LIBRARY STATUS ===== */
+.semester-status,
+.library-hours-status {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+.status-item {
+    background: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    padding: 0.75rem 1rem;
+}
+
+/* FIX: --text-muted does not exist in variables.css. The
+   correct token is --text-light. */
+.status-item label {
+    font-size: 0.75rem;
+    color: var(--text-light);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.status-item p {
+    margin: 0.25rem 0 0;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+/* ===== LIBRARY HOURS GRID =====
+   FIX: this whole block was duplicated at the end of the file.
+   Kept a single copy. Also: --text-muted → --text-light. */
+.days-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.day-item {
+    background: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    padding: 1rem;
+}
+
+.day-item label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+}
+
+.day-item .form-control { margin-bottom: 0.5rem; }
+
+.time-group { margin-bottom: 0.75rem; }
+
+.time-group label {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-light);
+    margin-bottom: 0.3rem;
+}
+
+.day-name {
+    display: block;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--primary-blue-dark);
+    margin-bottom: 0.75rem;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+    .days-grid { grid-template-columns: 1fr; }
+    .semester-status,
+    .library-hours-status { grid-template-columns: 1fr; }
+}

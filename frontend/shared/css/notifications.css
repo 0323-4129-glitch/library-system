@@ -1,0 +1,158 @@
+/* frontend/shared/css/notifications.css */
+@import url('variables.css');
+
+/* ===== NOTIFICATION CONTAINER (FORCED TOP-RIGHT) ===== */
+.notification-container {
+    position: fixed !important;
+    top: 20px !important;
+    right: 20px !important;
+    bottom: auto !important;
+    left: auto !important;
+    z-index: 9999999 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 10px !important;
+    max-width: 400px !important;
+    width: 100% !important;
+    pointer-events: none !important;
+    max-height: 90vh !important;
+    overflow-y: auto !important;
+}
+
+.notification-container > * {
+    pointer-events: auto !important;
+}
+
+/* ===== NOTIFICATION ITEM =====
+   Only ONE `display` declaration — the second (flex) wins, but the
+   first (block) was dead weight and misleading. */
+.notification {
+    position: relative !important;
+    display: flex !important;
+    width: 320px !important;
+    max-width: 100% !important;
+    background: #ffffff !important;
+    border-radius: 8px !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+    padding: 14px 16px !important;
+    align-items: flex-start !important;
+    gap: 12px !important;
+    border-left: 4px solid var(--primary-blue) !important;
+    transform: none !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    margin-bottom: 10px !important;
+    color: #1d2b4f !important;
+    font-size: 14px !important;
+    line-height: 1.5 !important;
+}
+
+.notification.show {
+    transform: none !important;
+    opacity: 1 !important;
+}
+
+.notification.hide {
+    transform: none !important;
+    opacity: 0 !important;
+    transition: opacity 0.3s !important;
+}
+
+/* ===== NOTIFICATION TYPES (FORCED COLORS) ===== */
+.notification-success {
+    border-left-color: #28a745 !important;
+    background: #e6ffed !important;
+    color: #1c7a4a !important;
+}
+
+.notification-error {
+    border-left-color: #dc3545 !important;
+    background: #ffe6e6 !important;
+    color: #a71d2a !important;
+}
+
+.notification-warning {
+    border-left-color: #ffc107 !important;
+    background: #fff3cd !important;
+    color: #856404 !important;
+}
+
+.notification-info {
+    border-left-color: #17a2b8 !important;
+    background: #e6f7ff !important;
+    color: #0c5460 !important;
+}
+
+/* ===== NOTIFICATION ICON ===== */
+.notification-icon {
+    font-size: 24px !important;
+    flex-shrink: 0 !important;
+    width: 36px !important;
+    height: 36px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    border-radius: 50% !important;
+    background: rgba(255, 255, 255, 0.6) !important;
+}
+
+/* ===== NOTIFICATION CONTENT ===== */
+.notification-content {
+    flex: 1 !important;
+    min-width: 0 !important;
+}
+
+.notification-title {
+    font-weight: 600 !important;
+    font-size: 13px !important;
+    color: inherit !important;
+    margin-bottom: 2px !important;
+}
+
+.notification-message {
+    font-size: 13px !important;
+    color: inherit !important;
+    line-height: 1.4 !important;
+}
+
+/* ===== NOTIFICATION CLOSE ===== */
+.notification-close {
+    background: none !important;
+    border: none !important;
+    font-size: 20px !important;
+    cursor: pointer !important;
+    color: inherit !important;
+    padding: 0 4px !important;
+    flex-shrink: 0 !important;
+    margin-top: -2px !important;
+}
+
+/* ===== NOTIFICATION PROGRESS ===== */
+.notification-progress {
+    position: absolute !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    height: 3px !important;
+    background: currentColor !important;
+    animation: progressBar linear forwards !important;
+}
+
+@keyframes progressBar {
+    from { width: 100%; }
+    to { width: 0%; }
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 576px) {
+    .notification-container {
+        top: 10px !important;
+        right: 10px !important;
+        left: 10px !important;
+        max-width: 100% !important;
+    }
+
+    .notification {
+        width: 100% !important;
+        padding: 10px 12px !important;
+    }
+}

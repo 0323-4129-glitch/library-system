@@ -1,0 +1,309 @@
+/* frontend/admin/css/concerns.css */
+@import url('../../shared/css/variables.css');
+
+.page-content { padding: var(--spacing-lg) 0; }
+
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: var(--spacing-lg);
+    flex-wrap: wrap;
+    gap: var(--spacing-md);
+}
+.page-header h1 { margin-bottom: var(--spacing-xs); color: var(--primary-blue-dark); }
+.page-subtitle { color: var(--text-secondary); font-size: var(--font-size-sm); margin-bottom: 0; }
+.header-actions { display: flex; gap: var(--spacing-sm); flex-wrap: wrap; align-items: center; }
+
+/* Two-column layout: list + thread */
+.concerns-layout {
+    display: grid;
+    grid-template-columns: 340px 1fr;
+    gap: var(--spacing-lg);
+    min-height: 70vh;
+}
+
+/* ============ LIST ============ */
+.concerns-list {
+    background: var(--bg-secondary);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-sm);
+    overflow-y: auto;
+    max-height: 78vh;
+}
+
+.concerns-list-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: var(--spacing-xxl) var(--spacing-md);
+    color: var(--text-light);
+    text-align: center;
+}
+
+.concern-row {
+    display: flex;
+    gap: 12px;
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--border-light);
+    cursor: pointer;
+    transition: background var(--transition-fast);
+}
+.concern-row:hover { background: var(--bg-hover); }
+.concern-row.active { background: var(--blue-50); border-left: 3px solid var(--primary-blue); padding-left: 13px; }
+.concern-row:last-child { border-bottom: none; }
+
+/* Unread rows are bold */
+.concern-row.unread .concern-row-name,
+.concern-row.unread .concern-row-subject { font-weight: 700; color: var(--text-primary); }
+
+/* -------- Avatar (row) --------
+ * The <img> sits absolutely on top of the initials fallback <span>.
+ * If the image loads, it covers the fallback. If it fails, `.is-error`
+ * hides it and the styled fallback (blue circle + initials) stays
+ * visible. Either way the blue circle is preserved. */
+.concern-row-avatar {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--primary-blue);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 13px;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.concern-row-avatar img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: 50%;
+    z-index: 1;
+}
+.concern-row-avatar img.is-error {
+    display: none;
+}
+
+.concern-row-avatar .avatar-fallback-text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.3px;
+    color: #fff;
+    background: var(--primary-blue);
+    border-radius: 50%;
+    z-index: 0;
+}
+
+.concern-row-body { flex: 1; min-width: 0; }
+
+.concern-row-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 3px;
+}
+.concern-row-name { font-weight: 600; font-size: 13.5px; color: var(--text-primary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.concern-row-time { font-size: 11px; color: var(--text-light); flex-shrink: 0; }
+
+.concern-row-subject {
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin-bottom: 6px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.concern-row-bottom { display: flex; justify-content: space-between; align-items: center; }
+.concern-row-id { font-size: 11px; color: var(--text-light); }
+.concern-row-bottom .badge { font-size: 10px; padding: 3px 8px; }
+
+/* "Read" badge colour */
+.badge-secondary { background: #e5e7eb; color: #4b5563; }
+
+/* ============ THREAD ============ */
+.concerns-thread {
+    background: var(--bg-secondary);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    max-height: 78vh;
+}
+
+.thread-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    flex: 1;
+    padding: var(--spacing-xxl);
+    color: var(--text-light);
+    text-align: center;
+}
+
+.thread-content { display: flex; flex-direction: column; height: 100%; }
+
+.thread-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--border-light);
+    background: var(--bg-light, #f6f7fb);
+}
+.thread-student { display: flex; align-items: center; gap: 12px; }
+
+/* -------- Avatar (thread header) --------
+ * Same fallback-under-img pattern as the row avatars, at 44px. */
+.thread-avatar {
+    position: relative;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--primary-blue);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 15px;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+.thread-avatar img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: 50%;
+    z-index: 1;
+}
+.thread-avatar img.is-error {
+    display: none;
+}
+.thread-avatar .avatar-fallback-text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: 0.3px;
+    color: #fff;
+    background: var(--primary-blue);
+    border-radius: 50%;
+    z-index: 0;
+}
+
+.thread-student-name { font-weight: 600; font-size: 15px; color: var(--text-primary); }
+.thread-student-meta { font-size: 12px; color: var(--text-light); margin-top: 1px; }
+
+.thread-subject {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 20px;
+    font-size: 14.5px;
+    font-weight: 600;
+    color: var(--primary-blue-dark);
+    border-bottom: 1px solid var(--border-light);
+    background: #fff;
+}
+.thread-subject svg { color: var(--primary-blue); flex-shrink: 0; }
+
+.thread-messages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    background: #fafbfe;
+}
+
+.concern-message { display: flex; }
+.concern-message.from-student { justify-content: flex-start; }
+.concern-message.from-admin { justify-content: flex-end; }
+
+.concern-message-bubble {
+    max-width: 74%;
+    padding: 10px 14px;
+    border-radius: 14px;
+    font-size: 14px;
+    line-height: 1.5;
+    word-wrap: break-word;
+}
+.from-student .concern-message-bubble {
+    background: #fff;
+    color: var(--text-primary);
+    border: 1px solid var(--border-light);
+    border-bottom-left-radius: 4px;
+}
+.from-admin .concern-message-bubble {
+    background: var(--primary-blue);
+    color: #fff;
+    border-bottom-right-radius: 4px;
+}
+
+.concern-message-meta {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    font-size: 11px;
+    opacity: 0.75;
+    margin-top: 6px;
+}
+.concern-message-meta strong { font-weight: 600; }
+
+.thread-reply {
+    border-top: 1px solid var(--border-light);
+    padding: 16px 20px;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.thread-reply textarea {
+    width: 100%;
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    padding: 10px 12px;
+    font-family: inherit;
+    font-size: 14px;
+    resize: vertical;
+    outline: none;
+    transition: border-color 0.15s;
+}
+.thread-reply textarea:focus { border-color: var(--primary-blue); }
+.thread-reply-actions { display: flex; justify-content: flex-end; gap: 10px; }
+
+/* ============ RESPONSIVE ============ */
+@media (max-width: 900px) {
+    .concerns-layout { grid-template-columns: 1fr; }
+    .concerns-list { max-height: 40vh; }
+    .concerns-thread { max-height: none; }
+}

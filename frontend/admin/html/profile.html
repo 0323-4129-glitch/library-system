@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - RMMC Library System</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../shared/css/global.css">
+    <link rel="stylesheet" href="../../shared/css/sidebar.css">
+    <link rel="stylesheet" href="../../shared/css/navbar.css">
+    <link rel="stylesheet" href="../../shared/css/cards.css">
+    <link rel="stylesheet" href="../../shared/css/buttons.css">
+    <link rel="stylesheet" href="../../shared/css/forms.css">
+    <link rel="stylesheet" href="../../shared/css/modal.css">
+    <link rel="stylesheet" href="../../shared/css/notifications.css">
+    <link rel="stylesheet" href="../../shared/css/responsive.css">
+    <link rel="stylesheet" href="../css/profile.css">
+    <link rel="stylesheet" href="../css/layout-fix.css">
+</head>
+<body>
+
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="logo-container">
+                <img class="logo" src="../../shared/assets/logo/rmmclogo.png" alt="RMMC-MI Library seal" />
+                <div class="brand-info">
+                    <div class="brand-name">RMMC-MI Library</div>
+                    <div class="brand-sub">Admin</div>
+                </div>
+            </div>
+        </div>
+
+        <nav class="sidebar-nav">
+            <div class="nav-label">Overview</div>
+            <div class="nav-item">
+                <a href="dashboard.html" class="nav-link">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="8" height="8" rx="1.5"/><rect x="13" y="3" width="8" height="8" rx="1.5"/><rect x="3" y="13" width="8" height="8" rx="1.5"/><rect x="13" y="13" width="8" height="8" rx="1.5"/></svg>
+                    <span class="nav-text">Dashboard</span>
+                </a>
+            </div>
+
+            <div class="nav-label">Accounts</div>
+            <div class="nav-item">
+                <a href="student-management.html" class="nav-link">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="8" r="3.2"/><path d="M3.5 20c0-3.4 2.6-6 5.9-6h.2c3.3 0 5.9 2.6 5.9 6"/><path d="M16 4.5c1.7.3 3 1.9 3 3.7s-1.3 3.4-3 3.7"/><path d="M19 14c2 .5 3.5 2.4 3.5 4.6"/></svg>
+                    <span class="nav-text">Students</span>
+                </a>
+            </div>
+
+            <div class="nav-label">Facilities</div>
+            <div class="nav-item">
+                <a href="computer-management.html" class="nav-link">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="12" rx="1.5"/><path d="M8 20h8M12 16v4"/></svg>
+                    <span class="nav-text">Computers</span>
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="reservation-management.html" class="nav-link">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3.5" y="4.5" width="17" height="16" rx="2"/><path d="M3.5 9h17M8 3v3M16 3v3"/><path d="M8 13.5h2M14 13.5h2M8 17h2"/></svg>
+                    <span class="nav-text">Reservations</span>
+                </a>
+            </div>
+
+            <div class="nav-label">Insight &amp; control</div>
+            <div class="nav-item">
+                <a href="reports.html" class="nav-link">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 20V6a1.5 1.5 0 0 1 1.5-1.5H15L20 9v11a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1Z"/><path d="M8 13.5v3M12 11v5.5M16 14.5v2"/></svg>
+                    <span class="nav-text">Reports</span>
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="settings.html" class="nav-link">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M19.4 13.5a1.7 1.7 0 0 0 .3 1.9l.1.1a2 2 0 1 1-2.9 2.9l-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.6V20a2 2 0 1 1-4 0v-.2a1.7 1.7 0 0 0-1-1.5 1.7 1.7 0 0 0-1.9.3l-.1.1a2 2 0 1 1-2.9-2.9l.1-.1a1.7 1.7 0 0 0 .3-1.9 1.7 1.7 0 0 0-1.6-1H4a2 2 0 1 1 0-4h.2a1.7 1.7 0 0 0 1.5-1 1.7 1.7 0 0 0-.3-1.9l-.1-.1a2 2 0 1 1 2.9-2.9l.1.1a1.7 1.7 0 0 0 1.9.3H10a1.7 1.7 0 0 0 1-1.6V4a2 2 0 1 1 4 0v.2a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.9-.3l.1-.1a2 2 0 1 1 2.9 2.9l-.1.1a1.7 1.7 0 0 0-.3 1.9V10a1.7 1.7 0 0 0 1.6 1H20a2 2 0 1 1 0 4h-.2a1.7 1.7 0 0 0-1.4 1Z"/></svg>
+                    <span class="nav-text">Settings</span>
+                </a>
+            </div>
+        </nav>
+
+        <div class="sidebar-footer">
+            <a href="profile.html" class="user-info">
+                <div class="user-avatar" id="sidebarUserAvatar">A</div>
+                <div class="user-details">
+                    <div class="user-name" id="sidebarUserName">Admin User</div>
+                    <div class="user-role">Admin</div>
+                </div>
+            </a>
+            <button class="logout-btn" id="btnLogout">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="M16 17l5-5-5-5"/><path d="M21 12H9"/></svg>
+                <span>Log out</span>
+            </button>
+        </div>
+    </aside>
+
+    <button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle menu">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </button>
+    <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+
+    <main class="main-content">
+        <nav class="navbar" id="navbar">
+            <div class="navbar-left">
+                <a href="dashboard.html" class="navbar-brand">
+                    <img src="../../shared/assets/logo/rmmclogo.png" alt="RMMC Logo" style="height: 32px;">
+                    <span class="brand-text">RMMC <span>Library</span></span>
+                </a>
+            </div>
+
+            <div class="navbar-right">
+                <div class="navbar-item">
+                    <button class="navbar-btn" onclick="window.location.href='notifications.html'" title="Notifications"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="20" height="20"><path d="M6 8a6 6 0 1 1 12 0c0 4.5 1.5 6 1.5 6h-15S6 12.5 6 8Z"/><path d="M9.5 18a2.5 2.5 0 0 0 5 0"/></svg><span class="badge" id="notificationBadgeNav">0</span></button>
+                </div>
+                <div class="navbar-item">
+                    <div class="navbar-user" id="profileMenuToggle" style="cursor: pointer; position: relative;" onclick="toggleProfileDropdown(event)">
+                        <div class="avatar" id="userAvatarNav">A</div>
+                        <div class="name" id="userNameNav">Admin</div>
+                        <div class="role">Admin</div>
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="14" height="14" style="margin-left: 6px;"><path d="M6 9l6 6 6-6"/></svg>
+
+                        <div class="profile-dropdown" id="profileDropdown" style="display: none;">
+                            <a href="#" onclick="event.preventDefault(); event.stopPropagation(); viewProfilePicture();">View Profile Picture</a>
+                            <a href="#" onclick="event.preventDefault(); event.stopPropagation(); openPhotoChoiceModal();">Change Profile Picture</a>
+                            <div class="dropdown-divider"></div>
+                            <a href="profile.html">My Profile</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <div class="page-content">
+            <div class="page-header">
+                <div>
+                    <h1>My Profile</h1>
+                    <p class="page-subtitle">Manage your personal information and account settings</p>
+                </div>
+            </div>
+
+            <div class="profile-container">
+                <div class="profile-hero">
+                    <div class="profile-avatar-wrapper" id="profileAvatarWrapper" style="position: relative; cursor: pointer;" onclick="toggleAvatarDropdown(event)">
+                        <div class="profile-avatar" id="profileAvatar">A</div>
+                        <div class="avatar-camera-badge" title="Change photo">
+                            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 8a2 2 0 0 1 2-2h1.2l.8-1.4A1 1 0 0 1 8.87 4h6.26a1 1 0 0 1 .87.6L16.8 6H18a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2Z"/><circle cx="12" cy="13" r="3.2"/></svg>
+                        </div>
+
+                        <div class="profile-dropdown avatar-dropdown" id="avatarDropdown" style="display: none;">
+                            <a href="#" onclick="event.preventDefault(); event.stopPropagation(); viewProfilePicture(); closeAvatarDropdown();">View Profile Picture</a>
+                            <a href="#" onclick="event.preventDefault(); event.stopPropagation(); openPhotoChoiceModal(); closeAvatarDropdown();">Change Profile Picture</a>
+                        </div>
+                    </div>
+
+                    <div class="profile-divider"></div>
+
+                    <div class="profile-info">
+                        <h2 id="profileFullName">Admin User</h2>
+                        <div class="profile-role-badge">
+                            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                            <span id="profileRole">Administrator</span>
+                        </div>
+                        <div class="profile-id-badge" id="profileEmployeeId">EMP-001</div>
+                    </div>
+                </div>
+
+                <div class="profile-cards-grid">
+                    <div class="profile-card-item">
+                        <div class="card-icon blue">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="18" height="18"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="m22 6-10 7L2 6"/></svg>
+                        </div>
+                        <div class="card-content">
+                            <div class="card-label">Email</div>
+                            <div class="card-value" id="profileEmail">admin@rmmc.edu.ph</div>
+                        </div>
+                    </div>
+
+                    <div class="profile-card-item">
+                        <div class="card-icon blue">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="18" height="18"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 8h10M7 12h10M7 16h6"/></svg>
+                        </div>
+                        <div class="card-content">
+                            <div class="card-label">Employee ID</div>
+                            <div class="card-value" id="profileEmployeeIdDisplay">EMP-001</div>
+                        </div>
+                    </div>
+
+                    <div class="profile-card-item">
+                        <div class="card-icon blue">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="18" height="18"><path d="M4 7h16M4 12h10M4 17h6"/></svg>
+                        </div>
+                        <div class="card-content">
+                            <div class="card-label">Role</div>
+                            <div class="card-value" id="profileRoleDisplay">Administrator</div>
+                        </div>
+                    </div>
+
+                    <div class="profile-card-item">
+                        <div class="card-icon blue">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="18" height="18"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                        </div>
+                        <div class="card-content">
+                            <div class="card-label">Status</div>
+                            <div class="card-value"><span class="badge badge-success" id="profileStatus">Active</span></div>
+                        </div>
+                    </div>
+
+                    <div class="profile-card-item">
+                        <div class="card-icon blue">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="18" height="18"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+                        </div>
+                        <div class="card-content">
+                            <div class="card-label">Member Since</div>
+                            <div class="card-value" id="profileCreatedAt">January 1, 2024</div>
+                        </div>
+                    </div>
+
+                    <div class="profile-card-item">
+                        <div class="card-icon blue">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="18" height="18"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                        </div>
+                        <div class="card-content">
+                            <div class="card-label">Last Updated</div>
+                            <div class="card-value" id="profileUpdatedAt">January 1, 2024</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="profile-actions">
+                    <button class="btn btn-primary" onclick="openEditProfileModal()">
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="16" height="16"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg> Edit Profile
+                    </button>
+                    <button class="btn btn-outline" onclick="openChangePasswordModal()">
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="16" height="16"><rect x="5" y="11" width="14" height="9" rx="1.5"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg> Change Password
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div class="modal" id="viewProfilePictureModal">
+        <div class="modal-backdrop" onclick="closeModal('viewProfilePictureModal')"></div>
+        <div class="modal-dialog">
+            <div class="modal-header">
+                <h5 class="modal-title">Profile Picture</h5>
+            </div>
+            <div class="modal-body text-center">
+                <img id="profilePictureDisplay" src="" alt="Profile Picture" style="width: 200px; height: 200px; border-radius: 50%; object-fit: cover; display: none; margin: 0 auto;">
+                <div id="profileInitialDisplay" style="width: 200px; height: 200px; border-radius: 50%; background: #2b2d82; color: white; display: flex; align-items: center; justify-content: center; font-size: 60px; font-weight: bold; margin: 0 auto;">A</div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal('viewProfilePictureModal')">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="photoChoiceModal">
+        <div class="modal-backdrop" onclick="closeModal('photoChoiceModal')"></div>
+        <div class="modal-dialog">
+            <div class="modal-header">
+                <h5 class="modal-title">Change Profile Picture</h5>
+                <button class="modal-close" onclick="closeModal('photoChoiceModal')">×</button>
+            </div>
+            <div class="modal-body">
+                <button type="button" class="btn btn-primary photo-choice-btn" onclick="triggerCameraCapture()">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 8a2 2 0 0 1 2-2h1.2l.8-1.4A1 1 0 0 1 8.87 4h6.26a1 1 0 0 1 .87.6L16.8 6H18a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2Z"/><circle cx="12" cy="13" r="3.2"/></svg>
+                    Take a Photo
+                </button>
+                <button type="button" class="btn btn-primary photo-choice-btn" onclick="triggerFileUpload()">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3.5" y="3.5" width="17" height="17" rx="2"/><circle cx="8.5" cy="9" r="1.5"/><path d="M20 15l-4.5-4.5a1.5 1.5 0 0 0-2.1 0L5 19"/></svg>
+                    Upload from Gallery
+                </button>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal('photoChoiceModal')">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="cameraCaptureModal">
+        <div class="modal-backdrop" onclick="closeModal('cameraCaptureModal')"></div>
+        <div class="modal-dialog">
+            <div class="modal-header">
+                <h5 class="modal-title">Take a Photo</h5>
+                <button class="modal-close" onclick="closeModal('cameraCaptureModal')">×</button>
+            </div>
+            <div class="modal-body" style="text-align:center;">
+                <video id="cameraPreview" autoplay playsinline style="width:100%; max-width:400px; border-radius:10px;"></video>
+                <div class="form-actions" style="margin-top:15px; display:flex; gap:10px; justify-content:center;">
+                    <button type="button" class="btn btn-primary" id="capturePhotoBtn">
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></svg> Capture
+                    </button>
+                    <button type="button" class="btn btn-secondary" onclick="closeModal('cameraCaptureModal')">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="editProfileModal">
+        <div class="modal-backdrop" onclick="closeModal('editProfileModal')"></div>
+        <div class="modal-dialog">
+            <div class="modal-header">
+                <h5 class="modal-title">Edit Profile</h5>
+                <button class="modal-close" onclick="closeModal('editProfileModal')">×</button>
+            </div>
+            <form id="editProfileForm" class="modal-form">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label class="form-label">Employee ID</label>
+                        <input type="text" name="employee_id" id="editEmployeeId" class="form-control" placeholder="EMP-001">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label required">First Name</label>
+                            <input type="text" name="first_name" id="editFirstName" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Middle Name</label>
+                            <input type="text" name="middle_name" id="editMiddleName" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label required">Last Name</label>
+                            <input type="text" name="last_name" id="editLastName" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label required">Email</label>
+                        <input type="email" name="email" id="editEmail" class="form-control" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="closeModal('editProfileModal')">Cancel</button>
+                    <button type="submit" class="btn btn-primary">
+                        <span class="btn-text">Update Profile</span>
+                        <span class="spinner"></span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal" id="changePasswordModal">
+        <div class="modal-backdrop" onclick="closeModal('changePasswordModal')"></div>
+        <div class="modal-dialog">
+            <div class="modal-header">
+                <h5 class="modal-title">Change Password</h5>
+                <button class="modal-close" onclick="closeModal('changePasswordModal')">×</button>
+            </div>
+            <form id="changePasswordForm" class="modal-form">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label class="form-label required">Current Password</label>
+                        <input type="password" name="current_password" id="currentPassword" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label required">New Password</label>
+                        <input type="password" name="new_password" id="newPassword" class="form-control" required minlength="8">
+                        <small class="form-text">Must be at least 8 characters long</small>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label required">Confirm New Password</label>
+                        <input type="password" name="confirm_password" id="confirmPassword" class="form-control" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="closeModal('changePasswordModal')">Cancel</button>
+                    <button type="submit" class="btn btn-primary">
+                        <span class="btn-text">Change Password</span>
+                        <span class="spinner"></span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <input type="file" id="profilePhotoCameraInput" accept="image/*" capture="environment" style="display: none;">
+    <input type="file" id="profilePhotoInput" accept="image/*" style="display: none;">
+
+    <div id="notificationContainer"></div>
+
+    <script src="../../shared/js/api.js"></script>
+    <script src="../../shared/js/session-check.js"></script>
+    <script src="../../shared/js/helpers.js"></script>
+    <script src="../../shared/js/notifications.js"></script>
+    <script src="../../shared/js/sidebar.js"></script>
+    <script src="../../shared/js/navbar.js"></script>
+    <script src="../js/profile.js"></script>
+</body>
+</html>

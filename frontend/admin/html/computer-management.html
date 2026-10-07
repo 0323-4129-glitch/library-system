@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Computer Management - RMMC Library System</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../shared/css/global.css">
+    <link rel="stylesheet" href="../../shared/css/sidebar.css">
+    <link rel="stylesheet" href="../../shared/css/navbar.css">
+    <link rel="stylesheet" href="../../shared/css/cards.css">
+    <link rel="stylesheet" href="../../shared/css/tables.css">
+    <link rel="stylesheet" href="../../shared/css/buttons.css">
+    <link rel="stylesheet" href="../../shared/css/forms.css">
+    <link rel="stylesheet" href="../../shared/css/modal.css">
+    <link rel="stylesheet" href="../../shared/css/notifications.css">
+    <link rel="stylesheet" href="../../shared/css/responsive.css">
+    <link rel="stylesheet" href="../css/computer-management.css">
+    <link rel="stylesheet" href="../css/layout-fix.css">
+</head>
+<body>
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="logo-container">
+                <img class="logo" src="../../shared/assets/logo/rmmclogo.png" alt="RMMC-MI Library seal" />
+                <div class="brand-info">
+                    <div class="brand-name">RMMC-MI Library</div>
+                    <div class="brand-sub">Admin</div>
+                </div>
+            </div>
+        </div>
+
+        <nav class="sidebar-nav">
+            <div class="nav-label">Overview</div>
+            <div class="nav-item">
+                <a href="dashboard.html" class="nav-link">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="8" height="8" rx="1.5"/><rect x="13" y="3" width="8" height="8" rx="1.5"/><rect x="3" y="13" width="8" height="8" rx="1.5"/><rect x="13" y="13" width="8" height="8" rx="1.5"/></svg>
+                    <span class="nav-text">Dashboard</span>
+                </a>
+            </div>
+
+            <div class="nav-label">Accounts</div>
+            <div class="nav-item">
+                <a href="student-management.html" class="nav-link">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="8" r="3.2"/><path d="M3.5 20c0-3.4 2.6-6 5.9-6h.2c3.3 0 5.9 2.6 5.9 6"/><path d="M16 4.5c1.7.3 3 1.9 3 3.7s-1.3 3.4-3 3.7"/><path d="M19 14c2 .5 3.5 2.4 3.5 4.6"/></svg>
+                    <span class="nav-text">Students</span>
+                </a>
+            </div>
+
+            <div class="nav-label">Facilities</div>
+            <div class="nav-item">
+                <a href="computer-management.html" class="nav-link active">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="12" rx="1.5"/><path d="M8 20h8M12 16v4"/></svg>
+                    <span class="nav-text">Computers</span>
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="reservation-management.html" class="nav-link">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3.5" y="4.5" width="17" height="16" rx="2"/><path d="M3.5 9h17M8 3v3M16 3v3"/><path d="M8 13.5h2M14 13.5h2M8 17h2"/></svg>
+                    <span class="nav-text">Reservations</span>
+                </a>
+            </div>
+
+            <div class="nav-label">Insight &amp; control</div>
+            <div class="nav-item">
+                <a href="reports.html" class="nav-link">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 20V6a1.5 1.5 0 0 1 1.5-1.5H15L20 9v11a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1Z"/><path d="M8 13.5v3M12 11v5.5M16 14.5v2"/></svg>
+                    <span class="nav-text">Reports</span>
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="settings.html" class="nav-link">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M19.4 13.5a1.7 1.7 0 0 0 .3 1.9l.1.1a2 2 0 1 1-2.9 2.9l-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.6V20a2 2 0 1 1-4 0v-.2a1.7 1.7 0 0 0-1-1.5 1.7 1.7 0 0 0-1.9.3l-.1.1a2 2 0 1 1-2.9-2.9l.1-.1a1.7 1.7 0 0 0 .3-1.9 1.7 1.7 0 0 0-1.6-1H4a2 2 0 1 1 0-4h.2a1.7 1.7 0 0 0 1.5-1 1.7 1.7 0 0 0-.3-1.9l-.1-.1a2 2 0 1 1 2.9-2.9l.1.1a1.7 1.7 0 0 0 1.9.3H10a1.7 1.7 0 0 0 1-1.6V4a2 2 0 1 1 4 0v.2a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.9-.3l.1-.1a2 2 0 1 1 2.9 2.9l-.1.1a1.7 1.7 0 0 0-.3 1.9V10a1.7 1.7 0 0 0 1.6 1H20a2 2 0 1 1 0 4h-.2a1.7 1.7 0 0 0-1.4 1Z"/></svg>
+                    <span class="nav-text">Settings</span>
+                </a>
+            </div>
+        </nav>
+
+        <div class="sidebar-footer">
+            <a href="profile.html" class="user-info">
+                <div class="user-avatar" id="sidebarUserAvatar">AU</div>
+                <div class="user-details">
+                    <div class="user-name" id="sidebarUserName">Admin User</div>
+                    <div class="user-role" id="sidebarUserRole">Admin</div>
+                </div>
+            </a>
+            <button class="logout-btn" id="btnLogout">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="M16 17l5-5-5-5"/><path d="M21 12H9"/></svg>
+                <span>Log out</span>
+            </button>
+        </div>
+    </aside>
+
+    <button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle menu">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </button>
+    <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+
+    <main class="main-content">
+        <nav class="navbar" id="navbar">
+            <div class="navbar-left">
+                <a href="dashboard.html" class="navbar-brand">
+                    <img src="../../shared/assets/logo/rmmclogo.png" alt="RMMC Logo" style="height: 32px;">
+                    <span class="brand-text">RMMC <span>Library</span></span>
+                </a>
+            </div>
+
+            <div class="navbar-right">
+                <div class="navbar-item">
+                    <button class="navbar-btn" onclick="window.location.href='notifications.html'" title="Notifications">
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="20" height="20"><path d="M6 8a6 6 0 1 1 12 0c0 4.5 1.5 6 1.5 6h-15S6 12.5 6 8Z"/><path d="M9.5 18a2.5 2.5 0 0 0 5 0"/></svg>
+                        <span class="badge" id="notificationBadgeNav">0</span>
+                    </button>
+                </div>
+                <div class="navbar-item">
+                    <div class="navbar-user" onclick="window.location.href='profile.html'">
+                        <div class="avatar" id="userAvatarNav">A</div>
+                        <div class="name" id="userNameNav">Admin</div>
+                        <div class="role">Admin</div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <div class="page-content">
+            <div class="page-header">
+                <div>
+                    <h1>Computer Management</h1>
+                    <p class="page-subtitle">Manage library computers, monitor status, and view computer history</p>
+                </div>
+                <div class="header-actions">
+                    <button class="btn btn-primary" onclick="openAddComputerModal()">
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="16" height="16"><path d="M12 5v14M5 12h14"/></svg>
+                        Add Computer
+                    </button>
+                </div>
+            </div>
+
+            <div class="stats-summary">
+                <div class="stat-item"><span class="stat-label">Total Computers</span><span class="stat-value" id="totalComputers">0</span></div>
+                <div class="stat-item"><span class="stat-label">Available</span><span class="stat-value" id="availableComputers">0</span></div>
+                <div class="stat-item"><span class="stat-label">Occupied</span><span class="stat-value" id="occupiedComputers">0</span></div>
+                <div class="stat-item"><span class="stat-label">Reserved</span><span class="stat-value" id="reservedComputers">0</span></div>
+                <div class="stat-item"><span class="stat-label">Maintenance</span><span class="stat-value" id="maintenanceComputers">0</span></div>
+            </div>
+
+            <div class="tabs-container">
+                <div class="tab-headers">
+                    <button class="tab-btn active" data-tab="all-computers">All Computers</button>
+                    <button class="tab-btn" data-tab="active-sessions">Active Sessions</button>
+                    <button class="tab-btn" data-tab="computer-history">Computer History</button>
+                </div>
+
+                <div class="tab-content active" id="tab-all-computers">
+                    <div class="filters-bar">
+                        <div class="filter-group">
+                            <select id="filterStatus" class="form-control">
+                                <option value="">All Status</option>
+                                <option value="Available">Available</option>
+                                <option value="Occupied">Occupied</option>
+                                <option value="Reserved">Reserved</option>
+                                <option value="Maintenance">Maintenance</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="computer-grid-container">
+                        <div class="computer-grid" id="computerGrid"></div>
+                    </div>
+
+                    <div class="table-pagination">
+                        <div class="pagination-info">Showing <span id="pageStart">0</span> to <span id="pageEnd">0</span> of <span id="totalRecords">0</span> computers</div>
+                        <div class="pagination-buttons" id="paginationButtons"></div>
+                    </div>
+                </div>
+
+                <div class="tab-content" id="tab-active-sessions">
+                    <div class="table-responsive">
+                        <table class="table table-hover" id="activeSessionsTable">
+                            <thead>
+                                <tr>
+                                    <th>Student</th>
+                                    <th>Computer</th>
+                                    <th>Login Time</th>
+                                    <th>Duration</th>
+                                    <th>Session Type</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="activeSessionsBody">
+                                <tr><td colspan="6" class="text-center text-muted">Loading active sessions...</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="table-pagination">
+                        <div class="pagination-info">
+                            Showing <strong id="activeSessionsStart">0</strong> of <strong id="activeSessionsTotal">0</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-content" id="tab-computer-history">
+                    <div class="filters-bar" style="margin-bottom: var(--spacing-md);">
+                        <div class="filter-group">
+                            <input type="text" id="searchHistory" class="form-control" placeholder="Search by computer, student or type...">
+                        </div>
+                        <div class="filter-group">
+                            <select id="historyComputerFilter" class="form-control" style="max-width: 300px;">
+                                <option value="">All Computers</option>
+                            </select>
+                        </div>
+                        <span class="text-muted" style="font-size: 0.85em;">History updates automatically</span>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-striped" id="computerHistoryTable">
+                            <thead><tr><th>Computer</th><th>Student</th><th>Login Time</th><th>Logout Time</th><th>Duration</th><th>Type</th></tr></thead>
+                            <tbody id="computerHistoryBody"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div class="modal" id="addComputerModal">
+        <div class="modal-backdrop" onclick="closeModal('addComputerModal')"></div>
+        <div class="modal-dialog">
+            <div class="modal-header">
+                <h5 class="modal-title"><span class="modal-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="18" height="18"><rect x="3" y="4" width="18" height="12" rx="1.5"/><path d="M8 20h8M12 16v4"/></svg></span> Add New Computer</h5>
+                <button class="modal-close" onclick="closeModal('addComputerModal')">&times;</button>
+            </div>
+            <form id="addComputerForm" class="modal-form">
+                <div class="modal-body">
+                    <div class="form-group"><label class="form-label required">Computer Number</label><input type="text" name="computer_number" class="form-control" placeholder="e.g., PC-001" required></div>
+                    <div class="form-group"><label class="form-label">Computer Name</label><input type="text" name="computer_name" class="form-control" placeholder="e.g., Main Library PC 1"></div>
+                    <div class="form-group"><label class="form-label">Status</label><select name="status" class="form-control"><option value="Available">Available</option><option value="Maintenance">Maintenance</option></select></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="closeModal('addComputerModal')">Cancel</button>
+                    <button type="submit" class="btn btn-primary"><span class="btn-text">Add Computer</span><span class="spinner"></span></button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal" id="computerManageModal">
+        <div class="modal-backdrop" onclick="closeModal('computerManageModal')"></div>
+        <div class="modal-dialog modal-lg">
+            <div class="modal-header">
+                <h5 class="modal-title"><span class="modal-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="18" height="18"><rect x="3" y="4" width="18" height="12" rx="1.5"/><path d="M8 20h8M12 16v4"/></svg></span> Manage Computer: <span id="manageComputerName">PC-001</span></h5>
+                <button class="modal-close" onclick="closeModal('computerManageModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-4">
+                        <h6>Computer Details</h6>
+                        <p><strong>Status:</strong> <span id="manageComputerStatus">Available</span></p>
+                        <button class="btn btn-warning btn-sm" onclick="toggleMaintenance()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="14" height="14"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L4 17l3 3 5.3-5.3a4 4 0 0 0 5.4-5.4l-2.6 2.6-2-2Z"/></svg> Toggle Maintenance</button>
+                    </div>
+                    <div class="col-md-8">
+                        <h6>Edit Computer</h6>
+                        <form id="editComputerForm">
+                            <input type="hidden" name="computer_id" id="editComputerId">
+                            <div class="form-group"><label class="form-label">Computer Number</label><input type="text" name="computer_number" id="editComputerNumber" class="form-control" required></div>
+                            <div class="form-group"><label class="form-label">Computer Name</label><input type="text" name="computer_name" id="editComputerName" class="form-control"></div>
+                            <div class="form-group"><label class="form-label">Status</label><select name="status" id="editComputerStatus" class="form-control"><option value="Available">Available</option><option value="Occupied">Occupied</option><option value="Reserved">Reserved</option><option value="Maintenance">Maintenance</option></select></div>
+                            <button type="submit" class="btn btn-primary">Update Computer</button>
+                        </form>
+                        <div class="section-divider"></div>
+                        <h6>Session History</h6>
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead><tr><th>Student</th><th>Login</th><th>Logout</th><th>Duration</th><th>Type</th></tr></thead>
+                                <tbody id="computerHistoryDetailBody"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal('computerManageModal')">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="liveSessionModal">
+        <div class="modal-backdrop" onclick="closeLiveSessionModal()"></div>
+        <div class="modal-dialog modal-md live-session-modal">
+            <div class="modal-header">
+                <h5 class="modal-title">
+                    <span class="modal-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="18" height="18"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></span>
+                    Live Session Details
+                </h5>
+                <button class="modal-close" onclick="closeLiveSessionModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="live-session-header">
+                    <div class="live-session-avatar" id="liveSessionAvatar">SK</div>
+                    <div class="live-session-identity">
+                        <div class="live-session-student" id="liveSessionStudent">Student</div>
+                        <div class="live-session-computer" id="liveSessionComputer">PC-01</div>
+                    </div>
+                </div>
+                <div class="live-session-timer-section">
+                    <div class="timer-ring" id="timerRing" style="--progress: 0;">
+                        <div class="timer-ring-inner">
+                            <span class="timer-label">Remaining</span>
+                            <span class="timer-value" id="liveSessionRemaining">--:--:--</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="live-session-detail-row">
+                    <span class="detail-label">Session Started:</span>
+                    <span class="detail-value" id="liveSessionStart">—</span>
+                </div>
+                <div class="live-session-detail-row">
+                    <span class="detail-label">Session Type:</span>
+                    <span class="detail-value" id="liveSessionType">—</span>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeLiveSessionModal()">Close</button>
+                <button class="btn btn-danger" onclick="endSessionFromLiveModal()">End Session</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="notificationContainer"></div>
+
+    <script src="../../shared/js/api.js"></script>
+    <script src="../../shared/js/session-check.js"></script>
+    <script src="../../shared/js/helpers.js"></script>
+    <script src="../../shared/js/notifications.js"></script>
+    <script src="../../shared/js/sidebar.js?v=3"></script>
+    <script src="../../shared/js/navbar.js"></script>
+    <script src="../js/computer-management.js"></script>
+</body>
+</html>

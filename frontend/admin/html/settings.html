@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings - RMMC Library System</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../shared/css/global.css">
+    <link rel="stylesheet" href="../../shared/css/sidebar.css">
+    <link rel="stylesheet" href="../../shared/css/navbar.css">
+    <link rel="stylesheet" href="../../shared/css/cards.css">
+    <link rel="stylesheet" href="../../shared/css/buttons.css">
+    <link rel="stylesheet" href="../../shared/css/forms.css">
+    <link rel="stylesheet" href="../../shared/css/modal.css">
+    <link rel="stylesheet" href="../../shared/css/notifications.css">
+    <link rel="stylesheet" href="../../shared/css/responsive.css">
+    <link rel="stylesheet" href="../css/settings.css">
+    <link rel="stylesheet" href="../css/layout-fix.css">
+</head>
+<body>
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="logo-container">
+                <img class="logo" src="../../shared/assets/logo/rmmclogo.png" alt="RMMC-MI Library seal" />
+                <div class="brand-info">
+                    <div class="brand-name">RMMC-MI Library</div>
+                    <div class="brand-sub">Admin</div>
+                </div>
+            </div>
+        </div>
+        <nav class="sidebar-nav">
+            <div class="nav-label">Overview</div>
+            <div class="nav-item">
+                <a href="dashboard.html" class="nav-link">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="8" height="8" rx="1.5"/><rect x="13" y="3" width="8" height="8" rx="1.5"/><rect x="3" y="13" width="8" height="8" rx="1.5"/><rect x="13" y="13" width="8" height="8" rx="1.5"/></svg>
+                    <span class="nav-text">Dashboard</span>
+                </a>
+            </div>
+            <div class="nav-label">Accounts</div>
+            <div class="nav-item">
+                <a href="student-management.html" class="nav-link">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="8" r="3.2"/><path d="M3.5 20c0-3.4 2.6-6 5.9-6h.2c3.3 0 5.9 2.6 5.9 6"/><path d="M16 4.5c1.7.3 3 1.9 3 3.7s-1.3 3.4-3 3.7"/><path d="M19 14c2 .5 3.5 2.4 3.5 4.6"/></svg>
+                    <span class="nav-text">Students</span>
+                </a>
+            </div>
+            <div class="nav-label">Facilities</div>
+            <div class="nav-item">
+                <a href="computer-management.html" class="nav-link">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="12" rx="1.5"/><path d="M8 20h8M12 16v4"/></svg>
+                    <span class="nav-text">Computers</span>
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="reservation-management.html" class="nav-link">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3.5" y="4.5" width="17" height="16" rx="2"/><path d="M3.5 9h17M8 3v3M16 3v3"/><path d="M8 13.5h2M14 13.5h2M8 17h2"/></svg>
+                    <span class="nav-text">Reservations</span>
+                </a>
+            </div>
+            <div class="nav-label">Insight &amp; control</div>
+            <div class="nav-item">
+                <a href="reports.html" class="nav-link">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 20V6a1.5 1.5 0 0 1 1.5-1.5H15L20 9v11a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1Z"/><path d="M8 13.5v3M12 11v5.5M16 14.5v2"/></svg>
+                    <span class="nav-text">Reports</span>
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="settings.html" class="nav-link active">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M19.4 13.5a1.7 1.7 0 0 0 .3 1.9l.1.1a2 2 0 1 1-2.9 2.9l-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.6V20a2 2 0 1 1-4 0v-.2a1.7 1.7 0 0 0-1-1.5 1.7 1.7 0 0 0-1.9.3l-.1.1a2 2 0 1 1-2.9-2.9l.1-.1a1.7 1.7 0 0 0 .3-1.9 1.7 1.7 0 0 0-1.6-1H4a2 2 0 1 1 0-4h.2a1.7 1.7 0 0 0 1.5-1 1.7 1.7 0 0 0-.3-1.9l-.1-.1a2 2 0 1 1 2.9-2.9l.1.1a1.7 1.7 0 0 0 1.9.3H10a1.7 1.7 0 0 0 1-1.6V4a2 2 0 1 1 4 0v.2a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.9-.3l.1-.1a2 2 0 1 1 2.9 2.9l-.1.1a1.7 1.7 0 0 0-.3 1.9V10a1.7 1.7 0 0 0 1.6 1H20a2 2 0 1 1 0 4h-.2a1.7 1.7 0 0 0-1.4 1Z"/></svg>
+                    <span class="nav-text">Settings</span>
+                </a>
+            </div>
+        </nav>
+        <div class="sidebar-footer">
+            <a href="profile.html" class="user-info">
+                <div class="user-avatar" id="sidebarUserAvatar">AU</div>
+                <div class="user-details">
+                    <div class="user-name" id="sidebarUserName">Admin User</div>
+                    <div class="user-role" id="sidebarUserRole">Admin</div>
+                </div>
+            </a>
+            <button class="logout-btn" id="btnLogout">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="M16 17l5-5-5-5"/><path d="M21 12H9"/></svg>
+                <span>Log out</span>
+            </button>
+        </div>
+    </aside>
+
+    <button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle menu">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </button>
+    <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+
+    <main class="main-content">
+        <nav class="navbar" id="navbar">
+            <div class="navbar-left">
+                <a href="dashboard.html" class="navbar-brand">
+                    <img src="../../shared/assets/logo/rmmclogo.png" alt="RMMC Logo" style="height: 32px;">
+                    <span class="brand-text">RMMC <span>Library</span></span>
+                </a>
+            </div>
+            <div class="navbar-right">
+                <div class="navbar-item">
+                    <button class="navbar-btn" onclick="window.location.href='notifications.html'" title="Notifications"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="20" height="20"><path d="M6 8a6 6 0 1 1 12 0c0 4.5 1.5 6 1.5 6h-15S6 12.5 6 8Z"/><path d="M9.5 18a2.5 2.5 0 0 0 5 0"/></svg><span class="badge" id="notificationBadgeNav">0</span></button>
+                </div>
+                <div class="navbar-item">
+                    <div class="navbar-user" onclick="window.location.href='profile.html'">
+                        <div class="avatar" id="userAvatarNav">A</div>
+                        <div class="name" id="userNameNav">Admin</div>
+                        <div class="role">Admin</div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <div class="page-content">
+            <div class="page-header">
+                <div>
+                    <h1>System Settings</h1>
+                    <p class="page-subtitle">Configure semester dates and library hours</p>
+                </div>
+            </div>
+
+            <div class="settings-tabs">
+                <button class="settings-tab active" data-tab="semester"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="16" height="16"><path d="M12 3 2 8l10 5 10-5-10-5Z"/><path d="M6 10.5V16c0 1.5 2.7 3 6 3s6-1.5 6-3v-5.5"/></svg> Semester Settings</button>
+                <button class="settings-tab" data-tab="hours"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="16" height="16"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg> Library Hours</button>
+            </div>
+
+            <div class="settings-content active" id="tab-semester">
+                <div class="settings-card">
+                    <div class="settings-card-header">
+                        <h3>Semester Settings</h3>
+                        <p>Configure the current semester dates and name (these dates are used when generating Semester reports)</p>
+                    </div>
+                    <form id="semesterSettingsForm" class="settings-form">
+                        <div class="form-group">
+                            <label class="form-label required">Semester Name</label>
+                            <input type="text" name="semester_name" id="semesterName" class="form-control" placeholder="e.g., 1st Semester AY 2024-2025" required>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label required">Start Date</label>
+                                <input type="date" name="start_date" id="semesterStartDate" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label required">End Date</label>
+                                <input type="date" name="end_date" id="semesterEndDate" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label required">Student Hour Limit (per semester)</label>
+                            <input type="number" name="hour_limit" id="semesterHourLimit" class="form-control" step="0.5" min="0" required>
+                            <small class="form-text">Maximum hours a student can use per semester (this is the only place to set it)</small>
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            <span class="btn-text">Update Semester Settings</span>
+                            <span class="spinner"></span>
+                        </button>
+                    </form>
+                </div>
+
+                <div class="settings-card">
+                    <div class="settings-card-header">
+                        <h3>Current Semester Status</h3>
+                    </div>
+                    <div class="semester-status">
+                        <div class="status-item">
+                            <label>Current Semester</label>
+                            <p id="currentSemesterName">Not Set</p>
+                        </div>
+                        <div class="status-item">
+                            <label>Semester Period</label>
+                            <p id="currentSemesterPeriod">Not Set</p>
+                        </div>
+                        <div class="status-item">
+                            <label>Days Remaining</label>
+                            <p id="semesterDaysRemaining">0 days</p>
+                        </div>
+                        <div class="status-item">
+                            <label>Student Hour Limit</label>
+                            <p id="currentHourLimit">10 hours</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="settings-content" id="tab-hours">
+                <div class="settings-card">
+                    <div class="settings-card-header">
+                        <h3>Library Hours</h3>
+                        <p>Configure operating hours for each day of the week</p>
+                    </div>
+                    <form id="libraryHoursForm" class="settings-form">
+                        <div class="days-grid">
+                            <div class="day-item">
+                                <label class="day-name">Monday</label>
+                                <div class="time-group">
+                                    <label>Opening Time</label>
+                                    <input type="time" name="monday_opening" id="mondayOpening" class="form-control">
+                                </div>
+                                <div class="time-group">
+                                    <label>Closing Time</label>
+                                    <input type="time" name="monday_closing" id="mondayClosing" class="form-control">
+                                </div>
+                            </div>
+                            <div class="day-item">
+                                <label class="day-name">Tuesday</label>
+                                <div class="time-group">
+                                    <label>Opening Time</label>
+                                    <input type="time" name="tuesday_opening" id="tuesdayOpening" class="form-control">
+                                </div>
+                                <div class="time-group">
+                                    <label>Closing Time</label>
+                                    <input type="time" name="tuesday_closing" id="tuesdayClosing" class="form-control">
+                                </div>
+                            </div>
+                            <div class="day-item">
+                                <label class="day-name">Wednesday</label>
+                                <div class="time-group">
+                                    <label>Opening Time</label>
+                                    <input type="time" name="wednesday_opening" id="wednesdayOpening" class="form-control">
+                                </div>
+                                <div class="time-group">
+                                    <label>Closing Time</label>
+                                    <input type="time" name="wednesday_closing" id="wednesdayClosing" class="form-control">
+                                </div>
+                            </div>
+                            <div class="day-item">
+                                <label class="day-name">Thursday</label>
+                                <div class="time-group">
+                                    <label>Opening Time</label>
+                                    <input type="time" name="thursday_opening" id="thursdayOpening" class="form-control">
+                                </div>
+                                <div class="time-group">
+                                    <label>Closing Time</label>
+                                    <input type="time" name="thursday_closing" id="thursdayClosing" class="form-control">
+                                </div>
+                            </div>
+                            <div class="day-item">
+                                <label class="day-name">Friday</label>
+                                <div class="time-group">
+                                    <label>Opening Time</label>
+                                    <input type="time" name="friday_opening" id="fridayOpening" class="form-control">
+                                </div>
+                                <div class="time-group">
+                                    <label>Closing Time</label>
+                                    <input type="time" name="friday_closing" id="fridayClosing" class="form-control">
+                                </div>
+                            </div>
+                            <div class="day-item">
+                                <label class="day-name">Saturday</label>
+                                <div class="time-group">
+                                    <label>Opening Time</label>
+                                    <input type="time" name="saturday_opening" id="saturdayOpening" class="form-control">
+                                </div>
+                                <div class="time-group">
+                                    <label>Closing Time</label>
+                                    <input type="time" name="saturday_closing" id="saturdayClosing" class="form-control">
+                                </div>
+                            </div>
+                            <div class="day-item">
+                                <label class="day-name">Sunday</label>
+                                <div class="time-group">
+                                    <label>Opening Time</label>
+                                    <input type="time" name="sunday_opening" id="sundayOpening" class="form-control">
+                                </div>
+                                <div class="time-group">
+                                    <label>Closing Time</label>
+                                    <input type="time" name="sunday_closing" id="sundayClosing" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            <span class="btn-text">Update Library Hours</span>
+                            <span class="spinner"></span>
+                        </button>
+                    </form>
+                </div>
+
+                <div class="settings-card">
+                    <div class="settings-card-header">
+                        <h3>Current Library Hours</h3>
+                    </div>
+                    <div class="library-hours-status">
+                        <div class="status-item">
+                            <label>Today's Status</label>
+                            <p id="libraryStatus"><span class="badge badge-success">Open</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div id="notificationContainer"></div>
+
+    <script src="../../shared/js/api.js"></script>
+    <script src="../../shared/js/session-check.js"></script>
+    <script src="../../shared/js/helpers.js"></script>
+    <script src="../../shared/js/notifications.js"></script>
+    <script src="../../shared/js/sidebar.js"></script>
+    <script src="../../shared/js/navbar.js"></script>
+    <script src="../js/settings.js"></script>
+</body>
+</html>

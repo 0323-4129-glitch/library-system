@@ -1,0 +1,294 @@
+/* frontend/student/css/base.css
+   Small additions layered on top of the shared system
+   (variables/global/sidebar/navbar/cards/buttons/forms/modal/
+   notifications/tables/responsive). Nothing here redefines a
+   shared class — it only adds the few things student pages need. */
+@import url('../../shared/css/variables.css');
+
+/* ===== VISIBILITY UTILITIES ===== */
+.hidden { display: none !important; }
+
+/* dom-helpers.js's show()/hide() toggle the native `hidden` attribute,
+   so the UA [hidden]{display:none} rule handles it. This rule reinforces
+   it for components that set their own explicit `display` value
+   (e.g. .banner { display: flex }, .navbar-dropdown { display: none }). */
+[hidden] { display: none !important; }
+
+/* ===== SIDEBAR — SEMESTER HOURS METER ===== */
+.sidebar-hours {
+    margin: var(--spacing-sm) var(--spacing-md) var(--spacing-md);
+    padding: var(--spacing-md);
+    background: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    transition: opacity var(--transition-normal);
+}
+
+.sidebar-collapsed .sidebar-hours {
+    opacity: 0;
+    height: 0;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+    border: none;
+}
+
+.sidebar-hours-label {
+    font-size: var(--font-size-xs);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    color: var(--text-light);
+    margin-bottom: var(--spacing-sm);
+}
+
+.sidebar-hours-track {
+    height: 6px;
+    border-radius: var(--radius-full);
+    background: var(--border-color);
+    overflow: hidden;
+    margin-bottom: var(--spacing-sm);
+}
+
+.sidebar-hours-fill {
+    height: 100%;
+    border-radius: var(--radius-full);
+    background: var(--primary-blue);
+    transition: width var(--transition-normal);
+}
+
+.sidebar-hours-fill.low { background: var(--warning-color); }
+.sidebar-hours-fill.empty { background: var(--primary-red); }
+
+.sidebar-hours-value {
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+/* ===== PAGE HEADER META ===== */
+.page-header-meta {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    font-size: var(--font-size-sm);
+    color: var(--text-secondary);
+}
+
+/* ===== LOCKED FIELD (profile: student number / course / year) ===== */
+.locked-field {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-sm) var(--spacing-md);
+    background: var(--bg-primary);
+    border: 1px dashed var(--border-color);
+    border-radius: var(--radius-sm);
+    color: var(--text-secondary);
+    font-size: var(--font-size-md);
+    font-weight: 500;
+}
+
+.locked-field .icon {
+    width: 16px;
+    height: 16px;
+    color: var(--text-light);
+    flex-shrink: 0;
+}
+
+/* ===== PROFILE — ACADEMIC DETAIL GRID ===== */
+.detail-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+}
+
+.detail-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: var(--spacing-md);
+    background: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+}
+
+.detail-item label {
+    font-size: var(--font-size-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--text-light);
+    font-weight: 600;
+}
+
+.detail-item p {
+    margin: 0;
+    font-size: var(--font-size-md);
+    font-weight: 600;
+    color: var(--text-primary);
+    word-break: break-word;
+}
+
+.detail-readonly-note {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-sm) var(--spacing-md);
+    font-size: var(--font-size-xs);
+    color: var(--text-light);
+    background: var(--bg-secondary);
+    border-radius: var(--radius-sm);
+    line-height: 1.5;
+}
+
+.detail-readonly-note svg {
+    flex-shrink: 0;
+    margin-top: 2px;
+    color: var(--text-light);
+}
+
+/* ===== EMPTY STATE (icon variant used outside .table) ===== */
+.empty-state {
+    text-align: center;
+    padding: var(--spacing-xxl) var(--spacing-md);
+    color: var(--text-light);
+}
+
+.empty-state .empty-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    margin: 0 auto var(--spacing-md);
+    opacity: 0.5;
+}
+
+.empty-state .empty-icon svg {
+    width: 100%;
+    height: 100%;
+}
+
+.empty-state h3 {
+    font-size: var(--font-size-md);
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-xs);
+}
+
+.empty-state p {
+    font-size: var(--font-size-sm);
+    color: var(--text-light);
+    margin-bottom: 0;
+}
+
+/* ===== NAVBAR DROPDOWN COMPAT BRIDGE =====
+   navbar.js toggles `.show` on the OUTER #userMenu / #notificationDropdown
+   container, but navbar.css's visibility rule targets `.navbar-dropdown.show`
+   on the INNER flyout. Bridge the two without touching shared files. */
+#userMenu.show .navbar-dropdown,
+#notificationDropdown.show .navbar-dropdown {
+    display: block;
+    animation: fadeIn var(--transition-fast);
+}
+
+/* ===== LAYOUT HELPER ===== */
+.stack-lg {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+}
+
+/* ===== SKELETON LOADING ===== */
+.skeleton {
+    background: linear-gradient(
+        90deg,
+        var(--bg-secondary, #f0f0f0) 25%,
+        var(--border-color, #e5e5e5) 50%,
+        var(--bg-secondary, #f0f0f0) 75%
+    );
+    background-size: 200% 100%;
+    animation: skeleton-shimmer 1.5s ease-in-out infinite;
+}
+
+@keyframes skeleton-shimmer {
+    0%   { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
+.skeleton-block {
+    border-radius: var(--radius-sm);
+    margin-bottom: var(--spacing-sm);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .skeleton { animation: none; }
+}
+
+/* ===== INLINE BANNER (hours exhausted / conflicts / reminders) ===== */
+.banner {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--spacing-md);
+    padding: var(--spacing-md) var(--spacing-lg);
+    border-radius: var(--radius-md);
+    border: 1px solid transparent;
+    margin-bottom: var(--spacing-lg);
+}
+.banner .icon { width: 20px; height: 20px; flex-shrink: 0; margin-top: 2px; }
+.banner-title { font-weight: 700; font-size: var(--font-size-sm); margin-bottom: 2px; }
+.banner-message { font-size: var(--font-size-sm); line-height: 1.5; }
+
+.banner-danger {
+    background: rgba(179, 38, 30, 0.06);
+    border-color: rgba(179, 38, 30, 0.2);
+    color: var(--primary-red-dark);
+}
+.banner-warning {
+    background: rgba(160, 106, 0, 0.06);
+    border-color: rgba(160, 106, 0, 0.22);
+    color: var(--warning-color);
+}
+.banner-info {
+    background: var(--blue-50);
+    border-color: var(--blue-100);
+    color: var(--primary-blue-dark);
+}
+
+/* ===== QUICK ACTIONS (dashboard) ===== */
+.quick-actions {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+.quick-action {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    padding: var(--spacing-md);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-color);
+    text-decoration: none;
+    transition: all var(--transition-fast);
+}
+.quick-action:hover {
+    border-color: var(--primary-blue-light);
+    background: var(--bg-hover);
+}
+.quick-action .icon {
+    width: 22px;
+    height: 22px;
+    color: var(--primary-blue);
+    flex-shrink: 0;
+}
+.quick-action-title {
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    color: var(--text-primary);
+}
+.quick-action-sub {
+    font-size: var(--font-size-xs);
+    color: var(--text-light);
+    margin-top: 1px;
+}

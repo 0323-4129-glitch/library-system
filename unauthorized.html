@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Access Denied - RMMC Library System</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0a1628 0%, #14243e 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #eef1f6;
+            padding: 24px;
+        }
+
+        .card {
+            max-width: 480px;
+            width: 100%;
+            background: rgba(20, 36, 62, 0.85);
+            border: 1px solid rgba(212, 175, 55, 0.25);
+            border-radius: 12px;
+            padding: 48px 40px;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+        }
+
+        .icon {
+            font-size: 56px;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: #d4af37;
+            margin-bottom: 12px;
+            letter-spacing: 0.3px;
+        }
+
+        p {
+            font-size: 15px;
+            line-height: 1.6;
+            color: #b8c2d6;
+            margin-bottom: 32px;
+        }
+
+        .rule {
+            width: 60px;
+            height: 2px;
+            background: #d4af37;
+            margin: 0 auto 24px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            background: #d4af37;
+            color: #0a1628;
+            font-weight: 600;
+            font-size: 14px;
+            text-decoration: none;
+            border-radius: 6px;
+            transition: background 0.2s ease, transform 0.15s ease;
+        }
+
+        .btn:hover {
+            background: #e8c657;
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            display: inline-block;
+            margin-top: 12px;
+            font-size: 13px;
+            color: #8fa1c0;
+            text-decoration: none;
+        }
+
+        .btn-secondary:hover {
+            color: #d4af37;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="icon">🔒</div>
+        <h1>Access Restricted</h1>
+        <div class="rule"></div>
+        <p>
+            You don't have permission to view this page.<br>
+            Your account role doesn't match what's required here.
+        </p>
+        <a href="javascript:history.back()" class="btn">Go Back</a>
+        <br>
+        <a href="/Library%20system/frontend/admin/html/login.html" class="btn-secondary">Return to Login</a>
+    </div>
+</body>
+</html>

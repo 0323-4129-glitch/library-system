@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Student Management — Admin | RMMC-MI Library</title>
+
+<link rel="stylesheet" href="../../shared/css/global.css" />
+<link rel="stylesheet" href="../../shared/css/sidebar.css" />
+<link rel="stylesheet" href="../../shared/css/navbar.css" />
+<link rel="stylesheet" href="../../shared/css/cards.css" />
+<link rel="stylesheet" href="../../shared/css/forms.css" />
+<link rel="stylesheet" href="../../shared/css/tables.css" />
+<link rel="stylesheet" href="../../shared/css/buttons.css" />
+<link rel="stylesheet" href="../../shared/css/modal.css" />
+<link rel="stylesheet" href="../../shared/css/notifications.css" />
+<link rel="stylesheet" href="../../shared/css/responsive.css" />
+<link rel="stylesheet" href="../css/student-management.css" />
+<link rel="stylesheet" href="../css/layout-fix.css">
+</head>
+<body>
+
+<div class="notification-container" id="notificationContainer"></div>
+
+<aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+        <div class="logo-container">
+            <img class="logo" src="../../shared/assets/logo/rmmclogo.png" alt="RMMC-MI Library seal" />
+            <div class="brand-info">
+                 <div class="brand-name">RMMC-MI Library</div>
+                    <div class="brand-sub">Admin</div>
+            </div>
+        </div>
+    </div>
+
+    <nav class="sidebar-nav">
+        <div class="nav-label">Overview</div>
+        <div class="nav-item">
+            <a href="dashboard.html" class="nav-link">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="8" height="8" rx="1.5"/><rect x="13" y="3" width="8" height="8" rx="1.5"/><rect x="3" y="13" width="8" height="8" rx="1.5"/><rect x="13" y="13" width="8" height="8" rx="1.5"/></svg>
+                <span class="nav-text">Dashboard</span>
+            </a>
+        </div>
+
+        <div class="nav-label">Accounts</div>
+        <div class="nav-item">
+            <a href="student-management.html" class="nav-link active">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="8" r="3.2"/><path d="M3.5 20c0-3.4 2.6-6 5.9-6h.2c3.3 0 5.9 2.6 5.9 6"/><path d="M16 4.5c1.7.3 3 1.9 3 3.7s-1.3 3.4-3 3.7"/><path d="M19 14c2 .5 3.5 2.4 3.5 4.6"/></svg>
+                <span class="nav-text">Students</span>
+            </a>
+        </div>
+
+        <div class="nav-label">Facilities</div>
+        <div class="nav-item">
+            <a href="computer-management.html" class="nav-link">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="12" rx="1.5"/><path d="M8 20h8M12 16v4"/></svg>
+                <span class="nav-text">Computers</span>
+            </a>
+        </div>
+        <div class="nav-item">
+            <a href="reservation-management.html" class="nav-link">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3.5" y="4.5" width="17" height="16" rx="2"/><path d="M3.5 9h17M8 3v3M16 3v3"/><path d="M8 13.5h2M14 13.5h2M8 17h2"/></svg>
+                <span class="nav-text">Reservations</span>
+            </a>
+        </div>
+
+        <div class="nav-label">Insight &amp; control</div>
+        <div class="nav-item">
+            <a href="reports.html" class="nav-link">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 20V6a1.5 1.5 0 0 1 1.5-1.5H15L20 9v11a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1Z"/><path d="M8 13.5v3M12 11v5.5M16 14.5v2"/></svg>
+                <span class="nav-text">Reports</span>
+            </a>
+        </div>
+        <div class="nav-item">
+            <a href="settings.html" class="nav-link">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M19.4 13.5a1.7 1.7 0 0 0 .3 1.9l.1.1a2 2 0 1 1-2.9 2.9l-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.6V20a2 2 0 1 1-4 0v-.2a1.7 1.7 0 0 0-1-1.5 1.7 1.7 0 0 0-1.9.3l-.1.1a2 2 0 1 1-2.9-2.9l.1-.1a1.7 1.7 0 0 0 .3-1.9 1.7 1.7 0 0 0-1.6-1H4a2 2 0 1 1 0-4h.2a1.7 1.7 0 0 0 1.5-1 1.7 1.7 0 0 0-.3-1.9l-.1-.1a2 2 0 1 1 2.9-2.9l.1.1a1.7 1.7 0 0 0 1.9.3H10a1.7 1.7 0 0 0 1-1.6V4a2 2 0 1 1 4 0v.2a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.9-.3l.1-.1a2 2 0 1 1 2.9 2.9l-.1.1a1.7 1.7 0 0 0-.3 1.9V10a1.7 1.7 0 0 0 1.6 1H20a2 2 0 1 1 0 4h-.2a1.7 1.7 0 0 0-1.4 1Z"/></svg>
+                <span class="nav-text">Settings</span>
+            </a>
+        </div>
+    </nav>
+<div class="sidebar-footer">
+    <a href="profile.html" class="user-info">
+        <div class="user-avatar" id="sidebarUserAvatar">AU</div>
+        <div class="user-details">
+            <div class="user-name" id="sidebarUserName">Admin User</div>
+            <div class="user-role" id="sidebarUserRole">Admin</div>
+        </div>
+    </a>
+    <button class="logout-btn" id="btnLogout">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="M16 17l5-5-5-5"/><path d="M21 12H9"/></svg>
+            <span>Log out</span>
+        </button>
+    </div>
+</aside>
+
+<button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle menu">
+    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+</button>
+<div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+
+<div class="main-content">
+
+    <nav class="navbar">
+        <div class="navbar-left">
+            <div>
+                <div class="text-muted" style="font-size:var(--font-size-xs); text-transform:uppercase; letter-spacing:0.5px;">Accounts</div>
+                <h4 style="margin:0;">Student Management</h4>
+            </div>
+        </div>
+        <div class="navbar-right">
+            <div class="navbar-item">
+                <button class="navbar-btn" onclick="window.location.href='notifications.html'" aria-label="Notifications">
+                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 8a6 6 0 1 1 12 0c0 4.5 1.5 6 1.5 6h-15S6 12.5 6 8Z"/><path d="M9.5 18a2.5 2.5 0 0 0 5 0"/></svg>
+                    <span class="badge" id="notificationBadgeNav">0</span>
+                </button>
+            </div>
+            <a href="profile.html" class="navbar-user">
+                <div class="avatar" id="userAvatarNav">A</div>
+                <div>
+                    <div class="name" id="userNameNav">Admin User</div>
+                   <div class="role" id="userRoleNav">Admin</div>
+                </div>
+            </a>
+        </div>
+    </nav>
+
+    <main class="p-responsive">
+
+        <div class="d-flex justify-between align-center flex-wrap gap-2 mb-3">
+            <div>
+                <h1 style="margin-bottom:4px;">Student Management</h1>
+                <p class="text-secondary" style="margin-bottom:0;">Add, edit, and manage borrower accounts for the library system.</p>
+            </div>
+            <button class="btn btn-primary" id="btnAddStudent">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 5v14M5 12h14"/></svg>
+                Add Student
+            </button>
+        </div>
+
+        <div class="stats-row mb-3" style="display:flex; gap:1.5rem; flex-wrap:wrap;">
+            <div class="stat-card" style="flex:1; min-width:120px; padding:0.75rem 1rem; background:var(--card-bg); border-radius:12px; box-shadow:0 2px 8px rgba(0,0,0,0.04);">
+                <div style="font-size:var(--font-size-xs); color:var(--text-muted); text-transform:uppercase; letter-spacing:0.5px;">Total Students</div>
+                <div style="font-size:28px; font-weight:700; color:var(--primary);" id="statTotalStudents">0</div>
+            </div>
+            <div class="stat-card" style="flex:1; min-width:120px; padding:0.75rem 1rem; background:var(--card-bg); border-radius:12px; box-shadow:0 2px 8px rgba(0,0,0,0.04);">
+                <div style="font-size:var(--font-size-xs); color:var(--text-muted); text-transform:uppercase; letter-spacing:0.5px;">Active</div>
+                <div style="font-size:28px; font-weight:700; color:var(--success);" id="statActiveStudents">0</div>
+            </div>
+            <div class="stat-card" style="flex:1; min-width:120px; padding:0.75rem 1rem; background:var(--card-bg); border-radius:12px; box-shadow:0 2px 8px rgba(0,0,0,0.04);">
+                <div style="font-size:var(--font-size-xs); color:var(--text-muted); text-transform:uppercase; letter-spacing:0.5px;">Inactive</div>
+                <div style="font-size:28px; font-weight:700; color:var(--danger);" id="statInactiveStudents">0</div>
+            </div>
+        </div>
+
+        <div class="tabs mb-3">
+            <button class="tab-btn active" data-tab="all">All Students</button>
+            <button class="tab-btn" data-tab="requests">
+                Pending Update Requests
+                <span class="badge badge-primary" id="reqCount">0</span>
+            </button>
+        </div>
+
+        <div class="tab-panel active" data-panel="all">
+            <div class="card">
+                <div class="card-body">
+                    <div class="table-toolbar">
+                        <div class="input-group">
+                            <span class="input-group-text">
+                                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+                            </span>
+                            <input type="text" class="form-control" id="studentSearch" placeholder="Search by name or student ID…" />
+                        </div>
+                        <select class="form-control" id="courseFilter">
+                            <option value="">All courses</option>
+                            <option>BS Computer Science</option>
+                            <option>BS Information Technology</option>
+                            <option>BS Accountancy</option>
+                            <option>BS Education</option>
+                        </select>
+                        <select class="form-control" id="statusFilter">
+                            <option value="">All statuses</option>
+                            <option value="Active">Active</option>
+                            <option value="Inactive">Inactive</option>
+                        </select>
+                    </div>
+
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Student</th>
+                                    <th>Student ID</th>
+                                    <th>Course &amp; Year</th>
+                                    <th>Email</th>
+                                    <th>Hours Left</th>
+                                    <th>Status</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody id="studentTableBody">
+                                <tr class="table-empty"><td colspan="7">Loading students…</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="table-pagination">
+                        <span class="pagination-info" id="pgSummary">Showing 0 of 0 students</span>
+                        <div class="pagination-buttons" id="pgButtons"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-panel" data-panel="requests" style="display:none;">
+            <div class="card">
+                <div class="card-header">
+                    <div>
+                        <div class="card-title">Pending update requests</div>
+                        <div class="card-subtitle">Students requesting changes to their profile information</div>
+                    </div>
+                </div>
+                <div id="requestList">
+                    <div class="empty-state">Loading requests…</div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+</div>
+
+<div class="modal-backdrop" id="studentModalBackdrop"></div>
+<div class="modal" id="studentModal">
+    <div class="modal-dialog">
+        <div class="modal-header">
+            <h3 class="modal-title" id="studentModalTitle">Add Student</h3>
+            <button class="modal-close" data-modal-close aria-label="Close">&times;</button>
+        </div>
+        <form id="studentForm">
+            <div class="modal-body" style="max-height:70vh; overflow-y:auto;">
+                <div id="modalStudentAvatarWrap" style="display:none; justify-content:center; margin-bottom:18px;">
+                    <div id="modalStudentAvatar"></div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label required">First name</label>
+                        <input class="form-control" name="first_name" required />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label required">Last name</label>
+                        <input class="form-control" name="last_name" required />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Middle name</label>
+                    <input class="form-control" name="middle_name" />
+                </div>
+                <div class="form-group">
+                    <label class="form-label required">Student ID</label>
+                    <input class="form-control" name="student_id" placeholder="2026-00123" required />
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label required">Course</label>
+                        <select class="form-control" name="course" required>
+                            <option value="">Select course</option>
+                            <option>BS Computer Science</option>
+                            <option>BS Information Technology</option>
+                            <option>BS Accountancy</option>
+                            <option>BS Education</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label required">Year level</label>
+                        <select class="form-control" name="year_level" required>
+                            <option value="">Select year</option>
+                            <option>1st Year</option>
+                            <option>2nd Year</option>
+                            <option>3rd Year</option>
+                            <option>4th Year</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label required">Email</label>
+                    <input type="email" class="form-control" name="email" required />
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Contact number</label>
+                    <input class="form-control" name="contact_number" placeholder="0917-000-0000" />
+                </div>
+                <div class="form-group d-flex justify-between align-center">
+                    <span class="form-label" style="margin-bottom:0;">Account active</span>
+                    <label class="form-switch">
+                        <input type="checkbox" name="active" checked />
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-warning" id="modalResetPasswordBtn" style="display:none; margin-right:auto;">
+                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="16" height="16"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 4v5h-5"/></svg>
+                    Reset Password
+                </button>
+                <button type="button" class="btn btn-light" data-modal-close>Cancel</button>
+                <button type="submit" class="btn btn-primary" id="studentFormSubmit">Save Student</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<script src="../../shared/js/api.js"></script>
+<script src="../../shared/js/session-check.js"></script>
+<script src="../../shared/js/helpers.js"></script>
+<script src="../../shared/js/notifications.js"></script>
+<script src="../../shared/js/sidebar.js"></script>
+<script src="../../shared/js/navbar.js"></script>
+<script src="../js/student-management.js"></script>
+</body>
+</html>

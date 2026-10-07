@@ -1,0 +1,10 @@
+RewriteEngine On
+RewriteBase /library-system/backend/api/
+
+# Pass the login token (Authorization header) through to PHP
+RewriteCond %{HTTP:Authorization} .
+RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ index.php [QSA,L]

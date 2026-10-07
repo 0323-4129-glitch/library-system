@@ -1,0 +1,145 @@
+/* frontend/admin/css/layout-fix.css
+   ------------------------------------------------------------
+   Loaded LAST on every admin page so it wins the cascade against
+   shared/css/sidebar.css and shared/css/responsive.css.
+
+   Fixes:
+     1. Sidebar overlapping .main-content between 992px and 1200px
+        (sidebar renders at ~298px, .main-content offset was 260px).
+     2. Floating mobile hamburger toggle visible on desktop widths,
+        covering the "View All" button at bottom-right.
+     3. Stats-grid columns overflowing their track at the 1200px seam.
+
+   Single source of truth for sidebar geometry: --sidebar-width.
+   If the sidebar's real rendered width ever differs from 260px, only
+   this token needs changing. Verify with:
+     document.querySelector('.sidebar').getBoundingClientRect().width
+   ============================================================ */
+
+:root {
+    --sidebar-width: 260px;
+    --sidebar-transition: 0.2s ease;
+}
+
+/* ------------------------------------------------------------
+   1. Align sidebar geometry with main-content offset
+   ------------------------------------------------------------ */
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: var(--sidebar-width);
+    height: 100vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    box-sizing: border-box;
+    z-index: 100;
+    transition: transform var(--sidebar-transition);
+}
+
+.main-content {
+    margin-left: var(--sidebar-width);
+    min-width: 0;
+    transition: margin-left var(--sidebar-transition);
+}
+
+/* ------------------------------------------------------------
+   2. Hide floating mobile toggle on desktop
+   ------------------------------------------------------------ */
+.sidebar-toggle {
+    display: none !important;
+}
+
+/* ------------------------------------------------------------
+   3. Stats grid — explicit breakpoints, prevents column overflow
+   ------------------------------------------------------------ */
+.stats-grid {
+    min-width: 0;
+}
+
+.stats-grid > * {
+    min-width: 0;
+}
+
+@media (min-width: 1201px) {
+    .stats-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+}
+
+@media (min-width: 993px) and (max-width: 1200px) {
+    .stats-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+/* ------------------------------------------------------------
+   4. Mobile / tablet: sidebar slides off-canvas, toggle appears
+   ------------------------------------------------------------ */
+@media (max-width: 992px) {
+
+    .sidebar {
+        transform: translateX(-100%);
+        z-index: 1050;
+        box-shadow: 4px 0 24px rgba(15, 23, 42, 0.18);
+    }
+
+    /* Both class conventions are supported, because different pages
+       toggle different class names on the sidebar element. */
+    .sidebar.sidebar-open,
+    .sidebar.open,
+    body.sidebar-open .sidebar {
+        transform: translateX(0);
+    }
+
+    .main-content {
+        margin-left: 0;
+    }
+
+    /* Real mobile toggle */
+    .sidebar-toggle {
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        width: 52px;
+        height: 52px;
+        border-radius: 50%;
+        background: var(--primary-blue, #1d2b4f);
+        color: #fff;
+        border: none;
+        box-shadow: 0 6px 20px rgba(15, 23, 42, 0.3);
+        z-index: 1100;
+        cursor: pointer;
+        padding: 0;
+    }
+
+    .sidebar-toggle .icon {
+        width: 22px;
+        height: 22px;
+        display: block;
+    }
+
+    /* Leave room so the toggle never sits on top of page controls */
+    .page-content,
+    .dashboard-content {
+        padding-bottom: 90px;
+    }
+
+    /* Backdrop for the slide-in sidebar */
+    .sidebar-backdrop.show {
+        display: block;
+        opacity: 1;
+    }
+}
+
+/* ------------------------------------------------------------
+   5. Guard against section-header actions being clipped
+      by any fixed-position element on desktop
+   ------------------------------------------------------------ */
+.dashboard-section .section-header {
+    position: relative;
+    z-index: 1;
+}

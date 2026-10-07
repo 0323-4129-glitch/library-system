@@ -1,0 +1,264 @@
+/* frontend/shared/css/cards.css */
+@import url('variables.css');
+
+.card {
+    background: var(--bg-secondary);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-color);
+    transition: border-color var(--transition-fast);
+    overflow: hidden;
+}
+
+.card:hover {
+    border-color: var(--primary-blue-light);
+}
+
+/* ===== CARD HEADER ===== */
+.card-header {
+    padding: var(--spacing-md) var(--spacing-lg);
+    border-bottom: 2px solid var(--border-color);
+    background: var(--bg-primary);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.card-header .card-title {
+    margin-bottom: 0;
+    font-family: var(--font-family-heading);
+    font-size: var(--font-size-lg);
+    font-weight: 700;
+    color: var(--primary-blue-dark);
+}
+
+.card-header .card-title .badge {
+    margin-left: var(--spacing-sm);
+}
+
+.card-header .card-subtitle {
+    font-size: var(--font-size-sm);
+    color: var(--text-secondary);
+}
+
+/* ===== CARD BODY ===== */
+.card-body {
+    padding: var(--spacing-lg);
+}
+
+.card-body p:last-child {
+    margin-bottom: 0;
+}
+
+/* ===== CARD FOOTER ===== */
+.card-footer {
+    padding: var(--spacing-md) var(--spacing-lg);
+    border-top: 1px solid var(--border-color);
+    background: var(--bg-primary);
+}
+
+/* ===== CARD VARIANTS ===== */
+.card-primary { border-top: 4px solid var(--primary-blue); }
+.card-primary .card-header { border-bottom-color: var(--primary-blue); }
+
+.card-success { border-top: 4px solid var(--success-color); }
+.card-success .card-header { border-bottom-color: var(--success-color); }
+
+.card-danger { border-top: 4px solid var(--primary-red); }
+.card-danger .card-header { border-bottom-color: var(--primary-red); }
+
+.card-warning { border-top: 4px solid var(--warning-color); }
+.card-warning .card-header { border-bottom-color: var(--warning-color); }
+
+.card-info { border-top: 4px solid var(--info-color); }
+.card-info .card-header { border-bottom-color: var(--info-color); }
+
+/* ===== CARD WITH IMAGE ===== */
+.card-img-top,
+.card-img-bottom {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+/* ===== CARD OVERLAY ===== */
+.card-img-overlay {
+    position: absolute;
+    inset: 0;
+    padding: var(--spacing-lg);
+    background: rgba(0, 0, 0, 0.6);
+    color: var(--text-white);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.card-img-overlay h1,
+.card-img-overlay h2,
+.card-img-overlay h3,
+.card-img-overlay h4,
+.card-img-overlay h5 {
+    color: var(--text-white);
+}
+
+/* ===== CARD ACTIONS ===== */
+.card-actions {
+    display: flex;
+    gap: var(--spacing-sm);
+    flex-wrap: wrap;
+}
+
+/* ===== HORIZONTAL CARD ===== */
+.card-horizontal {
+    display: flex;
+    flex-direction: row;
+}
+
+.card-horizontal .card-img {
+    width: 200px;
+    flex-shrink: 0;
+    object-fit: cover;
+}
+
+.card-horizontal .card-body {
+    flex: 1;
+}
+
+/* ===== STAT CARDS ===== */
+.stat-card {
+    background: var(--bg-secondary);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-lg);
+    border: 1px solid var(--border-color);
+    border-top: 4px solid var(--primary-blue);
+    transition: box-shadow var(--transition-fast);
+}
+
+.stat-card:hover {
+    box-shadow: var(--shadow-sm);
+}
+
+.stat-card .stat-icon {
+    width: 40px;
+    height: 40px;
+    margin-bottom: var(--spacing-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-md);
+    background: currentColor;
+}
+
+.stat-card .stat-icon svg {
+    width: 20px;
+    height: 20px;
+    stroke: var(--bg-secondary);
+    fill: none;
+    stroke-width: 1.8;
+}
+
+.stat-card .stat-number {
+    font-size: var(--font-size-xxl);
+    font-weight: 700;
+    color: var(--primary-blue-dark);
+    margin-bottom: var(--spacing-xs);
+}
+
+.stat-card .stat-label {
+    color: var(--text-secondary);
+    font-size: var(--font-size-sm);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.stat-card .stat-change {
+    font-size: var(--font-size-xs);
+    font-weight: 600;
+    margin-top: var(--spacing-xs);
+}
+
+.stat-card .stat-change.positive { color: var(--success-color); }
+.stat-card .stat-change.negative { color: var(--danger-color); }
+
+.stat-card-primary,
+.stat-card-red,
+.stat-card-gold,
+.stat-card-success {
+    border-top-color: var(--border-color);
+    background: var(--bg-secondary);
+}
+
+.stat-card-primary .stat-icon,
+.stat-card-red .stat-icon,
+.stat-card-gold .stat-icon,
+.stat-card-success .stat-icon {
+    color: var(--primary-blue);
+}
+
+.stat-card-primary .stat-number,
+.stat-card-red .stat-number,
+.stat-card-gold .stat-number,
+.stat-card-success .stat-number {
+    color: var(--text-primary);
+}
+
+/* ===== CARD GRID ===== */
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: var(--spacing-lg);
+}
+
+/* FIX: .stats-grid was referenced by responsive.css at five different
+   breakpoints (1fr 1fr on phones, repeat(2,1fr) at md, repeat(4,1fr)
+   at lg, etc.) but was never declared as a grid anywhere. The responsive
+   rules just set grid-template-columns on a `display: block` element,
+   which is a no-op. This is the missing base definition. */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--spacing-lg);
+}
+
+/* ===== CARD LIST ===== */
+.card-list .card {
+    margin-bottom: var(--spacing-md);
+}
+
+.card-list .card:last-child {
+    margin-bottom: 0;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+    .card-horizontal {
+        flex-direction: column;
+    }
+
+    .card-horizontal .card-img {
+        width: 100%;
+        height: 200px;
+    }
+
+    .card-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .card-header {
+        flex-direction: column;
+        gap: var(--spacing-sm);
+        text-align: center;
+    }
+
+    .card-body {
+        padding: var(--spacing-md);
+    }
+
+    .stat-card {
+        padding: var(--spacing-md);
+    }
+
+    .stat-card .stat-number {
+        font-size: var(--font-size-xl);
+    }
+}

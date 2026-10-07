@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login - RMMC Library System</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@400;500;600;700&family=Cormorant+Garamond:ital@1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../shared/css/global.css">
+    <link rel="stylesheet" href="../../shared/css/forms.css">
+    <link rel="stylesheet" href="../../shared/css/buttons.css">
+    <link rel="stylesheet" href="../../shared/css/notifications.css">
+    <link rel="stylesheet" href="../css/login.css?v=2">
+</head>
+<body>
+    <div class="desk">
+        <div class="desk-vignette"></div>
+        <div class="desk-grain"></div>
+
+        <div class="stage">
+            <div class="book">
+                <div class="book-spine"></div>
+
+                <section class="page page-left">
+                    <div class="corner-guard corner-tl"></div>
+                    <div class="corner-guard corner-bl"></div>
+
+                    <div class="left-content">
+                        <img src="../../shared/assets/logo/rmmclogo.png" alt="RMMC Seal" class="seal">
+                        <h1 class="institution">Ramon Magsaysay<br>Memorial Colleges</h1>
+                        <p class="library-name">Library Administration</p>
+
+                        <div class="rule"></div>
+
+                        <p class="motto">&ldquo;Non scholae, sed vitae discimus&rdquo;</p>
+
+                        <div class="call-number">
+                            <span class="call-label">Access Class</span>
+                            <span class="call-code">&copy; 2026 RMMC Library System · ADMIN</span>
+                        </div>
+                    </div>
+
+                    <div class="ribbon" aria-hidden="true"></div>
+                </section>
+
+                <section class="page page-right">
+                    <div class="corner-guard corner-tr"></div>
+                    <div class="corner-guard corner-br"></div>
+
+                    <div class="page-lines" aria-hidden="true"></div>
+
+                    <div class="right-content">
+                        <div class="ledger-heading">
+                            <span class="eyebrow">System Administration</span>
+                            <h2>Admin Sign-In</h2>
+                            <p class="ledger-subtext">Enter your credentials to manage the library system.</p>
+                        </div>
+
+                        <form class="login-form" novalidate>
+                            <div class="form-group">
+                                <label class="form-label required" for="username">Employee ID or Email</label>
+                                <div class="input-group">
+                                    <span class="input-group-text" aria-hidden="true">
+                                        <svg class="icon icon-user" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="1.8"/>
+                                            <path d="M4 20c0-4 3.5-6.5 8-6.5s8 2.5 8 6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                                        </svg>
+                                    </span>
+                                    <input
+                                        type="text"
+                                        id="username"
+                                        name="username"
+                                        class="form-control"
+                                        placeholder="Enter your employee ID or email"
+                                        autocomplete="username"
+                                        autocapitalize="off"
+                                        spellcheck="false"
+                                        required
+                                        autofocus>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label required" for="password">Password</label>
+                                <div class="input-group">
+                                    <span class="input-group-text" aria-hidden="true">
+                                        <svg class="icon icon-lock" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <rect x="5" y="11" width="14" height="9" rx="2" stroke="currentColor" stroke-width="1.8"/>
+                                            <path d="M8 11V7.5a4 4 0 0 1 8 0V11" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                                        </svg>
+                                    </span>
+                                    <input
+                                        type="password"
+                                        id="password"
+                                        name="password"
+                                        class="form-control"
+                                        placeholder="Enter your password"
+                                        autocomplete="current-password"
+                                        required>
+                                    <button
+                                        type="button"
+                                        class="input-group-text password-toggle"
+                                        onclick="togglePassword()"
+                                        aria-label="Show password"
+                                        aria-pressed="false"
+                                        id="passwordToggleBtn">
+                                        <svg class="icon icon-eye" id="eyeIcon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7-10-7-10-7Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+                                            <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.8"/>
+                                        </svg>
+                                        <svg class="icon icon-eye-off" id="eyeOffIcon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:none;">
+                                            <path d="M3 3l18 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                                            <path d="M10.6 5.2A10.6 10.6 0 0 1 12 5c6.4 0 10 7 10 7a15.8 15.8 0 0 1-4.2 5M6.5 6.6C3.9 8.3 2 12 2 12s3.6 7 10 7c1.4 0 2.7-.3 3.9-.8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                                            <path d="M9.9 9.9a3 3 0 0 0 4.2 4.2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="form-options">
+                                <div class="form-check">
+                                    <input type="checkbox" id="remember" class="form-check-input">
+                                    <label class="form-check-label" for="remember">Remember me</label>
+                                </div>
+                            </div>
+
+                            <div id="errorMessage" class="form-error" role="alert" aria-live="polite" style="display:none;"></div>
+
+                            <button type="button" class="btn btn-ledger btn-lg w-100" id="loginBtn">
+                                <span class="btn-text">Sign In</span>
+                                <span class="spinner" aria-hidden="true"></span>
+                            </button>
+
+                            <p class="portal-note">
+                                Restricted access for authorized administrators only.
+                            </p>
+
+                            <div class="login-footer-links">
+                                <a href="../../student/html/login.html">Student Login</a>
+                            </div>
+                        </form>
+
+                        <div class="stamp" aria-hidden="true">
+                            <span>RMMC<br>ADMIN</span>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <div id="notificationContainer"></div>
+
+    <script src="../../shared/js/api.js"></script>
+    <script src="../../shared/js/session-check.js"></script>
+    <script src="../../shared/js/helpers.js"></script>
+    <script src="../../shared/js/notifications.js"></script>
+    <script src="../js/login.js"></script>
+    <script>
+        function togglePassword() {
+            const pwd = document.getElementById('password');
+            const eye = document.getElementById('eyeIcon');
+            const eyeOff = document.getElementById('eyeOffIcon');
+            const btn = document.getElementById('passwordToggleBtn');
+            const isHidden = pwd.type === 'password';
+
+            pwd.type = isHidden ? 'text' : 'password';
+            eye.style.display = isHidden ? 'none' : 'block';
+            eyeOff.style.display = isHidden ? 'block' : 'none';
+            btn.setAttribute('aria-label', isHidden ? 'Hide password' : 'Show password');
+            btn.setAttribute('aria-pressed', isHidden ? 'true' : 'false');
+        }
+    </script>
+</body>
+</html>

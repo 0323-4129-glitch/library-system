@@ -1,0 +1,220 @@
+/* frontend/admin/css/reservation-management.css */
+@import url('../../shared/css/variables.css');
+
+.page-content {
+    padding: var(--spacing-lg) 0;
+}
+
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: var(--spacing-lg);
+    flex-wrap: wrap;
+    gap: var(--spacing-md);
+}
+
+.page-header h1 {
+    margin-bottom: var(--spacing-xs);
+    color: var(--primary-blue-dark);
+}
+
+.page-subtitle {
+    color: var(--text-secondary);
+    font-size: var(--font-size-sm);
+    margin-bottom: 0;
+}
+
+/* ===== STATS SUMMARY (6 cards) ===== */
+.stats-summary {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
+}
+
+.stat-item {
+    background: var(--bg-secondary);
+    padding: var(--spacing-md) var(--spacing-lg);
+    border-radius: var(--radius-md);
+    border-left: 4px solid var(--primary-blue);
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.stat-item .stat-label {
+    font-size: var(--font-size-sm);
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.stat-item .stat-value {
+    font-size: var(--font-size-xl);
+    font-weight: 700;
+    color: var(--primary-blue-dark);
+}
+
+/* Colour modifiers (no longer tied to card order) */
+.stat-item.stat-pending   { border-left-color: var(--warning-color); }
+.stat-item.stat-pending .stat-value   { color: var(--warning-color); }
+
+.stat-item.stat-approved  { border-left-color: var(--success-color); }
+.stat-item.stat-approved .stat-value  { color: var(--success-color); }
+
+.stat-item.stat-overdue   { border-left-color: #dc2626; }
+.stat-item.stat-overdue .stat-value   { color: #dc2626; }
+
+.stat-item.stat-completed { border-left-color: var(--info-color); }
+.stat-item.stat-completed .stat-value { color: var(--info-color); }
+
+.stat-item.stat-cancelled { border-left-color: var(--primary-red); }
+.stat-item.stat-cancelled .stat-value { color: var(--primary-red); }
+
+/* ===== FILTERS BAR ===== */
+.filters-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-md);
+    padding: var(--spacing-md) var(--spacing-lg);
+    background: var(--bg-secondary);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--spacing-lg);
+    align-items: flex-end;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border-color);
+}
+
+.filter-group {
+    display: flex;
+    gap: var(--spacing-sm);
+    align-items: flex-end;
+}
+
+.filter-group .form-control {
+    min-width: 180px;
+}
+
+/* ===== TABLE CONTAINER ===== */
+.table-container {
+    background: var(--bg-secondary);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border-color);
+    overflow: hidden;
+}
+
+.table-container .table {
+    margin-bottom: 0;
+}
+
+/* ===== RESERVATION ACTIONS ===== */
+.reservation-actions {
+    display: flex;
+    gap: var(--spacing-xs);
+    flex-wrap: wrap;
+}
+
+.reservation-actions .btn {
+    font-size: var(--font-size-xs);
+    padding: var(--spacing-xs) var(--spacing-sm);
+}
+
+/* ===== BADGES ===== */
+/* Fallback for "Expired" in case shared CSS has no .badge-secondary */
+.badge-secondary {
+    background: #e5e7eb;
+    color: #4b5563;
+}
+
+/* OVERDUE: a Pending/Approved reservation whose window has passed. */
+.badge-overdue {
+    background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+    color: #fff !important;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 4px 12px;
+    border-radius: var(--radius-full);
+    font-size: var(--font-size-xs);
+    display: inline-block;
+    box-shadow: 0 2px 6px rgba(220, 38, 38, 0.4);
+}
+
+/* Pulse only for users who haven't asked for reduced motion */
+@media (prefers-reduced-motion: no-preference) {
+    .badge-overdue {
+        animation: overduePulse 1.8s ease-in-out infinite;
+    }
+}
+
+@keyframes overduePulse {
+    0%, 100% { box-shadow: 0 2px 6px rgba(220, 38, 38, 0.4); }
+    50%      { box-shadow: 0 2px 14px rgba(220, 38, 38, 0.75); }
+}
+
+/* Note shown in the details modal for overdue items */
+.overdue-note {
+    color: #b91c1c;
+    font-weight: 600;
+    margin-top: 12px;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1400px) {
+    .stats-summary {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 992px) {
+    .stats-summary {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .filters-bar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .filter-group {
+        flex-wrap: wrap;
+    }
+
+    .filter-group .form-control {
+        min-width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .page-content {
+        padding: var(--spacing-md) 0;
+    }
+
+    .page-header {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .stats-summary {
+        grid-template-columns: 1fr 1fr;
+        gap: var(--spacing-sm);
+    }
+
+    .stat-item {
+        padding: var(--spacing-sm) var(--spacing-md);
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--spacing-xs);
+    }
+
+    .stat-item .stat-value {
+        font-size: var(--font-size-lg);
+    }
+
+    .reservation-actions {
+        flex-direction: column;
+    }
+}

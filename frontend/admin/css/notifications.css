@@ -1,0 +1,453 @@
+/* frontend/admin/css/notifications.css */
+@import url('../../shared/css/variables.css');
+
+.page-content {
+    padding: var(--spacing-lg) 0;
+}
+
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: var(--spacing-lg);
+    flex-wrap: wrap;
+    gap: var(--spacing-md);
+}
+
+.page-header h1 {
+    margin-bottom: var(--spacing-xs);
+    color: var(--primary-blue-dark);
+}
+
+.page-subtitle {
+    color: var(--text-secondary);
+    font-size: var(--font-size-sm);
+    margin-bottom: 0;
+}
+
+.header-actions {
+    display: flex;
+    gap: var(--spacing-sm);
+    flex-wrap: wrap;
+}
+
+/* ===== FILTERS BAR ===== */
+.filters-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-md);
+    padding: var(--spacing-md) var(--spacing-lg);
+    background: var(--bg-secondary);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--spacing-lg);
+    align-items: flex-end;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border-color);
+}
+
+.filter-group {
+    display: flex;
+    gap: var(--spacing-sm);
+    align-items: flex-end;
+}
+
+.filter-group .form-control {
+    min-width: 180px;
+}
+
+.filter-group .btn {
+    height: 40px;
+}
+
+/* ===== NOTIFICATIONS LIST ===== */
+.notifications-list {
+    background: var(--bg-secondary);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border-color);
+    overflow: hidden;
+}
+
+.notification-item {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--spacing-md);
+    padding: var(--spacing-lg);
+    border-bottom: 1px solid var(--border-light);
+    transition: background var(--transition-fast);
+    cursor: pointer;
+}
+
+.notification-item:last-child {
+    border-bottom: none;
+}
+
+.notification-item:hover {
+    background: var(--bg-hover);
+}
+
+.notification-item.unread {
+    background: var(--blue-50);
+    border-left: 4px solid var(--primary-blue);
+}
+
+.notification-item.unread:hover {
+    background: var(--blue-100);
+}
+
+/* ===== NOTIFICATION ICON (SVG container) ===== */
+.notification-item .notification-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: var(--radius-full);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+/* FIX: SVGs inherit currentColor from the parent so the colored
+   type-* classes below tint them correctly. Sized explicitly since
+   font-size no longer applies. */
+.notification-item .notification-icon svg {
+    width: 20px;
+    height: 20px;
+    display: block;
+    flex-shrink: 0;
+}
+
+.notification-item .notification-icon.type-info {
+    background: rgba(20, 17, 141, 0.1);
+    color: var(--primary-blue);
+}
+.notification-item .notification-icon.type-success {
+    background: rgba(31, 122, 77, 0.1);
+    color: var(--success-color);
+}
+.notification-item .notification-icon.type-warning {
+    background: rgba(160, 106, 0, 0.1);
+    color: var(--warning-color);
+}
+.notification-item .notification-icon.type-error {
+    background: rgba(179, 38, 30, 0.1);
+    color: var(--primary-red);
+}
+
+.notification-item .notification-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.notification-item .notification-title {
+    font-weight: 600;
+    font-size: var(--font-size-md);
+    color: var(--text-primary);
+    margin-bottom: 2px;
+}
+
+.notification-item .notification-message {
+    font-size: var(--font-size-sm);
+    color: var(--text-secondary);
+    margin-bottom: 4px;
+}
+
+.notification-item .notification-meta {
+    display: flex;
+    gap: var(--spacing-md);
+    align-items: center;
+    font-size: var(--font-size-xs);
+    color: var(--text-light);
+}
+
+.notification-item .notification-meta .badge {
+    font-size: var(--font-size-xs);
+}
+
+.notification-item .notification-actions {
+    display: flex;
+    gap: var(--spacing-xs);
+    flex-shrink: 0;
+}
+
+.notification-item .notification-actions .btn {
+    padding: var(--spacing-xs) var(--spacing-sm);
+    font-size: var(--font-size-xs);
+}
+
+/* ===== EMPTY STATE ===== */
+.notifications-empty {
+    text-align: center;
+    padding: var(--spacing-xxl);
+}
+
+.notifications-empty .empty-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: var(--bg-light, #f6f7fb);
+    color: var(--text-light, #8b93a8);
+    margin: 0 auto var(--spacing-md);
+}
+
+.notifications-empty .empty-icon svg {
+    width: 32px;
+    height: 32px;
+    display: block;
+}
+
+.notifications-empty .empty-text {
+    font-size: var(--font-size-lg);
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+
+.notifications-empty .empty-subtext {
+    font-size: var(--font-size-sm);
+    color: var(--text-light);
+    margin-top: var(--spacing-xs);
+}
+
+/* ============================================================
+   SEND NOTIFICATION MODAL — ANNOUNCEMENT TYPE CARDS
+   Replaces the old <select> with a two-column grid of clickable
+   cards. Each card shows an inline SVG icon plus a short title
+   and description so the audience is obvious at a glance.
+   ============================================================ */
+.announcement-type-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.announcement-type-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 14px;
+    background: #fff;
+    border: 1.5px solid #e2e5ee;
+    border-radius: 12px;
+    cursor: pointer;
+    text-align: left;
+    font-family: inherit;
+    transition: border-color 0.15s ease, background 0.15s ease, box-shadow 0.15s ease, transform 0.12s ease;
+}
+
+.announcement-type-card:hover {
+    border-color: var(--primary-blue, #2b2d82);
+    background: #f7f8fd;
+    transform: translateY(-1px);
+}
+
+.announcement-type-card:focus-visible {
+    outline: 3px solid rgba(43, 45, 130, 0.35);
+    outline-offset: 2px;
+}
+
+.announcement-type-card.selected {
+    border-color: var(--primary-blue, #2b2d82);
+    background: #eef0fb;
+    box-shadow: 0 0 0 3px rgba(43, 45, 130, 0.12);
+}
+
+.atc-icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    background: rgba(43, 45, 130, 0.1);
+    color: var(--primary-blue, #2b2d82);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.announcement-type-card.selected .atc-icon {
+    background: var(--primary-blue, #2b2d82);
+    color: #fff;
+}
+
+.atc-icon svg {
+    width: 20px;
+    height: 20px;
+    display: block;
+}
+
+.atc-body {
+    flex: 1;
+    min-width: 0;
+}
+
+.atc-title {
+    display: block;
+    font-size: 13.5px;
+    font-weight: 600;
+    color: #1a1a2e;
+    margin-bottom: 2px;
+    line-height: 1.3;
+}
+
+.atc-desc {
+    display: block;
+    font-size: 11.5px;
+    color: #6b7280;
+    line-height: 1.4;
+}
+
+/* ============================================================
+   MESSAGE TYPE — SEGMENTED BUTTONS WITH SVG ICONS
+   ============================================================ */
+.message-type-row {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.message-type-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    border-radius: 8px;
+    border: 1.5px solid #e2e5ee;
+    background: #fff;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 500;
+    color: #5b6478;
+    transition: border-color 0.15s ease, background 0.15s ease, color 0.15s ease;
+}
+
+.message-type-btn svg {
+    width: 15px;
+    height: 15px;
+    display: block;
+    flex-shrink: 0;
+}
+
+.message-type-btn:hover {
+    border-color: currentColor;
+}
+
+.message-type-btn:focus-visible {
+    outline: 3px solid rgba(43, 45, 130, 0.25);
+    outline-offset: 2px;
+}
+
+.message-type-btn[data-value="info"].selected {
+    border-color: #2563eb;
+    background: #eff6ff;
+    color: #1d4ed8;
+}
+.message-type-btn[data-value="warning"].selected {
+    border-color: #f59e0b;
+    background: #fffbeb;
+    color: #b45309;
+}
+.message-type-btn[data-value="success"].selected {
+    border-color: #10b981;
+    background: #ecfdf5;
+    color: #047857;
+}
+.message-type-btn[data-value="error"].selected {
+    border-color: #ef4444;
+    background: #fef2f2;
+    color: #b91c1c;
+}
+
+/* ============================================================
+   SUB-SECTIONS (Remaining Hour / Personal / Group)
+   ============================================================ */
+.notif-subsection {
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+    background: var(--bg-secondary);
+}
+
+.subsection-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0 0 var(--spacing-md);
+    font-size: var(--font-size-md);
+    color: var(--primary-blue-dark);
+}
+
+.subsection-title svg {
+    width: 18px;
+    height: 18px;
+    display: block;
+    color: var(--primary-blue);
+}
+
+.student-selection-box {
+    max-height: 250px;
+    overflow-y: auto;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    padding: var(--spacing-sm);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+    .page-content {
+        padding: var(--spacing-md) 0;
+    }
+
+    .page-header {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .header-actions {
+        flex-direction: column;
+    }
+
+    .header-actions .btn {
+        width: 100%;
+    }
+
+    .filters-bar {
+        flex-direction: column;
+        align-items: stretch;
+        padding: var(--spacing-md);
+    }
+
+    .filter-group {
+        flex-wrap: wrap;
+    }
+
+    .filter-group .form-control {
+        min-width: 100%;
+    }
+
+    .notification-item {
+        flex-direction: column;
+        padding: var(--spacing-md);
+    }
+
+    .notification-item .notification-actions {
+        width: 100%;
+        justify-content: flex-end;
+    }
+
+    .announcement-type-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .message-type-row {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .message-type-btn {
+        justify-content: center;
+    }
+}

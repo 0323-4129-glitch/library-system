@@ -1,0 +1,277 @@
+/* frontend/shared/css/global.css */
+@import url('variables.css');
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-family);
+    font-size: var(--font-size-md);
+    color: var(--text-primary);
+    background: var(--bg-primary);
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+/* ===== VECTOR ICONS ===== */
+.icon,
+.nav-icon,
+.quick-icon {
+    width: 20px;
+    height: 20px;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    flex-shrink: 0;
+    vertical-align: middle;
+}
+
+/* ===== LINKS ===== */
+a {
+    text-decoration: none;
+    color: var(--primary-color);
+    transition: color var(--transition-fast);
+}
+
+a:hover {
+    color: var(--primary-light);
+}
+
+/* ===== TYPOGRAPHY ===== */
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-family-heading);
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: var(--spacing-md);
+    color: var(--text-primary);
+    letter-spacing: -0.2px;
+}
+
+h1 {
+    font-size: var(--font-size-xxxl);
+    font-weight: 800;
+    letter-spacing: -0.4px;
+    color: var(--text-primary);
+}
+h2 { font-size: var(--font-size-xxl); font-weight: 700; }
+h3 { font-size: var(--font-size-xl); }
+h4 { font-size: var(--font-size-lg); }
+h5 { font-size: var(--font-size-md); }
+h6 { font-size: var(--font-size-sm); }
+
+p { margin-bottom: var(--spacing-md); }
+
+/* ===== SCHOOL THEME UTILITIES ===== */
+.text-primary-blue { color: var(--primary-blue) !important; }
+.text-primary-red  { color: var(--primary-red) !important; }
+.text-gold         { color: var(--gold) !important; }
+
+.bg-primary-blue { background: var(--primary-blue) !important; }
+.bg-primary-red  { background: var(--primary-red) !important; }
+.bg-gold         { background: var(--gold) !important; }
+
+.border-primary-blue { border-color: var(--primary-blue) !important; }
+.border-primary-red  { border-color: var(--primary-red) !important; }
+.border-gold         { border-color: var(--gold) !important; }
+
+/* ===== STATUS COLORS ===== */
+.text-success   { color: var(--success-color); }
+.text-danger    { color: var(--danger-color); }
+.text-warning   { color: var(--warning-color); }
+.text-info      { color: var(--info-color); }
+.text-primary   { color: var(--primary-color); }
+.text-secondary { color: var(--text-secondary); }
+.text-muted     { color: var(--text-light); }
+.text-white     { color: var(--text-white); }
+
+.bg-success { background-color: var(--success-color); }
+.bg-danger  { background-color: var(--danger-color); }
+.bg-warning { background-color: var(--warning-color); }
+.bg-info    { background-color: var(--info-color); }
+.bg-primary { background-color: var(--primary-color); }
+
+/* ===== BADGES ===== */
+.badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: var(--radius-full);
+    font-size: var(--font-size-xs);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.badge-success   { background: var(--success-color); color: white; }
+.badge-danger    { background: var(--danger-color);  color: white; }
+.badge-warning   { background: var(--warning-color); color: white; }
+.badge-info      { background: var(--info-color);    color: white; }
+.badge-primary   { background: var(--primary-color); color: white; }
+.badge-secondary { background: #6c757d;               color: white; }
+
+/* FIX: --gold now aliases var(--blue-800) (dark navy) in variables.css.
+   The old `color: var(--text-primary)` paired a near-black text colour
+   with a dark-blue pill, producing illegible contrast. White text is
+   the correct pairing for any dark background in this palette. */
+.badge-gold {
+    background: var(--gold);
+    color: var(--text-white);
+}
+
+/* ===== SPACING ===== */
+.m-0 { margin: 0; }
+.m-1 { margin: var(--spacing-sm); }
+.m-2 { margin: var(--spacing-md); }
+.m-3 { margin: var(--spacing-lg); }
+.m-4 { margin: var(--spacing-xl); }
+
+.p-0 { padding: 0; }
+.p-1 { padding: var(--spacing-sm); }
+.p-2 { padding: var(--spacing-md); }
+.p-3 { padding: var(--spacing-lg); }
+.p-4 { padding: var(--spacing-xl); }
+
+.mb-0 { margin-bottom: 0; }
+.mb-1 { margin-bottom: var(--spacing-sm); }
+.mb-2 { margin-bottom: var(--spacing-md); }
+.mb-3 { margin-bottom: var(--spacing-lg); }
+.mb-4 { margin-bottom: var(--spacing-xl); }
+
+.mt-0 { margin-top: 0; }
+.mt-1 { margin-top: var(--spacing-sm); }
+.mt-2 { margin-top: var(--spacing-md); }
+.mt-3 { margin-top: var(--spacing-lg); }
+.mt-4 { margin-top: var(--spacing-xl); }
+
+/* ===== FLEX ===== */
+.d-flex        { display: flex; }
+.d-inline-flex { display: inline-flex; }
+.flex-column   { flex-direction: column; }
+.flex-row      { flex-direction: row; }
+.flex-wrap     { flex-wrap: wrap; }
+.flex-nowrap   { flex-wrap: nowrap; }
+.justify-start   { justify-content: flex-start; }
+.justify-end     { justify-content: flex-end; }
+.justify-center  { justify-content: center; }
+.justify-between { justify-content: space-between; }
+.justify-around  { justify-content: space-around; }
+.align-start   { align-items: flex-start; }
+.align-end     { align-items: flex-end; }
+.align-center  { align-items: center; }
+.align-stretch { align-items: stretch; }
+.flex-1 { flex: 1; }
+.gap-1  { gap: var(--spacing-sm); }
+.gap-2  { gap: var(--spacing-md); }
+.gap-3  { gap: var(--spacing-lg); }
+
+/* ===== DISPLAY ===== */
+.d-none         { display: none; }
+.d-block        { display: block; }
+.d-inline-block { display: inline-block; }
+
+/* ===== WIDTH / HEIGHT ===== */
+.w-100  { width: 100%; }
+.h-100  { height: 100%; }
+.vh-100 { height: 100vh; }
+
+/* ===== POSITION ===== */
+.position-relative { position: relative; }
+.position-absolute { position: absolute; }
+.position-fixed    { position: fixed; }
+.position-sticky   { position: sticky; }
+
+/* ===== CURSOR ===== */
+.cursor-pointer     { cursor: pointer; }
+.cursor-default     { cursor: default; }
+.cursor-not-allowed { cursor: not-allowed; }
+
+/* ===== OVERFLOW ===== */
+.overflow-hidden  { overflow: hidden; }
+.overflow-auto    { overflow: auto; }
+.overflow-scroll  { overflow: scroll; }
+.overflow-x-auto  { overflow-x: auto; }
+.overflow-y-auto  { overflow-y: auto; }
+
+/* ===== ANIMATIONS ===== */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideIn {
+    from { transform: translateX(-100%); }
+    to   { transform: translateX(0); }
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50%      { opacity: 0.5; }
+}
+
+@keyframes shimmer {
+    0%   { background-position: -200px 0; }
+    100% { background-position: calc(200px + 100%) 0; }
+}
+
+@keyframes glow {
+    0%, 100% { box-shadow: 0 0 5px rgba(20, 17, 141, 0.25); }
+    50%      { box-shadow: 0 0 20px rgba(20, 17, 141, 0.5); }
+}
+
+.animate-fade-in  { animation: fadeIn var(--transition-normal); }
+.animate-slide-in { animation: slideIn var(--transition-normal); }
+.animate-spin     { animation: spin 1s linear infinite; }
+.animate-pulse    { animation: pulse 2s ease-in-out infinite; }
+.animate-glow     { animation: glow 2s ease-in-out infinite; }
+
+/* ===== SHIMMER LOADING ===== */
+.shimmer {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200px 100%;
+    animation: shimmer 1.5s infinite;
+}
+
+/* ===== SCROLLBAR ===== */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+::-webkit-scrollbar-track {
+    background: var(--border-light);
+    border-radius: var(--radius-full);
+}
+::-webkit-scrollbar-thumb {
+    background: var(--primary-blue-light);
+    border-radius: var(--radius-full);
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-blue);
+}
+
+/* ===== SELECTION ===== */
+::selection {
+    background: var(--primary-blue);
+    color: var(--text-white);
+}
+
+/* ===== PRINT ===== */
+@media print {
+    .no-print   { display: none !important; }
+    .print-only { display: block !important; }
+    body { background: white; font-size: 12px; }
+}
