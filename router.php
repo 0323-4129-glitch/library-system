@@ -1,49 +1,133 @@
 
 <?php
-// router.php
+// router.php - Railway PHP Router
 
-$uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+$root = __DIR__;
+
+$uri = parse_url(
+    $_SERVER['REQUEST_URI'] ?? '/',
+    PHP_URL_PATH
+);
+
 $uri = rawurldecode($uri ?: '/');
 
-// Route API requests to backend
+// Security: block null bytes and path traversal
+if (
+    str_contains($uri, "\0") ||
+    preg_match('#(?:^|/)\.\.(?:/|$)#', $uri)
+) {
+    http_response_code(400);
+    exit('Bad Request');
+}
+
+// Block private directories
+if (preg_match(
+    '#^/(backend|node_modules|\.git)(/|$)#i',
+    $uri
+)) {
+    http_response_code(403);
+    exit('Forbidden');
+}
+
+// Route API requests
 if ($uri === '/api' || str_starts_with($uri, '/api/')) {
-    require __DIR__ . '/backend/api/index.php';
+
+    $apiFile = $root . '/backend/api/index.php';
+
+    if (!is_file($apiFile)) {
+        http_response_code(500);
+        header('Content-Type: application/json');
+
+        echo json_encode([
+            'success' => false,
+            'message' => 'API entry point missing'
+        ]);
+
+        return true;
+    }
+
+    require $apiFile;
     return true;
 }
 
 // Homepage
 if ($uri === '/') {
+
+    $homepage = $root . '/index.html';
+
+    if (!is_file($homepage)) {
+        http_response_code(404);
+        exit('Homepage not found');
+    }
+
     header('Content-Type: text/html; charset=utf-8');
-    readfile(__DIR__ . '/index.html');
+    readfile($homepage);
+
     return true;
 }
 
-// Serve existing frontend files
-$root = realpath(__DIR__);
+// Resolve requested file
 $file = realpath($root . $uri);
 
+// Ensure file is inside application directory
 if (
-    $file !== false &&
-    str_starts_with($file, $root . DIRECTORY_SEPARATOR) &&
-    is_file($file)
+    $file === false ||
+    !str_starts_with(
+        $file,
+        $root . DIRECTORY_SEPARATOR
+    ) ||
+    !is_file($file)
 ) {
-    // Do not expose backend or private files
-    if (
-        str_starts_with($uri, '/backend/') ||
-        str_starts_with($uri, '/node_modules/') ||
-        str_starts_with($uri, '/.') ||
-        in_array(strtolower(pathinfo($file, PATHINFO_EXTENSION)),
-            ['php', 'sql', 'env', 'log', 'json', 'md'], true)
-    ) {
-        http_response_code(403);
-        exit('Forbidden');
-    }
-
-    // Let PHP built-in server serve static files
-    return false;
+    http_response_code(404);
+    exit('404 - Page not found');
 }
 
-// File not found
-http_response_code(404);
-header('Content-Type: text/plain; charset=utf-8');
-echo '404 - Page not found';
+// Block sensitive file extensions
+$extension = strtolower(
+    pathinfo($file, PATHINFO_EXTENSION)
+);
+
+$blockedExtensions = [
+    'php',
+    'sql',
+    'env',
+    'log',
+    'json',
+    'md',
+    'ini',
+    'yml',
+    'yaml',
+    'lock'
+];
+
+if (in_array($extension, $blockedExtensions, true)) {
+    http_response_code(403);
+    exit('Forbidden');
+}
+
+// Allow public frontend files only
+$publicRootFiles = [
+    '/index.html',
+    '/unauthorized.html',
+    '/favicon.ico',
+    '/robots.txt'
+];
+
+$isFrontend = str_starts_with(
+    $file,
+    $root . '/frontend/'
+);
+
+$isPublicRoot = in_array(
+    $uri,
+    $publicRootFiles,
+    true
+);
+
+if (!$isFrontend && !$isPublicRoot) {
+    http_response_code(403);
+    exit('Forbidden');
+}
+
+// Serve static files through PHP server
+return false;
