@@ -1,9 +1,8 @@
 
 FROM php:8.2-cli
 
-# Install PHP extensions required by the library system
+# Install PHP extensions
 RUN apt-get update && apt-get install -y \
-    libzip-dev \
     libonig-dev \
     && docker-php-ext-install \
     pdo_mysql \
@@ -14,24 +13,33 @@ RUN apt-get update && apt-get install -y \
 # Set working directory
 WORKDIR /app
 
-# Copy backend files
-COPY backend/ /app/
+# Copy backend
+COPY backend/ /app/backend/
 
-# Create folders for uploads and logs
-RUN mkdir -p /app/uploads/profile \
-    /app/uploads/reports \
-    /app/logs \
-    && chown -R www-data:www-data /app/uploads /app/logs
+# Copy frontend
+COPY frontend/ /app/frontend/
 
-# Configure PHP for production
-RUN printf "display_errors=Off\nlog_errors=On\nerror_reporting=E_ALL\nupload_max_filesize=10M\npost_max_size=12M\n" \
+# Copy main HTML pages
+COPY index.html /app/index.html
+COPY unauthorized.html /app/unauthorized.html
+
+# Create upload and log directories
+RUN mkdir -p \
+    /app/backend/uploads/profile \
+    /app/backend/uploads/reports \
+    /app/backend/logs \
+    && chown -R www-data:www-data \
+    /app/backend/uploads \
+    /app/backend/logs
+
+# Configure PHP
+RUN printf "display_errors=Off\nlog_errors=On\nerror_reporting=E_ALL\n" \
     > /usr/local/etc/php/conf.d/production.ini
 
-# Railway provides PORT at runtime
+# Railway port
 ENV PORT=8080
 
-# Documentation for default port
 EXPOSE 8080
 
-# Start PHP server with API routing
-CMD ["sh", "-c", "exec php -S 0.0.0.0:${PORT:-8080} -t /app/api /app/api/index.php"]
+# Start PHP web server
+CMD ["sh", "-c", "exec php -S 0.0.0.0:${PORT:-8080} -t /app /app/router.php"]
