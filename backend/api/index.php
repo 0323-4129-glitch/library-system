@@ -1,8 +1,9 @@
 <?php
 // backend/api/index.php
 
-require_once __DIR__ . '/../config/database.php';
+// Load configuration first so error handling and CORS are initialized.
 require_once __DIR__ . '/../config/config.php';
+require_once __DIR__ . '/../config/database.php';
 require_once __DIR__ . '/../helpers/functions.php';
 require_once __DIR__ . '/../helpers/jwt.php';
 require_once __DIR__ . '/../helpers/logger.php';
@@ -80,7 +81,7 @@ function header_value(array $headers, string $name): string
 
 function resolve_path(): string
 {
-    if (isset($_GET['route']) && $_GET['route'] !== '') {
+    if (isset($_GET['route']) && is_string($_GET['route']) && $_GET['route'] !== '') {
         return '/' . ltrim($_GET['route'], '/');
     }
 
@@ -96,6 +97,9 @@ function resolve_path(): string
     }
 
     $uri = preg_replace('#/index\.php#', '', $uri);
+    // Accept both /api/route and /route for clients using different base URLs.
+    if ($uri === '/api') $uri = '/';
+    elseif (str_starts_with($uri, '/api/')) $uri = substr($uri, 4);
 
     $uri = '/' . ltrim($uri, '/');
     return rtrim($uri, '/') === '' ? '/' : rtrim($uri, '/');
@@ -109,8 +113,6 @@ function require_auth(): array
     $token = '';
     if (stripos($authHeader, 'Bearer ') === 0) {
         $token = trim(substr($authHeader, 7));
-    } elseif (!empty($_GET['token'])) {
-        $token = trim((string)$_GET['token']);
     }
 
     if ($token === '') {
@@ -155,6 +157,15 @@ function q_enum(?string $raw, array $allowed): ?string
 {
     if ($raw === null || $raw === '') return null;
     return in_array($raw, $allowed, true) ? $raw : null;
+}
+
+// Railway / container health endpoint: does not disclose credentials.
+// Keep this endpoint unauthenticated for uptime checks.
+if (($_SERVER['REQUEST_METHOD'] ?? '') === 'GET' &&
+    in_array(parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH), ['/', '/health', '/api/health'], true)) {
+    http_response_code(200);
+    echo json_encode(['success' => true, 'message' => 'Library System API is running']);
+    exit;
 }
 
 $routes = [];
@@ -728,7 +739,7 @@ route($routes, 'GET', '/login-logs/user/{userType}/{userId}', function (array $p
 // Dispatch
 // ---------------------------------------------------------------------
 
-$method = $_SERVER['REQUEST_METHOD'];
+$method = $_SERVER['REQUEST_METHOD'] ?? 'GET';
 $path = resolve_path();
 
 foreach ($routes as $route) {
@@ -740,7 +751,7 @@ foreach ($routes as $route) {
         } catch (PDOException $e) {
             error_log('Database error: ' . $e->getMessage() . ' in ' . $e->getFile() . ':' . $e->getLine());
             json_error('A database error occurred. Please try again later.', HTTP_SERVER_ERROR);
-        } catch (Exception $e) {
+        } catch (Throwable $e) {
             error_log('Application error: ' . $e->getMessage() . ' in ' . $e->getFile() . ':' . $e->getLine());
             json_error('An unexpected error occurred. Please try again later.', HTTP_SERVER_ERROR);
         }
