@@ -1,7 +1,6 @@
 
 FROM php:8.2-cli
 
-# Install PHP extensions
 RUN apt-get update && apt-get install -y \
     libonig-dev \
     && docker-php-ext-install \
@@ -10,20 +9,16 @@ RUN apt-get update && apt-get install -y \
     mbstring \
     && rm -rf /var/lib/apt/lists/*
 
-# Set working directory
 WORKDIR /app
 
-# Copy backend
+# Copy application files
 COPY backend/ /app/backend/
-
-# Copy frontend
 COPY frontend/ /app/frontend/
-
-# Copy main HTML pages
 COPY index.html /app/index.html
 COPY unauthorized.html /app/unauthorized.html
+COPY router.php /app/router.php
 
-# Create upload and log directories
+# Create directories
 RUN mkdir -p \
     /app/backend/uploads/profile \
     /app/backend/uploads/reports \
@@ -32,14 +27,18 @@ RUN mkdir -p \
     /app/backend/uploads \
     /app/backend/logs
 
-# Configure PHP
+# Verify required files during build
+RUN test -f /app/router.php \
+    && test -f /app/backend/api/index.php \
+    && test -f /app/backend/controllers/AuthController.php \
+    && test -f /app/backend/models/Student.php
+
+# PHP production settings
 RUN printf "display_errors=Off\nlog_errors=On\nerror_reporting=E_ALL\n" \
     > /usr/local/etc/php/conf.d/production.ini
 
-# Railway port
 ENV PORT=8080
 
 EXPOSE 8080
 
-# Start PHP web server
 CMD ["sh", "-c", "exec php -S 0.0.0.0:${PORT:-8080} -t /app /app/router.php"]
