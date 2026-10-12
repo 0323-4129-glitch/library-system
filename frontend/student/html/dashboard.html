@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard — RMMC-MI Library</title>
+<link rel="stylesheet" href="../../shared/css/global.css">
+<link rel="stylesheet" href="../../shared/css/sidebar.css">
+<link rel="stylesheet" href="../../shared/css/navbar.css">
+<link rel="stylesheet" href="../../shared/css/cards.css">
+<link rel="stylesheet" href="../../shared/css/buttons.css">
+<link rel="stylesheet" href="../../shared/css/forms.css">
+<link rel="stylesheet" href="../../shared/css/modal.css">
+<link rel="stylesheet" href="../../shared/css/notifications.css">
+<link rel="stylesheet" href="../../shared/css/responsive.css">
+<link rel="stylesheet" href="../../admin/css/dashboard.css">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/student-dashboard.css?v=1">
+<link rel="stylesheet" href="../../shared/css/responsive-master.css">
+</head>
+<body>
+
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <div class="logo-container">
+      <div class="logo" style="display:flex;align-items:center;justify-content:center;color:var(--primary-blue);">
+        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5V6a2 2 0 0 1 2-2h8.5L20 8.5V19.5a1.5 1.5 0 0 1-1.5 1.5H5.5A1.5 1.5 0 0 1 4 19.5Z"/><path d="M14 4v4.5h4.5"/><path d="M8 12h8M8 15.5h8M8 8.5h3"/></svg>
+      </div>
+      <div class="brand-info">
+        <div class="brand-name">RMMC-MI Library</div>
+        <div class="brand-sub">Student Portal</div>
+      </div>
+    </div>
+  </div>
+
+  <nav class="sidebar-nav">
+    <div class="nav-item">
+      <a class="nav-link active" href="dashboard.html">
+        <span class="nav-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/></svg></span>
+        <span class="nav-text">Dashboard</span>
+      </a>
+    </div>
+    <div class="nav-item">
+      <a class="nav-link" href="computer-availability.html">
+        <span class="nav-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg></span>
+        <span class="nav-text">Computers</span>
+      </a>
+    </div>
+    <div class="nav-item">
+      <a class="nav-link" href="reservation-history.html">
+        <span class="nav-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/><path d="M12 7v5l3 2"/></svg></span>
+        <span class="nav-text">Reservations</span>
+      </a>
+    </div>
+    <div class="nav-item">
+      <a class="nav-link" href="notifications.html">
+        <span class="nav-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg></span>
+        <span class="nav-text">Notifications</span>
+      </a>
+    </div>
+    <div class="nav-item">
+      <a class="nav-link" href="profile.html">
+        <span class="nav-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></span>
+        <span class="nav-text">Profile</span>
+      </a>
+    </div>
+  </nav>
+
+  <div class="sidebar-hours">
+    <div class="sidebar-hours-label">Semester Hours</div>
+    <div class="sidebar-hours-track"><div class="sidebar-hours-fill" id="sidebarHoursFill" style="width:0%"></div></div>
+    <div class="sidebar-hours-value" id="sidebarHoursValue">– / – hrs used</div>
+  </div>
+
+  <div class="sidebar-footer">
+    <div class="user-info">
+      <div class="user-avatar" id="sidebarUserAvatar">--</div>
+      <div class="user-details">
+        <div class="user-name" id="sidebarUserName">Loading…</div>
+        <div class="user-role" id="sidebarUserRole">Student</div>
+      </div>
+    </div>
+    <button class="logout-btn" id="logoutBtn">
+      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="M16 17l5-5-5-5"/><path d="M21 12H9"/></svg>
+      <span>Log out</span>
+    </button>
+  </div>
+</aside>
+<div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+<button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle menu">
+  <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+</button>
+
+<div class="main-content">
+
+  <nav class="navbar" id="navbar">
+    <div class="navbar-left">
+      <button class="navbar-toggler" id="navbarToggler" aria-label="Menu">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+      <a class="navbar-brand" href="dashboard.html"><span class="brand-text">RMMC-MI <span>Library</span></span></a>
+    </div>
+    <div class="navbar-center"></div>
+    <div class="navbar-right">
+      <div class="navbar-item" id="notificationDropdown">
+        <button class="navbar-btn notification-toggle" aria-label="Notifications">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+          <span class="badge" id="notificationBadgeNav">0</span>
+        </button>
+        <div class="navbar-dropdown" style="width:340px;">
+          <div class="dropdown-header">Notifications</div>
+          <div class="notification-list"></div>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="notifications.html" style="justify-content:center;color:var(--primary-blue);font-weight:600;">View all notifications</a>
+        </div>
+      </div>
+      <div class="navbar-item" id="userMenu">
+        <button class="navbar-user user-toggle" style="border:none;background:none;">
+          <span class="avatar" id="userAvatarNav">--</span>
+          <span class="name" id="userNameNav">Loading…</span>
+        </button>
+        <div class="navbar-dropdown">
+          <div class="dropdown-header">My Account</div>
+          <a class="dropdown-item" href="profile.html">Profile</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#" id="navLogoutLink">Log out</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="dashboard-content">
+
+    <!-- ===== PAGE HEADER ===== -->
+    <div class="sd-header">
+      <div class="sd-header-text">
+        <span class="sd-eyebrow">Student Dashboard</span>
+        <h1>Welcome back, <span id="header-name">Student</span></h1>
+        <p class="sd-subtitle">Here's what's happening with your library account.</p>
+      </div>
+      <div class="sd-header-actions">
+        <span class="sd-current-time" id="current-time"></span>
+      </div>
+    </div>
+
+    <!-- ===== HOURS EXHAUSTED BANNER ===== -->
+    <div class="sd-banner sd-banner-danger" id="hours-exhausted-banner" hidden>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20" aria-hidden="true">
+        <circle cx="12" cy="12" r="10"/>
+        <path d="M12 8v5M12 16h.01"/>
+      </svg>
+      <div>
+        <strong>You've used all your semester hours</strong>
+        <p>You can't make new reservations or use a computer until the library admin resets or extends your hours.</p>
+      </div>
+    </div>
+
+    <!-- ===== TOP STATS ===== -->
+    <div class="sd-stats">
+      <div class="sd-stat sd-stat-hours">
+        <div class="sd-stat-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="22" height="22" aria-hidden="true">
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M12 6v6l4 2"/>
+          </svg>
+        </div>
+        <div class="sd-stat-body">
+          <div class="sd-stat-value" id="stat-hours-remaining">–</div>
+          <div class="sd-stat-label">Hours Remaining</div>
+          <div class="sd-stat-sub" id="stat-hours-sub">of – hrs this semester</div>
+        </div>
+      </div>
+
+      <div class="sd-stat sd-stat-upcoming">
+        <div class="sd-stat-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="22" height="22" aria-hidden="true">
+            <rect x="3" y="4" width="18" height="18" rx="2"/>
+            <path d="M16 2v4M8 2v4M3 10h18"/>
+          </svg>
+        </div>
+        <div class="sd-stat-body">
+          <div class="sd-stat-value" id="stat-upcoming">–</div>
+          <div class="sd-stat-label">Upcoming Reservation</div>
+          <div class="sd-stat-sub" id="stat-upcoming-sub">&nbsp;</div>
+        </div>
+      </div>
+
+      <div class="sd-stat sd-stat-notif">
+        <div class="sd-stat-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="22" height="22" aria-hidden="true">
+            <path d="M18 8a6 6 0 1 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/>
+            <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+          </svg>
+        </div>
+        <div class="sd-stat-body">
+          <div class="sd-stat-value" id="stat-notifications">–</div>
+          <div class="sd-stat-label">Unread Notifications</div>
+          <div class="sd-stat-sub"><a href="notifications.html">View all →</a></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== TWO-COLUMN SECTION ===== -->
+    <div class="sd-grid-2">
+
+      <!-- Upcoming Reservation -->
+      <section class="sd-panel sd-panel-upcoming">
+        <header class="sd-panel-header">
+          <h2>
+            <span class="sd-panel-bar"></span>
+            Upcoming Reservation
+          </h2>
+          <a class="sd-panel-link" href="reservation-history.html">View all →</a>
+        </header>
+        <div class="sd-panel-body" id="sd-upcoming-body">
+          <div class="sd-empty">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" width="32" height="32" aria-hidden="true">
+              <rect x="3" y="4" width="18" height="18" rx="2"/>
+              <path d="M16 2v4M8 2v4M3 10h18"/>
+            </svg>
+            <p>Loading…</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Computer Status Map -->
+      <section class="sd-panel sd-panel-computers">
+        <header class="sd-panel-header">
+          <h2>
+            <span class="sd-panel-bar"></span>
+            Computer Status
+          </h2>
+          <a class="sd-panel-link" href="computer-availability.html">Reserve →</a>
+        </header>
+        <div class="sd-panel-body" id="sd-computers-body">
+          <div class="sd-empty">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" width="32" height="32" aria-hidden="true">
+              <rect x="2" y="4" width="20" height="13" rx="2"/>
+              <path d="M8 21h8M12 17v4"/>
+            </svg>
+            <p>Loading computer status…</p>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- ===== TODAY'S RESERVATIONS ===== -->
+    <section class="sd-panel sd-panel-today">
+      <header class="sd-panel-header">
+        <h2>
+          <span class="sd-panel-bar"></span>
+          Today's Reservations
+        </h2>
+        <a class="sd-panel-link" href="reservation-history.html">View all →</a>
+      </header>
+      <div class="sd-panel-body" id="sd-today-body">
+        <div class="sd-empty">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" width="32" height="32" aria-hidden="true">
+            <rect x="3" y="4" width="18" height="18" rx="2"/>
+            <path d="M16 2v4M8 2v4M3 10h18"/>
+          </svg>
+          <p>Loading…</p>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</div>
+
+<div id="notificationContainer" class="notification-container"></div>
+
+<script src="../../shared/js/notifications.js"></script>
+<script src="../../shared/js/api.js"></script>
+<script src="../../shared/js/dom-helpers.js"></script>
+<script src="../../shared/js/helpers.js"></script>
+<script src="../../shared/js/session-check.js"></script>
+<script src="../../shared/js/validation.js"></script>
+<script src="../../shared/js/navbar.js"></script>
+<script src="../../shared/js/sidebar.js?v=3"></script>
+<script src="../js/dashboard.js?v=2"></script>
+</body>
+</html>

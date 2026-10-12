@@ -1,0 +1,369 @@
+/* frontend/student/css/profile.css */
+@import url('../../shared/css/variables.css');
+
+.page-content { padding: var(--spacing-lg) 0; }
+
+.page-header { margin-bottom: var(--spacing-xl); }
+.page-header h1 {
+    font-size: 28px;
+    font-weight: 800;
+    margin-bottom: 6px;
+    color: var(--primary-blue-dark);
+}
+.page-subtitle {
+    color: var(--text-secondary);
+    font-size: 14px;
+    margin: 0;
+}
+
+/* ===== PROFILE HERO ===== */
+.profile-hero {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    background: #f8f9fe;
+    border: 1px solid #e8eaf6;
+    border-radius: 16px;
+    padding: 30px;
+    margin-bottom: 24px;
+    position: relative;
+    overflow: visible;
+}
+.profile-hero::after {
+    content: '';
+    position: absolute;
+    right: 20px;
+    top: -20px;
+    width: 180px;
+    height: 180px;
+    background: radial-gradient(circle, rgba(43, 45, 130, 0.06) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+/* ===== AVATAR ===== */
+.profile-avatar-wrapper {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    flex-shrink: 0;
+    cursor: pointer;
+    z-index: 100;
+}
+.profile-avatar {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary-blue), var(--primary-blue-dark));
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 48px;
+    font-weight: 700;
+    border: 4px solid #fff;
+    box-shadow: 0 0 0 3px var(--primary-blue), 0 8px 20px rgba(43, 45, 130, 0.15);
+    overflow: hidden;
+}
+.avatar-camera-badge {
+    position: absolute;
+    bottom: 2px;
+    right: 2px;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--primary-blue);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 3px solid #fff;
+    pointer-events: none;
+    z-index: 2;
+}
+
+/* ===== DIVIDER ===== */
+.profile-divider {
+    width: 1px;
+    height: 100px;
+    background: #dcdff0;
+    flex-shrink: 0;
+}
+
+/* ===== INFO ===== */
+.profile-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    min-width: 0;
+}
+.profile-info h2 {
+    margin: 0 0 12px 0;
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--primary-blue-dark);
+}
+.profile-role-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(43, 45, 130, 0.08);
+    color: var(--primary-blue);
+    border-radius: 20px;
+    padding: 6px 14px;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+.profile-role-badge svg { flex-shrink: 0; }
+.profile-id-badge {
+    display: block;
+    margin-top: 8px;
+    background: #f0f0f8;
+    color: var(--text-secondary);
+    border-radius: 12px;
+    padding: 4px 12px;
+    font-size: 13px;
+    font-weight: 600;
+    width: fit-content;
+}
+
+/* ===== CARDS GRID ===== */
+.profile-cards-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+.profile-card-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: #fff;
+    border: 1px solid #eef0f6;
+    border-radius: 12px;
+    padding: 18px 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+    transition: all 0.2s ease;
+}
+.profile-card-item:hover {
+    border-color: var(--primary-blue);
+    box-shadow: 0 4px 12px rgba(43, 45, 130, 0.08);
+}
+.card-icon {
+    width: 46px;
+    height: 46px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+.card-icon.blue {
+    background: rgba(43, 45, 130, 0.1);
+    color: var(--primary-blue);
+}
+.card-content { min-width: 0; }
+.card-label {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-light);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+}
+.card-value {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-primary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.card-value .badge { font-size: 12px; }
+
+/* ===== ACTIONS ===== */
+.profile-actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 24px;
+}
+.profile-actions .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 20px;
+    font-weight: 600;
+}
+.profile-actions .btn-outline {
+    background: transparent;
+    border: 1.5px solid var(--primary-blue);
+    color: var(--primary-blue);
+}
+.profile-actions .btn-outline:hover {
+    background: var(--primary-blue);
+    color: #fff;
+}
+
+/* ===== REQUEST UPDATE (modal) ===== */
+.request-modal-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.request-modal-title .icon-badge {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    background: rgba(43, 45, 130, 0.1);
+    color: var(--primary-blue);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+.request-modal-intro {
+    margin: 0 0 16px;
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+}
+.request-update-form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+.request-update-form .form-group { margin-bottom: 0; }
+.request-update-form .form-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin-bottom: 6px;
+    display: block;
+}
+.request-update-form .form-control {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1.5px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 14px;
+    background: #fff;
+}
+.request-update-form .form-control:focus {
+    outline: none;
+    border-color: var(--primary-blue);
+    box-shadow: 0 0 0 3px rgba(43, 45, 130, 0.1);
+}
+.request-update-form .form-error {
+    font-size: 12px;
+    color: var(--primary-red);
+    margin-top: 4px;
+    display: block;
+}
+#requestUpdateModal .banner { margin-bottom: 0; }
+
+/* Small "Pending" tag on the Request an Update button */
+.pending-tag {
+    display: inline-block;
+    margin-left: 2px;
+    padding: 2px 8px;
+    border-radius: 999px;
+    background: #fff3cd;
+    color: #856404;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+}
+.pending-tag[hidden] { display: none; }
+.profile-actions .btn-outline:hover .pending-tag { background: #fff; }
+
+/* ===== DROPDOWNS ===== */
+.profile-dropdown {
+    position: absolute;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18);
+    min-width: 220px;
+    padding: 6px;
+    z-index: 100000;
+}
+.profile-dropdown a {
+    display: block;
+    padding: 10px 12px;
+    border-radius: 6px;
+    color: #1a1a2e;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+}
+.profile-dropdown a:hover { background: #f2f2fa; }
+.profile-dropdown .dropdown-divider {
+    height: 1px;
+    background: #eaeaf2;
+    margin: 6px 4px;
+}
+.avatar-dropdown {
+    top: calc(100% + 10px);
+    left: 0;
+}
+#profileMenuToggle .profile-dropdown {
+    top: calc(100% + 10px);
+    right: 0;
+}
+#profileMenuToggle { position: relative; }
+
+/* ===== AVATAR CONTENT ===== */
+.avatar-img {
+    width: 100% !important;
+    height: 100% !important;
+    border-radius: 50% !important;
+    object-fit: cover !important;
+    display: block !important;
+}
+.avatar-fallback {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100% !important;
+    height: 100% !important;
+    border-radius: 50% !important;
+    background: #2b2d82 !important;
+    color: #fff !important;
+    font-weight: 600 !important;
+}
+
+/* ============================================================
+ * MODAL FIX
+ * ------------------------------------------------------------
+ * shared/css/modal.css puts .modal-backdrop at z-index 1300 and
+ * leaves .modal-dialog at auto, so inside the modal's own stacking
+ * context the backdrop paints OVER the dialog — the modal appears
+ * "not to open" (just a dark overlay). Force the dialog above the
+ * backdrop.
+ * ============================================================ */
+.modal .modal-backdrop { z-index: 1 !important; }
+.modal .modal-dialog {
+    position: relative;
+    z-index: 2;
+}
+
+/* Ensure the modal itself sits above everything on the page. */
+.modal.show {
+    display: flex !important;
+    z-index: 100000 !important;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+    .profile-hero {
+        flex-direction: column;
+        text-align: center;
+        gap: 16px;
+    }
+    .profile-divider { display: none; }
+    .profile-info { align-items: center; }
+    .profile-cards-grid { grid-template-columns: 1fr; }
+    .profile-actions { flex-direction: column; }
+    .profile-actions .btn { width: 100%; justify-content: center; }
+}

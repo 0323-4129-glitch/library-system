@@ -1,0 +1,857 @@
+/* frontend/student/css/computer-availability.css
+ * Self-contained stylesheet for the student Computers page.
+ * Does NOT depend on admin/css/computer-management.css.
+ */
+@import url('../../shared/css/variables.css');
+
+/* ============================================================
+ * PAGE HEADER
+ * ============================================================ */
+.page-content { padding: var(--spacing-lg) 0; }
+
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: var(--spacing-lg);
+    flex-wrap: wrap;
+    gap: var(--spacing-md);
+}
+.page-header h1 {
+    margin: 0 0 4px;
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--primary-blue-dark);
+}
+.page-subtitle {
+    color: var(--text-secondary);
+    font-size: var(--font-size-sm);
+    margin: 0;
+}
+
+/* ============================================================
+ * TABS
+ * ============================================================ */
+.tabs {
+    display: flex;
+    gap: 4px;
+    border-bottom: 2px solid var(--border-color);
+    margin-bottom: var(--spacing-lg);
+}
+
+.tab-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 20px;
+    background: none;
+    border: none;
+    border-bottom: 3px solid transparent;
+    font-family: var(--font-family);
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    color: var(--text-secondary);
+    cursor: pointer;
+    margin-bottom: -2px;
+    transition: color 0.15s ease, border-color 0.15s ease;
+}
+.tab-btn svg { opacity: 0.7; transition: opacity 0.15s ease; }
+.tab-btn:hover { color: var(--primary-blue); }
+.tab-btn:hover svg { opacity: 1; }
+.tab-btn.active {
+    color: var(--primary-blue);
+    border-bottom-color: var(--primary-blue);
+}
+.tab-btn.active svg { opacity: 1; }
+.tab-btn:focus-visible {
+    outline: 3px solid rgba(20, 17, 141, 0.25);
+    outline-offset: 2px;
+    border-radius: 4px 4px 0 0;
+}
+
+.tab-panel { display: none; }
+.tab-panel.active { display: block; animation: fadeIn var(--transition-normal); }
+
+@media (max-width: 640px) {
+    .tabs { flex-wrap: wrap; }
+    .tab-btn { flex: 1; justify-content: center; padding: 10px 12px; font-size: var(--font-size-xs); }
+}
+
+/* ============================================================
+ * STATUS SUMMARY
+ * ============================================================ */
+.stats-summary {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
+}
+
+.stat-item {
+    position: relative;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 16px 18px 16px 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    overflow: hidden;
+    transition: box-shadow 0.15s ease, transform 0.15s ease;
+}
+.stat-item::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 4px;
+    background: var(--primary-blue);
+}
+.stat-item:hover {
+    box-shadow: var(--shadow-sm);
+    transform: translateY(-1px);
+}
+.stat-item .stat-label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    color: var(--text-light);
+}
+.stat-item .stat-value {
+    font-size: 28px;
+    font-weight: 800;
+    line-height: 1.1;
+    color: var(--text-primary);
+    font-variant-numeric: tabular-nums;
+}
+
+#status-summary .stat-item:nth-child(1)::before { background: var(--success-color); }
+#status-summary .stat-item:nth-child(1) .stat-value { color: var(--success-color); }
+
+#status-summary .stat-item:nth-child(2)::before { background: var(--info-color); }
+#status-summary .stat-item:nth-child(2) .stat-value { color: var(--primary-blue-light); }
+
+#status-summary .stat-item:nth-child(3)::before { background: var(--warning-color); }
+#status-summary .stat-item:nth-child(3) .stat-value { color: var(--warning-color); }
+
+#status-summary .stat-item:nth-child(4)::before { background: var(--primary-red); }
+#status-summary .stat-item:nth-child(4) .stat-value { color: var(--primary-red); }
+
+/* ============================================================
+ * FILTER BAR
+ * ============================================================ */
+.filters-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-md);
+    align-items: flex-end;
+    padding: 14px 16px;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    margin-bottom: var(--spacing-lg);
+}
+.filters-bar .filter-group { display: flex; gap: var(--spacing-md); }
+.filters-bar .filter-field { min-width: 220px; }
+.filters-bar .form-label {
+    display: block;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    color: var(--text-light);
+    margin-bottom: 6px;
+}
+.filters-bar .form-control { height: 40px; }
+
+/* ============================================================
+ * COMPUTER GRID
+ * ============================================================ */
+.computer-grid-container { margin-bottom: var(--spacing-lg); }
+
+.computer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+    gap: var(--spacing-md);
+}
+
+.computer-card {
+    position: relative;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-top: 4px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 18px 16px 14px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    text-align: center;
+    transition: box-shadow 0.15s ease, transform 0.15s ease, border-color 0.15s ease;
+}
+.computer-card:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+    border-color: var(--primary-blue-light);
+}
+
+.computer-card.status-Available   { border-top-color: var(--success-color); }
+.computer-card.status-Reserved    { border-top-color: var(--info-color); }
+.computer-card.status-Occupied    { border-top-color: var(--warning-color); }
+.computer-card.status-Maintenance { border-top-color: var(--primary-red); }
+
+.computer-card .computer-number {
+    font-family: var(--font-family-heading);
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--text-primary);
+    letter-spacing: -0.3px;
+    line-height: 1.15;
+    margin: 0;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.computer-card .computer-name {
+    font-size: 12.5px;
+    color: var(--text-light);
+    line-height: 1.35;
+    min-height: 17px;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.computer-card .computer-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 10px 4px 8px;
+    border-radius: var(--radius-full);
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: var(--text-white);
+    background: var(--text-light);
+}
+.computer-card .computer-status::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.9);
+    flex-shrink: 0;
+}
+.computer-card.status-Available   .computer-status { background: var(--success-color); }
+.computer-card.status-Reserved    .computer-status { background: var(--info-color); }
+.computer-card.status-Occupied    .computer-status { background: var(--warning-color); }
+.computer-card.status-Maintenance .computer-status { background: var(--primary-red); }
+
+.computer-occupancy-note {
+    width: 100%;
+    font-size: 11.5px;
+    line-height: 1.4;
+    color: var(--text-secondary);
+    background: var(--bg-primary);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-sm);
+    padding: 6px 10px;
+    text-align: center;
+}
+.computer-occupancy-note.walkin {
+    color: #7a5600;
+    background: #fff9e5;
+    border-color: #ffe9b3;
+}
+.computer-occupancy-note.reserved {
+    color: #1d4ed8;
+    background: #eff6ff;
+    border-color: #bfdbfe;
+}
+
+.computer-card .computer-actions {
+    width: 100%;
+    margin-top: auto;
+    padding-top: 6px;
+    display: flex;
+    gap: 8px;
+}
+.computer-card .computer-actions .btn {
+    flex: 1;
+    justify-content: center;
+}
+
+.computer-card.status-Maintenance { opacity: 0.9; }
+
+/* ============================================================
+ * USAGE HISTORY — STATS
+ * ============================================================ */
+.history-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
+}
+
+.history-stat {
+    position: relative;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 16px 18px 16px 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    overflow: hidden;
+    transition: box-shadow 0.15s ease, transform 0.15s ease;
+}
+.history-stat:hover {
+    box-shadow: var(--shadow-sm);
+    transform: translateY(-1px);
+}
+.history-stat::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 4px;
+    background: var(--primary-blue);
+}
+.history-stat .stat-label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    color: var(--text-light);
+}
+.history-stat .stat-value {
+    font-size: 28px;
+    font-weight: 800;
+    line-height: 1.1;
+    color: var(--text-primary);
+    font-variant-numeric: tabular-nums;
+}
+
+.history-stat.stat-total::before { background: var(--primary-blue); }
+.history-stat.stat-total .stat-value { color: var(--primary-blue-dark); }
+
+.history-stat.stat-hours::before { background: var(--success-color); }
+.history-stat.stat-hours .stat-value { color: var(--success-color); }
+
+.history-stat.stat-week::before { background: var(--info-color); }
+.history-stat.stat-week .stat-value { color: var(--primary-blue-light); }
+
+.history-stat.stat-month::before { background: var(--warning-color); }
+.history-stat.stat-month .stat-value { color: var(--warning-color); }
+
+/* ============================================================
+ * USAGE HISTORY — FILTERS
+ * ============================================================ */
+.history-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-md);
+    align-items: flex-end;
+    padding: 14px 16px;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    margin-bottom: var(--spacing-lg);
+}
+.history-filters .filter-field { min-width: 180px; }
+.history-filters .form-label {
+    display: block;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    color: var(--text-light);
+    margin-bottom: 6px;
+}
+.history-filters .form-control { width: 100%; height: 40px; }
+.history-filters .filter-actions {
+    display: flex;
+    gap: var(--spacing-sm);
+    align-items: flex-end;
+}
+.history-filters .filter-actions .btn { height: 40px; }
+
+/* ============================================================
+ * USAGE HISTORY — TABLE
+ * ============================================================ */
+.history-table {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+}
+.history-table .table { margin-bottom: 0; }
+.history-table td strong { font-weight: 700; color: var(--text-primary); }
+
+.history-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    padding: var(--spacing-lg) var(--spacing-md);
+    color: var(--text-light);
+    text-align: center;
+}
+.history-empty p { margin: 0; font-size: 14px; }
+
+/* ============================================================
+ * USAGE HISTORY — BADGES
+ * ============================================================ */
+.badge-walkin,
+.badge-reservation {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: var(--radius-full);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+}
+.badge-walkin {
+    background: rgba(51, 48, 194, 0.12);
+    color: var(--primary-blue-light);
+}
+.badge-reservation {
+    background: rgba(160, 106, 0, 0.14);
+    color: var(--warning-color);
+}
+
+.session-active-pill {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: var(--radius-full);
+    background: rgba(31, 122, 77, 0.12);
+    color: var(--success-color);
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+}
+
+/* ============================================================
+ * RESERVE MODAL — CLEARED LAYOUT
+ * ------------------------------------------------------------
+ * Same colours, same type scale. The modal body is a stack of
+ * numbered steps so the student can see what to read (context)
+ * vs. what to fill (form).
+ * ============================================================ */
+#reserve-modal .modal-dialog {
+    max-width: 480px;
+    width: 100%;
+}
+
+#reserve-modal .modal-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--primary-blue-dark);
+}
+
+#reserve-modal .modal-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--blue-50);
+    color: var(--primary-blue-dark);
+    flex-shrink: 0;
+}
+#reserve-modal .modal-icon svg { width: 18px; height: 18px; }
+
+#reserve-modal .modal-close {
+    width: 36px;
+    height: 36px;
+    font-size: 24px;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    color: var(--text-secondary);
+    background: transparent;
+    transition: background 0.15s, color 0.15s;
+}
+#reserve-modal .modal-close:hover {
+    background: var(--bg-hover);
+    color: var(--text-primary);
+}
+
+/* ------------------------------------------------------------
+ * STEP LAYOUT
+ * ------------------------------------------------------------ */
+#reserve-modal .modal-body {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    padding: 22px;
+}
+
+.modal-step {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.modal-step-number {
+    flex-shrink: 0;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: var(--blue-50);
+    color: var(--primary-blue-dark);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12.5px;
+    font-weight: 700;
+    line-height: 1;
+    margin-top: 1px;
+}
+
+.modal-step-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.modal-step-title {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+}
+
+.modal-step-form .modal-step-content {
+    padding-bottom: 4px;
+}
+
+/* ------------------------------------------------------------
+ * COMPUTER CHIP
+ * ------------------------------------------------------------ */
+.modal-computer-chip {
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 16px;
+    border-radius: var(--radius-full);
+    background: var(--blue-50);
+    color: var(--primary-blue-dark);
+    font-size: 13.5px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+}
+
+/* ------------------------------------------------------------
+ * INFO NOTES
+ * ------------------------------------------------------------ */
+.lead-time-note {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 13px;
+    color: var(--text-secondary);
+    background: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    padding: 10px 14px;
+    margin-bottom: 10px;
+    line-height: 1.45;
+}
+.lead-time-note:last-child { margin-bottom: 0; }
+.lead-time-note svg {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+    margin-top: 2px;
+    color: var(--primary-blue-dark);
+}
+.lead-time-note strong { color: var(--primary-blue-dark); }
+
+.lunch-break-note {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 13px;
+    color: #92400e;
+    background: #fffbeb;
+    border: 1px solid #fde68a;
+    border-radius: var(--radius-sm);
+    padding: 10px 14px;
+    line-height: 1.45;
+}
+.lunch-break-note svg {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+    margin-top: 2px;
+    color: #d97706;
+}
+.lunch-break-note strong { color: #78350f; }
+
+/* ------------------------------------------------------------
+ * RESERVED SLOTS PREVIEW
+ * ------------------------------------------------------------ */
+.reserved-slots-preview {
+    font-size: 12.5px;
+    color: var(--text-secondary);
+    background: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    padding: 10px 12px;
+    line-height: 1.5;
+}
+
+.reserved-slots-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.reserved-slot-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 10px;
+    border-radius: 6px;
+    background: #ffffff;
+    border: 1px solid var(--border-light);
+    font-size: 12.5px;
+}
+.reserved-slot-item.reserved-slot-lunch {
+    background: #fffbeb;
+    border-color: #fde68a;
+}
+.reserved-slot-time {
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    color: var(--text-primary);
+    letter-spacing: 0.2px;
+}
+.reserved-slot-item .badge {
+    font-size: 10px;
+    font-weight: 700;
+    padding: 3px 8px;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+}
+
+.reserved-slots-loading,
+.reserved-slots-empty,
+.reserved-slots-error {
+    font-size: 12.5px;
+    color: var(--text-light);
+    line-height: 1.5;
+    font-style: italic;
+    margin: 0;
+}
+.reserved-slots-error { color: var(--primary-red); font-style: normal; }
+
+/* ------------------------------------------------------------
+ * CONFLICT ALERT
+ * ------------------------------------------------------------ */
+.conflict-alert {
+    display: none;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    color: var(--primary-red-dark);
+    background: rgba(179, 38, 30, 0.08);
+    border: 1px solid rgba(179, 38, 30, 0.25);
+    border-radius: var(--radius-sm);
+    padding: 10px 14px;
+    margin-bottom: 14px;
+    line-height: 1.4;
+}
+.conflict-alert.show { display: flex; }
+.conflict-alert .icon { flex-shrink: 0; }
+
+/* ------------------------------------------------------------
+ * FORM FIELDS
+ * ------------------------------------------------------------ */
+#reserve-form-fields .form-group {
+    margin-bottom: 16px;
+}
+#reserve-form-fields .form-group:last-child { margin-bottom: 0; }
+
+#reserve-form-fields .form-label {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin-bottom: 6px;
+}
+
+#reserve-form-fields .form-control {
+    width: 100%;
+    height: 46px;
+    padding: 0 14px;
+    background: var(--bg-secondary, #ffffff);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    font-size: 14.5px;
+    color: var(--text-primary);
+    font-variant-numeric: tabular-nums;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+#reserve-form-fields .form-control:hover {
+    border-color: var(--primary-blue-light);
+}
+#reserve-form-fields .form-control:focus {
+    outline: none;
+    border-color: var(--primary-blue);
+    box-shadow: 0 0 0 3px rgba(43, 45, 130, 0.12);
+}
+
+/* Give the native picker icons a subtle style so they're clearly
+   clickable but not distracting. */
+#reserve-form-fields input[type="date"]::-webkit-calendar-picker-indicator,
+#reserve-form-fields input[type="time"]::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+    opacity: 0.55;
+    transition: opacity 0.15s ease;
+}
+#reserve-form-fields input[type="date"]:hover::-webkit-calendar-picker-indicator,
+#reserve-form-fields input[type="time"]:hover::-webkit-calendar-picker-indicator {
+    opacity: 0.9;
+}
+
+#reserve-form-fields .form-error {
+    display: block;
+    margin-top: 5px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--primary-red);
+}
+#reserve-form-fields .form-error:empty { display: none; }
+
+.form-help {
+    display: block;
+    margin-top: 6px;
+    font-size: 11.5px;
+    color: var(--text-light);
+    line-height: 1.4;
+}
+.form-help-center {
+    text-align: center;
+    margin-top: 12px;
+}
+
+/* ------------------------------------------------------------
+ * TIME ROW
+ * Two side-by-side inputs with a proper visible "to" separator
+ * between them. The separator sits between the labels (not on
+ * top of the input icons) so the range reads clearly as
+ * "Start time  →  End time".
+ * ------------------------------------------------------------ */
+.reserve-time-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    position: relative;
+    margin-bottom: 0;
+}
+.reserve-time-row .form-group { margin-bottom: 0; }
+
+/* The vertical "to" marker sits above the inputs, aligned with the
+   labels — so it never overlaps the clock icons. */
+.reserve-time-row::after {
+    content: 'to';
+    position: absolute;
+    top: 4px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--text-light);
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    pointer-events: none;
+    background: transparent;
+    padding: 0 4px;
+    line-height: 1;
+}
+
+/* ------------------------------------------------------------
+ * CONFIRM SPINNER — hidden by default.
+ * The JS in confirmReservation() toggles `style.display`
+ * between 'inline-block' (in-flight) and 'none' (resolved).
+ * ------------------------------------------------------------ */
+#modal-confirm .spinner {
+    width: 14px;
+    height: 14px;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    border-top-color: #fff;
+    border-radius: 50%;
+    display: none;
+    animation: reserve-spin 0.7s linear infinite;
+    margin-right: 6px;
+}
+@keyframes reserve-spin { to { transform: rotate(360deg); } }
+
+/* ============================================================
+ * RESPONSIVE
+ * ============================================================ */
+@media (max-width: 1100px) {
+    .computer-grid { grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); }
+}
+
+@media (max-width: 992px) {
+    #status-summary { grid-template-columns: repeat(2, 1fr); }
+    .history-stats { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 768px) {
+    .page-content { padding: var(--spacing-md) 0; }
+
+    #status-summary,
+    .history-stats {
+        grid-template-columns: 1fr 1fr;
+        gap: var(--spacing-sm);
+    }
+
+    .stat-item,
+    .history-stat {
+        padding: 12px 14px 12px 18px;
+    }
+    .stat-item .stat-value,
+    .history-stat .stat-value { font-size: 22px; }
+
+    .filters-bar,
+    .history-filters {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .filters-bar .filter-field,
+    .history-filters .filter-field { min-width: 0; }
+
+    .computer-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
+    .computer-card { padding: 14px 12px 12px; }
+    .computer-card .computer-number { font-size: 17px; }
+    .computer-card .computer-name { font-size: 11.5px; }
+}
+
+@media (max-width: 480px) {
+    .reserve-time-row { grid-template-columns: 1fr; }
+    /* The "to" marker is redundant when the inputs stack. */
+    .reserve-time-row::after { display: none; }
+    .computer-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+}

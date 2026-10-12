@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Concerns - RMMC Library</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../shared/css/global.css">
+    <link rel="stylesheet" href="../../shared/css/sidebar.css">
+    <link rel="stylesheet" href="../../shared/css/navbar.css">
+    <link rel="stylesheet" href="../../shared/css/cards.css">
+    <link rel="stylesheet" href="../../shared/css/tables.css">
+    <link rel="stylesheet" href="../../shared/css/buttons.css">
+    <link rel="stylesheet" href="../../shared/css/forms.css">
+    <link rel="stylesheet" href="../../shared/css/modal.css">
+    <link rel="stylesheet" href="../../shared/css/notifications.css">
+    <link rel="stylesheet" href="../../shared/css/responsive.css">
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/concerns.css">
+    <link rel="stylesheet" href="../../shared/css/responsive-master.css">
+</head>
+<body>
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="logo-container">
+                <img class="logo" src="../../shared/assets/logo/rmmclogo.png" alt="RMMC-MI Library seal" />
+                <div class="brand-info">
+                    <div class="brand-name">RMMC-MI Library</div>
+                    <div class="brand-sub">Student Portal</div>
+                </div>
+            </div>
+        </div>
+
+        <nav class="sidebar-nav">
+            <div class="nav-item">
+                <a href="dashboard.html" class="nav-link">
+                    <span class="nav-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/></svg></span>
+                    <span class="nav-text">Dashboard</span>
+                </a>
+            </div>
+            <!-- Concerns nav-item injected by sidebar.js (inserted after Dashboard) -->
+            <div class="nav-item">
+                <a href="computer-availability.html" class="nav-link">
+                    <span class="nav-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg></span>
+                    <span class="nav-text">Computers</span>
+                </a>
+            </div>
+    <div class="nav-item">
+      <a class="nav-link" href="reservation-history.html">
+        <span class="nav-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/><path d="M12 7v5l3 2"/></svg></span>
+        <span class="nav-text">Reservations</span>
+      </a>
+    </div>
+            <div class="nav-item">
+                <a href="notifications.html" class="nav-link">
+                    <span class="nav-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg></span>
+                    <span class="nav-text">Notifications</span>
+                </a>
+            </div>
+            <div class="nav-item">
+                <a href="profile.html" class="nav-link">
+                    <span class="nav-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></span>
+                    <span class="nav-text">Profile</span>
+                </a>
+            </div>
+        </nav>
+
+        <div class="sidebar-hours">
+            <div class="sidebar-hours-label">Semester Hours</div>
+            <div class="sidebar-hours-track"><div class="sidebar-hours-fill" id="sidebarHoursFill" style="width:0%"></div></div>
+            <div class="sidebar-hours-value" id="sidebarHoursValue">– / – hrs used</div>
+        </div>
+
+        <div class="sidebar-footer">
+            <div class="user-info">
+                <div class="user-avatar" id="sidebarUserAvatar">--</div>
+                <div class="user-details">
+                    <div class="user-name" id="sidebarUserName">Loading…</div>
+                    <div class="user-role" id="sidebarUserRole">Student</div>
+                </div>
+            </div>
+            <button class="logout-btn" id="btnLogout">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="M16 17l5-5-5-5"/><path d="M21 12H9"/></svg>
+                <span>Log out</span>
+            </button>
+        </div>
+    </aside>
+
+    <button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle menu">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </button>
+    <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+
+    <main class="main-content">
+        <nav class="navbar" id="navbar">
+            <div class="navbar-left">
+                <button class="navbar-toggler" id="navbarToggler" aria-label="Menu">
+                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+                </button>
+                <a href="dashboard.html" class="navbar-brand">
+                    <img src="../../shared/assets/logo/rmmclogo.png" alt="RMMC Logo" style="height: 32px;">
+                    <span class="brand-text">RMMC <span>Library</span></span>
+                </a>
+            </div>
+            <div class="navbar-right">
+                <div class="navbar-item" id="notificationDropdown">
+                    <button class="navbar-btn notification-toggle" aria-label="Notifications">
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+                        <span class="badge" id="notificationBadgeNav">0</span>
+                    </button>
+                    <div class="navbar-dropdown" style="width:340px;">
+                        <div class="dropdown-header">Notifications</div>
+                        <div class="notification-list"></div>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="notifications.html" style="justify-content:center;color:var(--primary-blue);font-weight:600;">View all notifications</a>
+                    </div>
+                </div>
+                <div class="navbar-item" id="userMenu">
+                    <button class="navbar-user user-toggle" style="border:none;background:none;">
+                        <span class="avatar" id="userAvatarNav">--</span>
+                        <span class="name" id="userNameNav">Loading…</span>
+                    </button>
+                    <div class="navbar-dropdown">
+                        <div class="dropdown-header">My Account</div>
+                        <a class="dropdown-item" href="profile.html">Profile</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#" id="navLogoutLink">Log out</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <div class="page-content">
+            <div class="page-header">
+                <div>
+                    <h1>My Concerns</h1>
+                    <p class="page-subtitle">Send a message to the librarian and read their reply</p>
+                </div>
+                <div class="header-actions">
+                    <button class="btn btn-primary" id="newConcernBtn">
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="16" height="16"><path d="M12 5v14M5 12h14"/></svg>
+                        New Concern
+                    </button>
+                </div>
+            </div>
+
+            <div class="concerns-layout">
+                <!-- LEFT: my concerns -->
+                <aside class="concerns-list" id="myConcerns">
+                    <div class="concerns-list-empty">Loading your concerns…</div>
+                </aside>
+
+                <!-- RIGHT: conversation -->
+                <section class="concerns-thread" id="concernsThread">
+                    <div class="thread-placeholder" id="threadPlaceholder">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" width="48" height="48"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M8 9h8M8 13h5"/></svg>
+                        <p>Select a concern to read the conversation</p>
+                    </div>
+
+                    <div class="thread-content" id="threadContent" style="display:none;">
+                        <header class="thread-header">
+                            <div class="thread-student">
+                                <div class="thread-avatar">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="22" height="22"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                                </div>
+                                <div>
+                                    <div class="thread-student-name" id="threadSubject">—</div>
+                                    <div class="thread-student-meta" id="threadMeta">—</div>
+                                </div>
+                            </div>
+                            <div class="thread-status">
+                                <span class="badge" id="threadStatusBadge">Open</span>
+                            </div>
+                        </header>
+
+                        <div class="thread-messages" id="studentThreadMessages"></div>
+
+                        <form class="thread-reply" id="studentReplyForm">
+                            <textarea id="studentReplyMessage" rows="3" placeholder="Type your reply…" required></textarea>
+                            <div class="thread-reply-actions">
+                                <button type="submit" class="btn btn-primary" id="studentSendBtn">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="14" height="14"><path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4 20-7Z"/></svg>
+                                    Send Reply
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <!-- ===== NEW CONCERN MODAL ===== -->
+    <div class="modal" id="newConcernModal">
+        <div class="modal-backdrop" onclick="closeModal('newConcernModal')"></div>
+        <div class="modal-dialog">
+            <div class="modal-header">
+                <h5 class="modal-title">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="18" height="18"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M12 8v6M9 11h6"/></svg>
+                    Submit a Concern
+                </h5>
+                <button class="modal-close" onclick="closeModal('newConcernModal')">&times;</button>
+            </div>
+            <form id="newConcernForm" class="modal-form">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label class="form-label required">What is your concern about?</label>
+                        <div class="category-grid" id="concernCategories" role="radiogroup"></div>
+                        <span class="form-error" id="error-concern-category"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label required" for="newConcernMessage">Message</label>
+                        <textarea id="newConcernMessage" class="form-control" rows="5" placeholder="Pick a concern above, then add the details here…" required></textarea>
+                        <span class="form-error" id="error-concern-message"></span>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" id="cancelConcernBtn">Cancel</button>
+                    <button type="submit" class="btn btn-primary" id="submitConcernBtn">
+                        <span class="btn-text">Send to Librarian</span>
+                        <span class="spinner"></span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="notificationContainer" class="notification-container"></div>
+
+    <script src="../../shared/js/notifications.js"></script>
+    <script src="../../shared/js/api.js"></script>
+    <script src="../../shared/js/dom-helpers.js"></script>
+    <script src="../../shared/js/helpers.js"></script>
+    <script src="../../shared/js/session-check.js"></script>
+    <script src="../../shared/js/validation.js"></script>
+   <script src="../../shared/js/navbar.js"></script>
+<script src="../../shared/js/sidebar.js?v=3"></script>
+<script src="../js/concerns.js"></script>
+</body>
+</html>

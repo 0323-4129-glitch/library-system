@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Profile — RMMC-MI Library</title>
+<link rel="stylesheet" href="../../shared/css/global.css">
+<link rel="stylesheet" href="../../shared/css/sidebar.css">
+<link rel="stylesheet" href="../../shared/css/navbar.css">
+<link rel="stylesheet" href="../../shared/css/cards.css">
+<link rel="stylesheet" href="../../shared/css/buttons.css">
+<link rel="stylesheet" href="../../shared/css/forms.css">
+<link rel="stylesheet" href="../../shared/css/modal.css">
+<link rel="stylesheet" href="../../shared/css/notifications.css">
+<link rel="stylesheet" href="../../shared/css/responsive.css">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/profile.css">
+<link rel="stylesheet" href="../../shared/css/responsive-master.css">
+</head>
+<body>
+
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <div class="logo-container">
+      <div class="logo" style="display:flex;align-items:center;justify-content:center;color:var(--primary-blue);">
+        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5V6a2 2 0 0 1 2-2h8.5L20 8.5V19.5a1.5 1.5 0 0 1-1.5 1.5H5.5A1.5 1.5 0 0 1 4 19.5Z"/><path d="M14 4v4.5h4.5"/><path d="M8 12h8M8 15.5h8M8 8.5h3"/></svg>
+      </div>
+      <div class="brand-info">
+        <div class="brand-name">RMMC-MI Library</div>
+        <div class="brand-sub">Student Portal</div>
+      </div>
+    </div>
+  </div>
+
+  <nav class="sidebar-nav">
+    <div class="nav-item">
+      <a class="nav-link" href="dashboard.html">
+        <span class="nav-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/></svg></span>
+        <span class="nav-text">Dashboard</span>
+      </a>
+    </div>
+    <div class="nav-item">
+      <a class="nav-link" href="computer-availability.html">
+        <span class="nav-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg></span>
+        <span class="nav-text">Computers</span>
+      </a>
+    </div>
+    <div class="nav-item">
+      <a class="nav-link" href="reservation-history.html">
+        <span class="nav-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/><path d="M12 7v5l3 2"/></svg></span>
+        <span class="nav-text">Reservations</span>
+      </a>
+    </div>
+    <div class="nav-item">
+      <a class="nav-link" href="notifications.html">
+        <span class="nav-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg></span>
+        <span class="nav-text">Notifications</span>
+      </a>
+    </div>
+    <div class="nav-item">
+      <a class="nav-link active" href="profile.html">
+        <span class="nav-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></span>
+        <span class="nav-text">Profile</span>
+      </a>
+    </div>
+  </nav>
+
+  <div class="sidebar-hours">
+    <div class="sidebar-hours-label">Semester Hours</div>
+    <div class="sidebar-hours-track"><div class="sidebar-hours-fill" id="sidebarHoursFill" style="width:0%"></div></div>
+    <div class="sidebar-hours-value" id="sidebarHoursValue">– / – hrs used</div>
+  </div>
+
+  <div class="sidebar-footer">
+    <div class="user-info">
+      <div class="user-avatar" id="sidebarUserAvatar">--</div>
+      <div class="user-details">
+        <div class="user-name" id="sidebarUserName">Loading…</div>
+        <div class="user-role" id="sidebarUserRole">Student</div>
+      </div>
+    </div>
+    <button class="logout-btn" id="logoutBtn">
+      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="M16 17l5-5-5-5"/><path d="M21 12H9"/></svg>
+      <span>Log out</span>
+    </button>
+  </div>
+</aside>
+<div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+<button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle menu">
+  <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+</button>
+
+<div class="main-content">
+
+  <nav class="navbar" id="navbar">
+    <div class="navbar-left">
+      <button class="navbar-toggler" id="navbarToggler" aria-label="Menu">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+      <a class="navbar-brand" href="dashboard.html"><span class="brand-text">RMMC-MI <span>Library</span></span></a>
+    </div>
+    <div class="navbar-center"></div>
+    <div class="navbar-right">
+      <div class="navbar-item" id="notificationDropdown">
+        <button class="navbar-btn notification-toggle" aria-label="Notifications">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+          <span class="badge" id="notificationBadgeNav">0</span>
+        </button>
+        <div class="navbar-dropdown" style="width:340px;">
+          <div class="dropdown-header">Notifications</div>
+          <div class="notification-list"></div>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="notifications.html" style="justify-content:center;color:var(--primary-blue);font-weight:600;">View all notifications</a>
+        </div>
+      </div>
+      <div class="navbar-item" id="userMenu">
+        <div class="navbar-user" id="profileMenuToggle" style="cursor:pointer;" onclick="toggleProfileDropdown(event)">
+          <span class="avatar" id="userAvatarNav">--</span>
+          <span class="name" id="userNameNav">Loading…</span>
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="14" height="14" style="margin-left: 4px;"><path d="M6 9l6 6 6-6"/></svg>
+          <div class="profile-dropdown" id="profileDropdown" style="display:none;">
+            <a href="#" onclick="event.preventDefault(); event.stopPropagation(); viewProfilePicture();">View Profile Picture</a>
+            <a href="#" onclick="event.preventDefault(); event.stopPropagation(); openPhotoChoiceModal();">Change Profile Picture</a>
+            <div class="dropdown-divider"></div>
+            <a href="profile.html">My Profile</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="page-content">
+    <div class="page-header">
+      <div>
+        <h1>My Profile</h1>
+        <p class="page-subtitle">Your account details and settings.</p>
+      </div>
+    </div>
+
+    <div class="banner banner-info" id="password-reminder" hidden>
+      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+      <div>
+        <div class="banner-title">You're using your default password</div>
+        <div class="banner-message">For security, please change it now using the button below.</div>
+      </div>
+      <button class="btn btn-sm btn-primary" style="margin-left:auto;" onclick="openChangePasswordModal()">Change now</button>
+    </div>
+
+    <div class="profile-container">
+
+      <div class="profile-hero">
+        <div class="profile-avatar-wrapper" id="profileAvatarWrapper" onclick="toggleAvatarDropdown(event)">
+          <div class="profile-avatar" id="profileAvatar">--</div>
+          <div class="avatar-camera-badge" title="Change photo">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 8a2 2 0 0 1 2-2h1.2l.8-1.4A1 1 0 0 1 8.87 4h6.26a1 1 0 0 1 .87.6L16.8 6H18a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2Z"/><circle cx="12" cy="13" r="3.2"/></svg>
+          </div>
+          <div class="profile-dropdown avatar-dropdown" id="avatarDropdown" style="display:none;">
+            <a href="#" onclick="event.preventDefault(); event.stopPropagation(); viewProfilePicture(); closeAvatarDropdown();">View Profile Picture</a>
+            <a href="#" onclick="event.preventDefault(); event.stopPropagation(); openPhotoChoiceModal(); closeAvatarDropdown();">Change Profile Picture</a>
+          </div>
+        </div>
+
+        <div class="profile-divider"></div>
+
+        <div class="profile-info">
+          <h2 id="profileFullName">Loading…</h2>
+          <div class="profile-role-badge">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>
+            <span>Student</span>
+          </div>
+          <div class="profile-id-badge" id="profileStudentIdTag">–</div>
+        </div>
+      </div>
+
+      <div class="profile-cards-grid">
+        <div class="profile-card-item">
+          <div class="card-icon blue">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="20" height="20"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="m22 6-10 7L2 6"/></svg>
+          </div>
+          <div class="card-content">
+            <div class="card-label">Email</div>
+            <div class="card-value" id="profileEmail">—</div>
+          </div>
+        </div>
+
+        <div class="profile-card-item">
+          <div class="card-icon blue">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="20" height="20"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="12" r="2.2"/><path d="M14 10h5M14 14h3"/></svg>
+          </div>
+          <div class="card-content">
+            <div class="card-label">Student ID</div>
+            <div class="card-value" id="profileStudentIdDisplay">—</div>
+          </div>
+        </div>
+
+        <div class="profile-card-item">
+          <div class="card-icon blue">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="20" height="20"><path d="M12 3 2 8l10 5 10-5-10-5Z"/><path d="M6 10.5V16c0 1.5 2.7 3 6 3s6-1.5 6-3v-5.5"/></svg>
+          </div>
+          <div class="card-content">
+            <div class="card-label">Course</div>
+            <div class="card-value" id="profileCourseDisplay">—</div>
+          </div>
+        </div>
+
+        <div class="profile-card-item">
+          <div class="card-icon blue">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="20" height="20"><path d="M4 7h16M4 12h10M4 17h6"/></svg>
+          </div>
+          <div class="card-content">
+            <div class="card-label">Year Level</div>
+            <div class="card-value" id="profileYearLevelDisplay">—</div>
+          </div>
+        </div>
+
+        <div class="profile-card-item">
+          <div class="card-icon blue">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="20" height="20"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <div class="card-content">
+            <div class="card-label">Status</div>
+            <div class="card-value"><span class="badge badge-success" id="profileStatus">Active</span></div>
+          </div>
+        </div>
+
+        <div class="profile-card-item">
+          <div class="card-icon blue">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="20" height="20"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+          </div>
+          <div class="card-content">
+            <div class="card-label">Member Since</div>
+            <div class="card-value" id="profileCreatedAt">—</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="profile-actions">
+        <button class="btn btn-primary" onclick="openEditProfileModal()">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="16" height="16"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
+          Edit Contact Info
+        </button>
+        <button class="btn btn-outline" onclick="openChangePasswordModal()">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="16" height="16"><rect x="5" y="11" width="14" height="9" rx="1.5"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+          Change Password
+        </button>
+        <button class="btn btn-outline" onclick="openRequestUpdateModal()">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="16" height="16"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 4v5h-5"/></svg>
+          Request an Update
+          <span class="pending-tag" id="requestPendingTag" hidden>Pending</span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ===== MODALS ===== -->
+
+<div class="modal" id="viewProfilePictureModal">
+  <div class="modal-backdrop" onclick="closeModal('viewProfilePictureModal')"></div>
+  <div class="modal-dialog">
+    <div class="modal-header">
+      <h5 class="modal-title">Profile Picture</h5>
+      <button class="modal-close" onclick="closeModal('viewProfilePictureModal')">&times;</button>
+    </div>
+    <div class="modal-body" style="text-align:center;">
+      <img id="profilePictureDisplay" src="" alt="Profile Picture" style="width: 220px; height: 220px; border-radius: 50%; object-fit: cover; display: none; margin: 0 auto;">
+      <div id="profileInitialDisplay" style="width: 220px; height: 220px; border-radius: 50%; background: #2b2d82; color: #fff; display: flex; align-items: center; justify-content: center; font-size: 68px; font-weight: 700; margin: 0 auto;">--</div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('viewProfilePictureModal')">Close</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="photoChoiceModal">
+  <div class="modal-backdrop" onclick="closeModal('photoChoiceModal')"></div>
+  <div class="modal-dialog">
+    <div class="modal-header">
+      <h5 class="modal-title">Change Profile Picture</h5>
+      <button class="modal-close" onclick="closeModal('photoChoiceModal')">&times;</button>
+    </div>
+    <div class="modal-body" style="display:flex;flex-direction:column;gap:10px;">
+      <button type="button" class="btn btn-primary" style="width:100%;" onclick="triggerCameraCapture()">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 8a2 2 0 0 1 2-2h1.2l.8-1.4A1 1 0 0 1 8.87 4h6.26a1 1 0 0 1 .87.6L16.8 6H18a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2Z"/><circle cx="12" cy="13" r="3.2"/></svg>
+        Take a Photo
+      </button>
+      <button type="button" class="btn btn-primary" style="width:100%;" onclick="triggerFileUpload()">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3.5" y="3.5" width="17" height="17" rx="2"/><circle cx="8.5" cy="9" r="1.5"/><path d="M20 15l-4.5-4.5a1.5 1.5 0 0 0-2.1 0L5 19"/></svg>
+        Upload from Gallery
+      </button>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('photoChoiceModal')">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="cameraCaptureModal">
+  <div class="modal-backdrop" onclick="closeModal('cameraCaptureModal')"></div>
+  <div class="modal-dialog">
+    <div class="modal-header">
+      <h5 class="modal-title">Take a Photo</h5>
+      <button class="modal-close" onclick="closeModal('cameraCaptureModal')">&times;</button>
+    </div>
+    <div class="modal-body" style="text-align:center;">
+      <video id="cameraPreview" autoplay playsinline style="width:100%; max-width:440px; border-radius:10px; background:#000;"></video>
+      <div style="margin-top:15px; display:flex; gap:10px; justify-content:center;">
+        <button type="button" class="btn btn-primary" id="capturePhotoBtn">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></svg>
+          Capture
+        </button>
+        <button type="button" class="btn btn-secondary" onclick="closeModal('cameraCaptureModal')">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="editProfileModal">
+  <div class="modal-backdrop" onclick="closeModal('editProfileModal')"></div>
+  <div class="modal-dialog">
+    <div class="modal-header">
+      <h5 class="modal-title">Edit Contact Info</h5>
+      <button class="modal-close" onclick="closeModal('editProfileModal')">&times;</button>
+    </div>
+    <form id="editProfileForm" class="modal-form">
+      <div class="modal-body">
+        <div class="form-group">
+          <label class="form-label required">Email</label>
+          <input type="email" name="email" id="editEmail" class="form-control" required>
+          <span class="form-error" id="error-email"></span>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Contact number</label>
+          <input type="text" name="contact_number" id="editContactNumber" class="form-control" placeholder="09xx xxx xxxx">
+          <span class="form-error" id="error-contact-number"></span>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" onclick="closeModal('editProfileModal')">Cancel</button>
+        <button type="submit" class="btn btn-primary" id="profile-submit">Save Changes</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="modal" id="changePasswordModal">
+  <div class="modal-backdrop" onclick="closeModal('changePasswordModal')"></div>
+  <div class="modal-dialog">
+    <div class="modal-header">
+      <h5 class="modal-title">Change Password</h5>
+      <button class="modal-close" onclick="closeModal('changePasswordModal')">&times;</button>
+    </div>
+    <form id="changePasswordForm" class="modal-form">
+      <div class="modal-body">
+        <div class="form-group">
+          <label class="form-label required">Current password</label>
+          <input type="password" id="currentPassword" class="form-control" required autocomplete="current-password">
+          <span class="form-error" id="error-current-password"></span>
+        </div>
+        <div class="form-group">
+          <label class="form-label required">New password</label>
+          <input type="password" id="newPassword" class="form-control" required minlength="8" autocomplete="new-password">
+          <small class="form-text">At least 8 characters, with at least one letter and one digit.</small>
+          <span class="form-error" id="error-new-password"></span>
+        </div>
+        <div class="form-group">
+          <label class="form-label required">Confirm new password</label>
+          <input type="password" id="confirmPassword" class="form-control" required autocomplete="new-password">
+          <span class="form-error" id="error-confirm-password"></span>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" onclick="closeModal('changePasswordModal')">Cancel</button>
+        <button type="submit" class="btn btn-primary" id="password-submit">Update Password</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="modal" id="requestUpdateModal">
+  <div class="modal-backdrop" onclick="closeModal('requestUpdateModal')"></div>
+  <div class="modal-dialog">
+    <div class="modal-header">
+      <h5 class="modal-title request-modal-title">
+        <span class="icon-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="20" height="20"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 4v5h-5"/></svg></span>
+        Request an Update
+      </h5>
+      <button class="modal-close" onclick="closeModal('requestUpdateModal')">&times;</button>
+    </div>
+    <div class="modal-body">
+      <p class="request-modal-intro">For Student ID, Course, or Year Level changes. The library admin reviews each request.</p>
+
+      <div class="banner banner-warning" id="pending-request-banner" hidden>
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        <div>
+          <div class="banner-title">Request pending review</div>
+          <div class="banner-message" id="pending-request-detail"></div>
+        </div>
+      </div>
+
+      <form id="update-request-form" class="request-update-form">
+        <div class="form-group">
+          <label class="form-label" for="request-type">Field to update</label>
+          <select class="form-control" id="request-type">
+            <option value="">Select a field</option>
+            <option value="Student ID">Student ID</option>
+            <option value="Course">Course</option>
+            <option value="Year Level">Year Level</option>
+          </select>
+          <span class="form-error" id="error-request-type"></span>
+        </div>
+
+        <!-- Value group: exactly one of the three fields below is
+             visible at a time, driven by the field selector above.
+             - Student ID → free-text input (max 30 chars)
+             - Course     → dropdown from GET /students/courses
+             - Year Level → dropdown with fixed 1st–5th Year list -->
+        <div class="form-group" id="request-value-group" style="display:none;">
+          <label class="form-label" id="request-value-label" for="request-new-value">Requested value</label>
+
+          <input
+            class="form-control"
+            type="text"
+            id="request-new-value"
+            placeholder="Enter the new Student ID"
+            maxlength="30"
+            autocomplete="off"
+            spellcheck="false"
+            style="display:none;">
+
+          <select class="form-control" id="request-new-course" style="display:none;">
+            <option value="">Select a course…</option>
+          </select>
+
+          <select class="form-control" id="request-new-year" style="display:none;">
+            <option value="">Select a year level…</option>
+            <option value="1st Year">1st Year</option>
+            <option value="2nd Year">2nd Year</option>
+            <option value="3rd Year">3rd Year</option>
+            <option value="4th Year">4th Year</option>
+            <option value="5th Year">5th Year</option>
+          </select>
+
+          <span class="form-text" id="request-current-hint" style="display:none;"></span>
+          <span class="form-error" id="error-request-new-value"></span>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" onclick="closeModal('requestUpdateModal')">Close</button>
+      <button type="submit" class="btn btn-primary" id="request-submit" form="update-request-form">Submit Request</button>
+    </div>
+  </div>
+</div>
+
+<input type="file" id="profilePhotoInput" accept="image/*" style="display:none;">
+<input type="file" id="profilePhotoCameraInput" accept="image/*" capture="environment" style="display:none;">
+
+<div id="notificationContainer" class="notification-container"></div>
+
+<script src="../../shared/js/notifications.js"></script>
+<script src="../../shared/js/api.js"></script>
+<script src="../../shared/js/dom-helpers.js"></script>
+<script src="../../shared/js/helpers.js"></script>
+<script src="../../shared/js/session-check.js"></script>
+<script src="../../shared/js/validation.js"></script>
+<script src="../../shared/js/navbar.js"></script>
+<script src="../../shared/js/sidebar.js?v=3"></script>
+<script src="../js/profile.js"></script>
+</body>
+</html>

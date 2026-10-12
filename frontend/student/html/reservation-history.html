@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reservation History — RMMC-MI Library</title>
+<link rel="stylesheet" href="../../shared/css/global.css">
+<link rel="stylesheet" href="../../shared/css/sidebar.css">
+<link rel="stylesheet" href="../../shared/css/navbar.css">
+<link rel="stylesheet" href="../../shared/css/cards.css">
+<link rel="stylesheet" href="../../shared/css/tables.css">
+<link rel="stylesheet" href="../../shared/css/buttons.css">
+<link rel="stylesheet" href="../../shared/css/forms.css">
+<link rel="stylesheet" href="../../shared/css/modal.css">
+<link rel="stylesheet" href="../../shared/css/notifications.css">
+<link rel="stylesheet" href="../../shared/css/responsive.css">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/reservation-history.css?v=2">
+<link rel="stylesheet" href="../../shared/css/responsive-master.css">
+</head>
+<body>
+
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <div class="logo-container">
+      <div class="logo" style="display:flex;align-items:center;justify-content:center;color:var(--primary-blue);">
+        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5V6a2 2 0 0 1 2-2h8.5L20 8.5V19.5a1.5 1.5 0 0 1-1.5 1.5H5.5A1.5 1.5 0 0 1 4 19.5Z"/><path d="M14 4v4.5h4.5"/><path d="M8 12h8M8 15.5h8M8 8.5h3"/></svg>
+      </div>
+      <div class="brand-info">
+        <div class="brand-name">RMMC-MI Library</div>
+        <div class="brand-sub">Student Portal</div>
+      </div>
+    </div>
+  </div>
+
+  <nav class="sidebar-nav">
+    <div class="nav-item">
+      <a class="nav-link" href="dashboard.html">
+        <span class="nav-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/></svg></span>
+        <span class="nav-text">Dashboard</span>
+      </a>
+    </div>
+    <div class="nav-item">
+      <a class="nav-link" href="computer-availability.html">
+        <span class="nav-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg></span>
+        <span class="nav-text">Computers</span>
+      </a>
+    </div>
+    <div class="nav-item">
+      <a class="nav-link active" href="reservation-history.html">
+        <span class="nav-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/><path d="M12 7v5l3 2"/></svg></span>
+        <span class="nav-text">Reservations</span>
+      </a>
+    </div>
+    <div class="nav-item">
+      <a class="nav-link" href="notifications.html">
+        <span class="nav-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg></span>
+        <span class="nav-text">Notifications</span>
+      </a>
+    </div>
+    <div class="nav-item">
+      <a class="nav-link" href="profile.html">
+        <span class="nav-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></span>
+        <span class="nav-text">Profile</span>
+      </a>
+    </div>
+  </nav>
+
+  <div class="sidebar-hours">
+    <div class="sidebar-hours-label">Semester Hours</div>
+    <div class="sidebar-hours-track"><div class="sidebar-hours-fill" id="sidebarHoursFill" style="width:0%"></div></div>
+    <div class="sidebar-hours-value" id="sidebarHoursValue">– / – hrs used</div>
+  </div>
+
+  <div class="sidebar-footer">
+    <div class="user-info">
+      <div class="user-avatar" id="sidebarUserAvatar">--</div>
+      <div class="user-details">
+        <div class="user-name" id="sidebarUserName">Loading…</div>
+        <div class="user-role" id="sidebarUserRole">Student</div>
+      </div>
+    </div>
+    <button class="logout-btn" id="logoutBtn">
+      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="M16 17l5-5-5-5"/><path d="M21 12H9"/></svg>
+      <span>Log out</span>
+    </button>
+  </div>
+</aside>
+<div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+<button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle menu">
+  <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+</button>
+
+<div class="main-content">
+
+  <nav class="navbar" id="navbar">
+    <div class="navbar-left">
+      <button class="navbar-toggler" id="navbarToggler" aria-label="Menu">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+      <a class="navbar-brand" href="dashboard.html"><span class="brand-text">RMMC-MI <span>Library</span></span></a>
+    </div>
+    <div class="navbar-center"></div>
+    <div class="navbar-right">
+      <div class="navbar-item" id="notificationDropdown">
+        <button class="navbar-btn notification-toggle" aria-label="Notifications">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+          <span class="badge" id="notificationBadgeNav">0</span>
+        </button>
+        <div class="navbar-dropdown" style="width:340px;">
+          <div class="dropdown-header">Notifications</div>
+          <div class="notification-list"></div>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="notifications.html" style="justify-content:center;color:var(--primary-blue);font-weight:600;">View all notifications</a>
+        </div>
+      </div>
+      <div class="navbar-item" id="userMenu">
+        <button class="navbar-user user-toggle" style="border:none;background:none;">
+          <span class="avatar" id="userAvatarNav">--</span>
+          <span class="name" id="userNameNav">Loading…</span>
+        </button>
+        <div class="navbar-dropdown">
+          <div class="dropdown-header">My Account</div>
+          <a class="dropdown-item" href="profile.html">Profile</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#" id="navLogoutLink">Log out</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="page-content rh-page">
+
+    <!-- ===== PAGE HEADER ===== -->
+    <div class="rh-header">
+      <div class="rh-header-text">
+        <h1>Reservation History</h1>
+        <p class="rh-header-sub">Every computer reservation you've made, past and upcoming.</p>
+      </div>
+      <div class="rh-header-actions">
+        <a class="btn btn-primary rh-new-btn" href="computer-availability.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16" aria-hidden="true">
+            <path d="M12 5v14M5 12h14" stroke-linecap="round"/>
+          </svg>
+          New Reservation
+        </a>
+      </div>
+    </div>
+
+    <!-- ===== STATS ROW ===== -->
+    <div class="rh-stats" id="rh-stats">
+      <div class="rh-stat rh-stat-total">
+        <span class="rh-stat-label">Total</span>
+        <span class="rh-stat-value" id="hs-total">0</span>
+      </div>
+      <div class="rh-stat rh-stat-pending">
+        <span class="rh-stat-label">Pending</span>
+        <span class="rh-stat-value" id="hs-pending">0</span>
+      </div>
+      <div class="rh-stat rh-stat-approved">
+        <span class="rh-stat-label">Approved</span>
+        <span class="rh-stat-value" id="hs-approved">0</span>
+      </div>
+      <div class="rh-stat rh-stat-completed">
+        <span class="rh-stat-label">Completed</span>
+        <span class="rh-stat-value" id="hs-completed">0</span>
+      </div>
+      <div class="rh-stat rh-stat-cancelled">
+        <span class="rh-stat-label">Cancelled</span>
+        <span class="rh-stat-value" id="hs-cancelled">0</span>
+      </div>
+      <div class="rh-stat rh-stat-missed">
+        <span class="rh-stat-label">Missed</span>
+        <span class="rh-stat-value" id="hs-missed">0</span>
+      </div>
+    </div>
+
+    <!-- ===== FILTER BAR ===== -->
+    <div class="rh-filters" id="rh-filters">
+      <div class="rh-filter-field">
+        <label class="rh-filter-label" for="history-status">Status</label>
+        <select class="form-control rh-filter-control" id="history-status">
+          <option value="">All statuses</option>
+          <option value="Pending">Pending</option>
+          <option value="Approved">Approved</option>
+          <option value="Completed">Completed</option>
+          <option value="Cancelled">Cancelled</option>
+          <option value="Rejected">Rejected</option>
+          <option value="Missed">Missed</option>
+        </select>
+      </div>
+      <div class="rh-filter-field">
+        <label class="rh-filter-label" for="history-date">Date</label>
+        <input class="form-control rh-filter-control" type="date" id="history-date">
+      </div>
+      <div class="rh-filter-actions">
+        <button class="btn btn-light rh-clear-btn" id="history-clear" type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="14" height="14" aria-hidden="true">
+            <path d="M6 6l12 12M18 6 6 18" stroke-linecap="round"/>
+          </svg>
+          Clear filters
+        </button>
+      </div>
+    </div>
+
+    <!-- ===== TABLE ===== -->
+    <div class="rh-table-card">
+      <div class="table-responsive">
+        <table class="table rh-table" id="history-table">
+          <thead>
+            <tr>
+              <th>Computer</th>
+              <th>Date</th>
+              <th>Time</th>
+              <th>Duration</th>
+              <th>Status</th>
+              <th>Requested</th>
+              <th class="text-end">Actions</th>
+            </tr>
+          </thead>
+          <tbody id="history-body">
+            <tr><td colspan="7"><div class="skeleton skeleton-block" style="height:40px;margin:0;"></div></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="rh-pagination">
+        <div class="rh-pagination-info">
+          Showing <span id="hp-start">0</span> to <span id="hp-end">0</span> of <span id="hp-total">0</span> reservations
+        </div>
+        <div class="rh-pagination-buttons" id="hp-buttons"></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ===== CANCEL RESERVATION MODAL (kept as-is) ===== -->
+<div class="modal" id="cancelReservationModal">
+  <div class="modal-backdrop" onclick="closeCancelModal()"></div>
+  <div class="modal-dialog">
+    <div class="modal-header">
+      <h5 class="modal-title">
+        <span class="modal-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="18" height="18" aria-hidden="true">
+            <circle cx="12" cy="12" r="9"/>
+            <path d="M15 9l-6 6M9 9l6 6"/>
+          </svg>
+        </span>
+        Cancel Reservation
+      </h5>
+      <button class="modal-close" onclick="closeCancelModal()" aria-label="Close">&times;</button>
+    </div>
+
+    <div class="modal-body">
+      <p class="cancel-modal-intro">
+        Are you sure you want to cancel this reservation? <strong>This cannot be undone.</strong>
+      </p>
+
+      <div class="cancel-reservation-summary" id="cancelReservationSummary"></div>
+
+      <div class="form-group">
+        <label class="form-label" for="cancelReason">
+          Reason <span class="optional-tag">optional</span>
+        </label>
+        <textarea
+          id="cancelReason"
+          class="form-control"
+          rows="3"
+          maxlength="500"
+          placeholder="Let the librarian know why you're cancelling (optional)"></textarea>
+        <span class="form-text" id="cancelReasonCount">0 / 500</span>
+        <span class="form-error" id="error-cancel-reason"></span>
+      </div>
+
+      <div class="conflict-alert" id="cancelConflictAlert" role="alert">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="10"/><path d="M12 8v5M12 16h.01"/>
+        </svg>
+        <span id="cancelConflictMessage">Could not cancel this reservation.</span>
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <button type="button" class="btn btn-light" id="cancel-modal-close-btn">Keep Reservation</button>
+      <button type="button" class="btn btn-danger" id="cancel-modal-confirm-btn">
+        <span class="spinner" id="cancel-spinner" aria-hidden="true"></span>
+        <span id="cancel-modal-confirm-label">Cancel Reservation</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<div id="notificationContainer" class="notification-container"></div>
+
+<script src="../../shared/js/notifications.js"></script>
+<script src="../../shared/js/api.js"></script>
+<script src="../../shared/js/dom-helpers.js"></script>
+<script src="../../shared/js/helpers.js"></script>
+<script src="../../shared/js/session-check.js"></script>
+<script src="../../shared/js/validation.js"></script>
+<script src="../../shared/js/navbar.js"></script>
+<script src="../../shared/js/sidebar.js?v=3"></script>
+<script src="../js/reservation-history.js"></script>
+</body>
+</html>

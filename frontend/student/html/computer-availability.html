@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Computers — RMMC-MI Library</title>
+<link rel="stylesheet" href="../../shared/css/global.css">
+<link rel="stylesheet" href="../../shared/css/sidebar.css">
+<link rel="stylesheet" href="../../shared/css/navbar.css">
+<link rel="stylesheet" href="../../shared/css/cards.css">
+<link rel="stylesheet" href="../../shared/css/tables.css">
+<link rel="stylesheet" href="../../shared/css/buttons.css">
+<link rel="stylesheet" href="../../shared/css/forms.css">
+<link rel="stylesheet" href="../../shared/css/modal.css">
+<link rel="stylesheet" href="../../shared/css/notifications.css">
+<link rel="stylesheet" href="../../shared/css/responsive.css">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/computer-availability.css?v=3">
+<link rel="stylesheet" href="../../shared/css/responsive-master.css">
+</head>
+<body>
+
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <div class="logo-container">
+      <div class="logo" style="display:flex;align-items:center;justify-content:center;color:var(--primary-blue);">
+        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5V6a2 2 0 0 1 2-2h8.5L20 8.5V19.5a1.5 1.5 0 0 1-1.5 1.5H5.5A1.5 1.5 0 0 1 4 19.5Z"/><path d="M14 4v4.5h4.5"/><path d="M8 12h8M8 15.5h8M8 8.5h3"/></svg>
+      </div>
+      <div class="brand-info">
+        <div class="brand-name">RMMC-MI Library</div>
+        <div class="brand-sub">Student Portal</div>
+      </div>
+    </div>
+  </div>
+
+  <nav class="sidebar-nav">
+    <div class="nav-item">
+      <a class="nav-link" href="dashboard.html">
+        <span class="nav-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/></svg></span>
+        <span class="nav-text">Dashboard</span>
+      </a>
+    </div>
+    <div class="nav-item">
+      <a class="nav-link active" href="computer-availability.html">
+        <span class="nav-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg></span>
+        <span class="nav-text">Computers</span>
+      </a>
+    </div>
+    <div class="nav-item">
+      <a class="nav-link" href="reservation-history.html">
+        <span class="nav-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/><path d="M12 7v5l3 2"/></svg></span>
+        <span class="nav-text">Reservations</span>
+      </a>
+    </div>
+    <div class="nav-item">
+      <a class="nav-link" href="notifications.html">
+        <span class="nav-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg></span>
+        <span class="nav-text">Notifications</span>
+      </a>
+    </div>
+    <div class="nav-item">
+      <a class="nav-link" href="profile.html">
+        <span class="nav-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></span>
+        <span class="nav-text">Profile</span>
+      </a>
+    </div>
+  </nav>
+
+  <div class="sidebar-hours">
+    <div class="sidebar-hours-label">Semester Hours</div>
+    <div class="sidebar-hours-track"><div class="sidebar-hours-fill" id="sidebarHoursFill" style="width:0%"></div></div>
+    <div class="sidebar-hours-value" id="sidebarHoursValue">– / – hrs used</div>
+  </div>
+
+  <div class="sidebar-footer">
+    <div class="user-info">
+      <div class="user-avatar" id="sidebarUserAvatar">--</div>
+      <div class="user-details">
+        <div class="user-name" id="sidebarUserName">Loading…</div>
+        <div class="user-role" id="sidebarUserRole">Student</div>
+      </div>
+    </div>
+    <button class="logout-btn" id="logoutBtn">
+      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="M16 17l5-5-5-5"/><path d="M21 12H9"/></svg>
+      <span>Log out</span>
+    </button>
+  </div>
+</aside>
+<div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+<button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle menu">
+  <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+</button>
+
+<div class="main-content">
+
+  <nav class="navbar" id="navbar">
+    <div class="navbar-left">
+      <button class="navbar-toggler" id="navbarToggler" aria-label="Menu">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+      <a class="navbar-brand" href="dashboard.html"><span class="brand-text">RMMC-MI <span>Library</span></span></a>
+    </div>
+    <div class="navbar-center"></div>
+    <div class="navbar-right">
+      <div class="navbar-item" id="notificationDropdown">
+        <button class="navbar-btn notification-toggle" aria-label="Notifications">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+          <span class="badge" id="notificationBadgeNav">0</span>
+        </button>
+        <div class="navbar-dropdown" style="width:340px;">
+          <div class="dropdown-header">Notifications</div>
+          <div class="notification-list"></div>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="notifications.html" style="justify-content:center;color:var(--primary-blue);font-weight:600;">View all notifications</a>
+        </div>
+      </div>
+      <div class="navbar-item" id="userMenu">
+        <button class="navbar-user user-toggle" style="border:none;background:none;">
+          <span class="avatar" id="userAvatarNav">--</span>
+          <span class="name" id="userNameNav">Loading…</span>
+        </button>
+        <div class="navbar-dropdown">
+          <div class="dropdown-header">My Account</div>
+          <a class="dropdown-item" href="profile.html">Profile</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#" id="navLogoutLink">Log out</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="page-content">
+
+    <div class="page-header">
+      <div>
+        <h1>Computers</h1>
+        <p class="page-subtitle">Check availability, reserve a slot, and review every session you've run on a library PC.</p>
+      </div>
+    </div>
+
+    <div class="tabs" role="tablist" aria-label="Computer section">
+      <button class="tab-btn active" data-tab="availability" role="tab" aria-selected="true" aria-controls="tab-availability" id="tab-btn-availability">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="16" height="16" aria-hidden="true"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+        Availability
+      </button>
+      <button class="tab-btn" data-tab="usage" role="tab" aria-selected="false" aria-controls="tab-usage" id="tab-btn-usage">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="16" height="16" aria-hidden="true"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8M12 17v4"/><circle cx="12" cy="10.5" r="3"/><path d="M12 9v1.5l1 .8"/></svg>
+        My Usage History
+      </button>
+    </div>
+
+    <section class="tab-panel active" id="tab-availability" data-panel="availability" role="tabpanel" aria-labelledby="tab-btn-availability">
+
+      <div class="banner banner-danger" id="hours-lock-banner" hidden>
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v5M12 16h.01"/></svg>
+        <div>
+          <div class="banner-title">You've reached your semester hour limit</div>
+          <div class="banner-message">Reservations are disabled. Only the library admin can adjust your remaining hours.</div>
+        </div>
+      </div>
+
+      <div class="stats-summary" id="status-summary">
+        <div class="stat-item">
+          <span class="stat-label">Available</span>
+          <span class="stat-value" id="count-Available">–</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-label">Reserved</span>
+          <span class="stat-value" id="count-Reserved">–</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-label">Occupied</span>
+          <span class="stat-value" id="count-Occupied">–</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-label">Maintenance</span>
+          <span class="stat-value" id="count-Maintenance">–</span>
+        </div>
+      </div>
+
+      <div class="filters-bar">
+        <div class="filter-group">
+          <div class="filter-field">
+            <label class="form-label" for="filter-status">Status</label>
+            <select class="form-control" id="filter-status">
+              <option value="all">All statuses</option>
+              <option value="Available">Available</option>
+              <option value="Reserved">Reserved</option>
+              <option value="Occupied">Occupied</option>
+              <option value="Maintenance">Maintenance</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="computer-grid-container">
+        <div class="computer-grid" id="computer-grid">
+          <div class="skeleton skeleton-block" style="height:170px;"></div>
+          <div class="skeleton skeleton-block" style="height:170px;"></div>
+          <div class="skeleton skeleton-block" style="height:170px;"></div>
+        </div>
+      </div>
+
+    </section>
+
+    <section class="tab-panel" id="tab-usage" data-panel="usage" role="tabpanel" aria-labelledby="tab-btn-usage" hidden>
+
+      <div class="history-stats">
+        <div class="history-stat stat-total">
+          <span class="stat-label">Total Sessions</span>
+          <span class="stat-value" id="hs-total">0</span>
+        </div>
+        <div class="history-stat stat-hours">
+          <span class="stat-label">Total Time Used</span>
+          <span class="stat-value" id="hs-hours">0m</span>
+        </div>
+        <div class="history-stat stat-week" title="Monday through Sunday of the current week (matches the admin's Weekly report)">
+          <span class="stat-label">This Week</span>
+          <span class="stat-value" id="hs-week">0</span>
+        </div>
+        <div class="history-stat stat-month">
+          <span class="stat-label">This Month</span>
+          <span class="stat-value" id="hs-month">0</span>
+        </div>
+      </div>
+
+      <div class="history-filters">
+        <div class="filter-field">
+          <label class="form-label" for="history-from">From</label>
+          <input class="form-control" type="date" id="history-from">
+        </div>
+        <div class="filter-field">
+          <label class="form-label" for="history-to">To</label>
+          <input class="form-control" type="date" id="history-to">
+        </div>
+        <div class="filter-field">
+          <label class="form-label" for="history-type">Session Type</label>
+          <select class="form-control" id="history-type">
+            <option value="">All types</option>
+            <option value="Walk-in">Walk-in</option>
+            <option value="Reservation">Reservation</option>
+          </select>
+        </div>
+        <div class="filter-field filter-actions">
+          <button class="btn btn-light" id="history-clear" type="button">Clear filters</button>
+        </div>
+      </div>
+
+      <div class="history-table">
+        <div class="table-responsive">
+          <table class="table table-hover" id="session-table">
+            <thead>
+              <tr>
+                <th>Computer</th>
+                <th>Date</th>
+                <th>Login</th>
+                <th>Logout</th>
+                <th>Duration</th>
+                <th>Type</th>
+              </tr>
+            </thead>
+            <tbody id="session-body">
+              <tr><td colspan="6"><div class="skeleton skeleton-block" style="height:40px;margin:0;"></div></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="table-pagination">
+          <div class="pagination-info">
+            Showing <span id="hp-start">0</span> to <span id="hp-end">0</span> of <span id="hp-total">0</span> sessions
+          </div>
+          <div class="pagination-buttons" id="hp-buttons"></div>
+        </div>
+      </div>
+
+    </section>
+  </div>
+</div>
+
+<!-- ===== RESERVE MODAL ===== -->
+<div class="modal-backdrop" id="modal-backdrop"></div>
+<div class="modal" id="reserve-modal" role="dialog" aria-modal="true" aria-labelledby="reserve-modal-title">
+  <div class="modal-dialog">
+    <div class="modal-header">
+      <h5 class="modal-title" id="reserve-modal-title">
+        <span class="modal-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/>
+          </svg>
+        </span>
+        Reserve Computer
+      </h5>
+      <button class="modal-close" id="modal-close" type="button" aria-label="Close">&times;</button>
+    </div>
+
+    <div class="modal-body">
+
+      <!-- ==== STEP 1: WHICH COMPUTER ==== -->
+      <div class="modal-step">
+        <div class="modal-step-number">1</div>
+        <div class="modal-step-content">
+          <div class="modal-step-title">Computer</div>
+          <div class="modal-computer-chip" id="modal-computer-label">PC-01</div>
+        </div>
+      </div>
+
+      <!-- ==== STEP 2: IMPORTANT RULES ==== -->
+      <div class="modal-step">
+        <div class="modal-step-number">2</div>
+        <div class="modal-step-content">
+          <div class="modal-step-title">Before you reserve</div>
+
+          <div class="lead-time-note">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>
+            </svg>
+            <span>Reservations must be made at least <strong>1 hour</strong> before the start time.</span>
+          </div>
+
+          <div class="lunch-break-note">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="10"/><path d="M12 7v5l3.5 2"/>
+            </svg>
+            <span><strong>Lunch break (11:30 AM – 1:00 PM)</strong> is unavailable — reservations cannot overlap this window.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ==== STEP 3: AVAILABLE SLOTS (only when data loads) ==== -->
+      <div class="modal-step" id="reserve-slots-step" style="display:none;">
+        <div class="modal-step-number">3</div>
+        <div class="modal-step-content">
+          <div class="modal-step-title">Already reserved on this date</div>
+          <div id="reserve-reserved-slots" class="reserved-slots-preview"></div>
+        </div>
+      </div>
+
+      <!-- ==== STEP 4: PICK YOUR TIME ==== -->
+      <div class="modal-step modal-step-form">
+        <div class="modal-step-number" id="form-step-number">3</div>
+        <div class="modal-step-content">
+          <div class="modal-step-title">Choose your reservation time</div>
+
+          <div class="conflict-alert" id="modal-conflict-alert" role="alert">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="10"/><path d="M12 8v5M12 16h.01"/>
+            </svg>
+            <span id="modal-conflict-message">This time slot conflicts with an existing reservation.</span>
+          </div>
+
+          <div id="reserve-form-fields">
+            <div class="form-group">
+              <label class="form-label" for="reserve-date">Date</label>
+              <input class="form-control" type="date" id="reserve-date">
+              <small class="form-help">Pick the day you want to use this computer.</small>
+              <span class="form-error" id="error-date"></span>
+            </div>
+
+            <div class="form-row reserve-time-row">
+              <div class="form-group">
+                <label class="form-label" for="reserve-start">Start time</label>
+                <input class="form-control" type="time" id="reserve-start">
+                <span class="form-error" id="error-start"></span>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="reserve-end">End time</label>
+                <input class="form-control" type="time" id="reserve-end">
+                <span class="form-error" id="error-end"></span>
+              </div>
+            </div>
+            <small class="form-help form-help-center">Your session will run from the start time to the end time above.</small>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="modal-footer">
+      <button class="btn btn-light" id="modal-cancel" type="button">Cancel</button>
+      <button class="btn btn-primary" id="modal-confirm" type="button">
+        <span class="spinner" id="modal-confirm-spinner" aria-hidden="true"></span>
+        <span id="modal-confirm-label">Submit Reservation</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<div id="notificationContainer" class="notification-container"></div>
+<script src="../../shared/js/notifications.js"></script>
+<script src="../../shared/js/api.js"></script>
+<script src="../../shared/js/dom-helpers.js"></script>
+<script src="../../shared/js/helpers.js"></script>
+<script src="../../shared/js/session-check.js"></script>
+<script src="../../shared/js/validation.js"></script>
+<script src="../../shared/js/navbar.js"></script>
+<script src="../../shared/js/sidebar.js?v=3"></script>
+<script src="../js/computer-availability.js"></script>
+</body>
+</html>
